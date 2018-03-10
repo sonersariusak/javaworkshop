@@ -6,7 +6,7 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="EJBJWS1-1Client.jar" deploy-path="/" handle="module:/resource/EJBJWS1-1Client/EJBJWS1-1Client">
+        <dependent-module archiveName="EJBJWS1-1CLIENT.jar" deploy-path="/" handle="module:/resource/EJBJWS1-1CLIENT/EJBJWS1-1CLIENT">
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
