@@ -31,7 +31,6 @@ import javax.persistence.Version;
  *	- String alanların uzunlukları, tablo alan uzunluklarına göre @Column(name="NAME", length=12) şeklinde
  *	  otomatik substring yapılması için belirtilmeli
  */
-@MappedSuperclass
 public abstract class BaseEntity implements Serializable {
 	
 	private static final long serialVersionUID = -6349452865348636014L;
