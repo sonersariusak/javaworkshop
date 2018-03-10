@@ -2,5 +2,12 @@
 <project-modules id="moduleCoreId" project-version="1.5.0">
     <wb-module deploy-name="EARJWS1-1">
         <wb-resource deploy-path="/" source-path="/EarContent"/>
+        <dependent-module archiveName="EJBJWS1-1.jar" deploy-path="/" handle="module:/resource/EJBJWS1-1/EJBJWS1-1">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="EJBJWS1-1Client.jar" deploy-path="/" handle="module:/resource/EJBJWS1-1Client/EJBJWS1-1Client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
