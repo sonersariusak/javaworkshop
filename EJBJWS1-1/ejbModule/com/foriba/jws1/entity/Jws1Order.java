@@ -16,7 +16,8 @@ public class Jws1Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@SequenceGenerator(name="JWS1_ORDER_IDX_GENERATOR", sequenceName="SEQUENCE_IDX")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="JWS1_ORDER_IDX_GENERATOR")
 	private long idx;
 
 	@Column(name="ORDER_AMOUNT")
