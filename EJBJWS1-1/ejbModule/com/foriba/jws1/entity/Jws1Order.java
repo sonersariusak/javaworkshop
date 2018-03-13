@@ -17,8 +17,7 @@ import java.util.Date;
 @Entity
 @Table(name="JWS1_ORDER")
 @NamedQueries( {
-		@NamedQuery(name = "findAllOrder", query = "SELECT o FROM Jws1Order"),
-		@NamedQuery(name = "findAccordingToProductName", query = "SELECT o FROM Jws1Order where o.productname=: name") })
+		@NamedQuery(name = "findAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1") })
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
