@@ -29,7 +29,7 @@ public class DAOGenericBean<T extends BaseEntity> implements DAOGeneric<T> {
 	private static final long serialVersionUID = 5243709247477437376L;
 	private static final boolean FLUSH_ALL = false;
 	
-	@PersistenceContext(unitName="EINV_DS_EJB_10")
+	@PersistenceContext(unitName="EJBJWS1-1")
 	private EntityManager em;
 	
 	/*

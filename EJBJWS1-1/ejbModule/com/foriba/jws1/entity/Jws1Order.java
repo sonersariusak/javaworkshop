@@ -2,6 +2,10 @@ package com.foriba.jws1.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.foriba.jws1.base.BaseEntity;
+
+import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -12,16 +16,22 @@ import java.util.Date;
  */
 @Entity
 @Table(name="JWS1_ORDER")
-public class Jws1Order implements Serializable {
+@NamedQueries( {
+		@NamedQuery(name = "findAllOrder", query = "SELECT o FROM Jws1Order"),
+		@NamedQuery(name = "findAccordingToProductName", query = "SELECT o FROM Jws1Order where o.productname=: name") })
+public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="JWS1_ORDER_IDX_GENERATOR", sequenceName="SEQUENCE_IDX")
+	@SequenceGenerator(name="JWS1_ORDER_IDX_GENERATOR", sequenceName="JWS1_IDX_SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="JWS1_ORDER_IDX_GENERATOR")
 	private long idx;
 
 	@Column(name="ORDER_AMOUNT")
 	private BigDecimal orderAmount;
+
+	@Column(name="ORDER_ARRIVAL_DATE")
+	private Timestamp orderArrivalDate;
 
     @Temporal( TemporalType.DATE)
 	@Column(name="ORDER_DATE")
@@ -64,6 +74,14 @@ public class Jws1Order implements Serializable {
 		this.orderAmount = orderAmount;
 	}
 
+	public Timestamp getOrderArrivalDate() {
+		return this.orderArrivalDate;
+	}
+
+	public void setOrderArrivalDate(Timestamp orderArrivalDate) {
+		this.orderArrivalDate = orderArrivalDate;
+	}
+
 	public Date getOrderDate() {
 		return this.orderDate;
 	}
@@ -95,21 +113,4 @@ public class Jws1Order implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-	public Date getSysLastUpdate() {
-		return this.sysLastUpdate;
-	}
-
-	public void setSysLastUpdate(Date sysLastUpdate) {
-		this.sysLastUpdate = sysLastUpdate;
-	}
-
-	public BigDecimal getSysVersion() {
-		return this.sysVersion;
-	}
-
-	public void setSysVersion(BigDecimal sysVersion) {
-		this.sysVersion = sysVersion;
-	}
-
 }
