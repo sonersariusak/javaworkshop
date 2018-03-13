@@ -7,7 +7,6 @@ import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.persistence.LockModeType;
 import javax.persistence.Query;
-
 import com.foriba.jws1.base.BaseEntity;
 
 @Local

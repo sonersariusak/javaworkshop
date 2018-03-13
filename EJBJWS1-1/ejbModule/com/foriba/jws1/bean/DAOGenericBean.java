@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TemporalType;
 
+
 import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.service.DAOGeneric;
 

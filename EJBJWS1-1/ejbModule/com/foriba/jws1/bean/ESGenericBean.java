@@ -9,6 +9,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.LockModeType;
 import javax.persistence.Query;
 
+
 import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.service.DAOGeneric;
 import com.foriba.jws1.service.ESGeneric;
