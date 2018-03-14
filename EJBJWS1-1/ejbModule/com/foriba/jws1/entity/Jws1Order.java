@@ -9,16 +9,16 @@ import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;
 
-
 /**
  * The persistent class for the JWS1_ORDER database table.
  * 
  */
 @Entity
-@Table(name="JWS1_ORDER")
+@Table(name = "JWS1_ORDER")
 @NamedQueries( {
+		@NamedQuery(name = "findAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
 		@NamedQuery(name = "findAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
-		@NamedQuery(name = "findOrderBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderDate between ?1 and ?2")})
+		@NamedQuery(name = "findOrderBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderDate between ?1 and ?2") })
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,36 +27,36 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	@TableGenerator(name = "ORDER_GEN", table = "JWS1_ORDER_GEN", pkColumnName = "NAME", pkColumnValue = "JWS1_ORDER_GENERATOR", valueColumnName = "VALUE")
 	private long idx;
 
-	@Column(name="ORDER_AMOUNT")
+	@Column(name = "ORDER_AMOUNT")
 	private BigDecimal orderAmount;
 
-	@Column(name="ORDER_ARRIVAL_DATE")
+	@Column(name = "ORDER_ARRIVAL_DATE")
 	private Timestamp orderArrivalDate;
 
-    @Temporal( TemporalType.DATE)
-	@Column(name="ORDER_DATE")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ORDER_DATE")
 	private Date orderDate;
 
-    @Lob()
-	@Column(name="ORDER_DETAIL")
+	@Lob()
+	@Column(name = "ORDER_DETAIL")
 	private String orderDetail;
 
-    @Lob()
-	@Column(name="ORDER_INVOICE")
+	@Lob()
+	@Column(name = "ORDER_INVOICE")
 	private byte[] orderInvoice;
 
-	@Column(name="PRODUCT_NAME")
+	@Column(name = "PRODUCT_NAME")
 	private String productName;
 
-    @Temporal( TemporalType.DATE)
-	@Column(name="SYS_LAST_UPDATE")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "SYS_LAST_UPDATE")
 	private Date sysLastUpdate;
 
-	@Column(name="SYS_VERSION")
+	@Column(name = "SYS_VERSION")
 	private long sysVersion;
 
-    public Jws1Order() {
-    }
+	public Jws1Order() {
+	}
 
 	public long getIdx() {
 		return this.idx;
@@ -113,7 +113,7 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-	
+
 	public Date getSysLastUpdate() {
 		return this.sysLastUpdate;
 	}
