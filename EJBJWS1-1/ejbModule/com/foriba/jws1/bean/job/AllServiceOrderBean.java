@@ -12,11 +12,8 @@ import com.foriba.jws1.service.AllServiceOrder;
 @Stateless
 public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements AllServiceOrder {
 
-	public String OrderAdd(String Name) throws Exception {
-		Jws1Order jws = new Jws1Order();
-		jws.setIdx(4);
-		jws.setProductName(Name);
-		jws.setSysVersion(0);
+	public String OrderAdd(Jws1Order jws) throws Exception {
+	
 		persist(jws);
 		return "kayit basarili";
 

@@ -8,7 +8,7 @@ import com.foriba.jws1.entity.Jws1Order;
 
 public interface AllServiceOrder{
 	
-	public String OrderAdd(String Name) throws Exception;
+	public String OrderAdd(Jws1Order jws) throws Exception;
 	public List<Jws1Order> searchOrderProductName(String ProductName) throws Exception;
 
 }
