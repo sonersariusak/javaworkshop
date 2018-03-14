@@ -39,12 +39,10 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	@Override
 	public List<Jws1Order> searchOrderDate(String start, String end)
 			throws Exception {
-		SimpleDateFormat datetimeFormatter1 = new SimpleDateFormat(
-				"yyyy-MM-dd hh:mm:ss");
-		Date lFromDate1 = datetimeFormatter1.parse(start);
-		Date lFromDate2 = datetimeFormatter1.parse(end);
+		Date date1=new SimpleDateFormat("dd/MM/yyyy").parse(start);
+		Date date2=new SimpleDateFormat("dd/MM/yyyy").parse(end);
 		return findByNamedQuery(Jws1Order.class, "findOrderBetweenTwoDate", 1,
-				lFromDate1, lFromDate2);
+				date1, date2);
 
 	}
 
@@ -80,5 +78,6 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 		persist(jws);
 		return "Kayit Basarili";
 	}
+
 
 }
