@@ -6,10 +6,15 @@
 
 		<jta-data-source>DS_ORDER_TEST</jta-data-source>
 		<class>com.foriba.jws1.entity.Jws1Order</class>
-		
-		<!-- properties>
-			<property name="com.sap.jpa.execution.generate-proxies"
-				value="true" />
-		</properties-->
+		<properties>
+			<property name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+		</properties>
+
+
+
+
+		<!-- properties> <property name="com.sap.jpa.execution.generate-proxies" 
+			value="true" /> </properties -->
 	</persistence-unit>
 </persistence>

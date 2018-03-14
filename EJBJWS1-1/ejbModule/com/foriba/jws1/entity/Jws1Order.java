@@ -22,8 +22,8 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="JWS1_ORDER_IDX_GENERATOR", sequenceName="JWS1_IDX_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="JWS1_ORDER_IDX_GENERATOR")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "ORDER_GEN")
+	@TableGenerator(name = "ORDER_GEN", table = "JWS1_ORDER_GEN", pkColumnName = "NAME", pkColumnValue = "JWS1_ORDER_GENERATOR", valueColumnName = "VALUE")
 	private long idx;
 
 	@Column(name="ORDER_AMOUNT")
