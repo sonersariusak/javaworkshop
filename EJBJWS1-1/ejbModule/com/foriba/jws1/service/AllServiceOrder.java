@@ -14,6 +14,10 @@ public interface AllServiceOrder {
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception;
 
+	public String OrderMerge(long idx, String pName, String orderDate,
+			String orderArrivalDate, double amount, String clob, String blob)
+			throws Exception;
+
 	public String UpdateAdd(Jws1Order jws) throws Exception;
 
 	public List<Jws1Order> searchOrderProductName(String ProductName)
@@ -21,7 +25,7 @@ public interface AllServiceOrder {
 
 	public List<Jws1Order> searchOrderID(long ID) throws Exception;
 
-	public List<Jws1Order> searchOrderDate(String start, String end)
+	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception;
 
 }
