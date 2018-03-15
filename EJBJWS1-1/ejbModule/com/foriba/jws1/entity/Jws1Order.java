@@ -19,8 +19,8 @@ import java.util.Date;
 		@NamedQuery(name = "findAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
 		@NamedQuery(name = "findAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
 		@NamedQuery(name = "findOrderBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderDate between ?1 and ?2"),
-		@NamedQuery(name = "UpdateOrderWhereIDX", query = "UPDATE Jws1Order c SET c.productName = ?2,c.orderDate = ?3,c.orderArrivalDate = ?4, " +
-				"c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1") })
+		@NamedQuery(name = "updateOrder",query="UPDATE Jws1Order c SET c.productName = ?2,"
+						+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1") })
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

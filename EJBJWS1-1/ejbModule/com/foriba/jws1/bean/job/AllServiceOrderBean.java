@@ -100,19 +100,16 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String UpdateOrder(long idx, String pName, String orderDate,
-			String orderArrivalDate, double amount, String clob, String blob)
-			throws Exception {
-		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-		"yyyy-MM-dd hh:mm:ss.SSS");
-		Date date = simpleDateFormat.parse(orderArrivalDate);
+	public String UpdateOrder(long idx, String pName, double amount,
+		String clob, String blob) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
 		String str = new String(DatatypeConverter.parseBase64Binary(blob));
-		executeUpdate("UPDATE Jws1Order c SET c.productName = ?2,c.orderDate = ?3,c.orderArrivalDate = ?4, " +
-				"c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1",idx, pName, date1, date,
-				b.setScale(2, BigDecimal.ROUND_UP), clob, str.getBytes());
-		return null;
+		executeUpdate(
+				"UPDATE Jws1Order c SET c.productName = ?2,"
+						+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1",
+				idx, pName, b.setScale(2, BigDecimal.ROUND_UP), clob, str
+						.getBytes());
+		return "Update Başarılı";
 	}
 
 }

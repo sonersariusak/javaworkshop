@@ -27,8 +27,8 @@ public interface AllServiceOrder {
 
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception;
-	
-	public String UpdateOrder(long idx, String pName, String orderDate,
-			String orderArrivalDate, double amount, String clob, String blob) throws Exception;
+
+	public String UpdateOrder(long idx, String pName, double amount,
+			String clob, String blob) throws Exception;
 
 }
