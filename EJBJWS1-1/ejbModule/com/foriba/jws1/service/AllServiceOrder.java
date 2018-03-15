@@ -10,7 +10,7 @@ import com.foriba.jws1.entity.Jws1Order;
 public interface AllServiceOrder {
 	public String OrderAdd(Jws1Order jws) throws Exception;
 
-	public String OrderAddParameter(long idx, String pName, String orderDate,
+	public String OrderAddParameter(String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception;
 
@@ -18,7 +18,7 @@ public interface AllServiceOrder {
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception;
 
-	public String UpdateAdd(Jws1Order jws) throws Exception;
+	public String MergeOrder(Jws1Order jws) throws Exception;
 
 	public List<Jws1Order> searchOrderProductName(String ProductName)
 			throws Exception;
@@ -27,5 +27,8 @@ public interface AllServiceOrder {
 
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception;
+	
+	public String UpdateOrder(long idx, String pName, String orderDate,
+			String orderArrivalDate, double amount, String clob, String blob) throws Exception;
 
 }

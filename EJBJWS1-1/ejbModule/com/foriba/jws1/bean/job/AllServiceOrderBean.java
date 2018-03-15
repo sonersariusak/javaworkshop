@@ -35,8 +35,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	@Override
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd hh:mm:ss.SSS");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = simpleDateFormat.parse(startDate);
 		Date date1 = simpleDateFormat.parse(endDate);
 		return findByNamedQuery(Jws1Order.class, "findOrderBetweenTwoDate", 1,
@@ -45,9 +44,9 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String UpdateAdd(Jws1Order jws) throws Exception {
+	public String MergeOrder(Jws1Order jws) throws Exception {
 		merge(jws);
-		return "update basarili";
+		return "Merge basarili";
 	}
 
 	@Override
@@ -56,11 +55,10 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String OrderAddParameter(long idx, String pName, String orderDate,
+	public String OrderAddParameter(String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
 		Jws1Order jws = new Jws1Order();
-		jws.setIdx(idx);
 		jws.setProductName(pName);
 		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
 		jws.setOrderDate(date1);
@@ -79,9 +77,9 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String OrderMerge(long idx, String pName,
-			String orderDate, String orderArrivalDate, double amount,
-			String clob, String blob) throws Exception {
+	public String OrderMerge(long idx, String pName, String orderDate,
+			String orderArrivalDate, double amount, String clob, String blob)
+			throws Exception {
 		Jws1Order jws = new Jws1Order();
 		jws.setIdx(idx);
 		jws.setProductName(pName);
@@ -99,6 +97,22 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 		jws.setOrderInvoice(str.getBytes());
 		merge(jws);
 		return "update Basarili";
+	}
+
+	@Override
+	public String UpdateOrder(long idx, String pName, String orderDate,
+			String orderArrivalDate, double amount, String clob, String blob)
+			throws Exception {
+		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+		"yyyy-MM-dd hh:mm:ss.SSS");
+		Date date = simpleDateFormat.parse(orderArrivalDate);
+		BigDecimal b = new BigDecimal(amount);
+		String str = new String(DatatypeConverter.parseBase64Binary(blob));
+		executeUpdate("UPDATE Jws1Order c SET c.productName = ?2,c.orderDate = ?3,c.orderArrivalDate = ?4, " +
+				"c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1",idx, pName, date1, date,
+				b.setScale(2, BigDecimal.ROUND_UP), clob, str.getBytes());
+		return null;
 	}
 
 }
