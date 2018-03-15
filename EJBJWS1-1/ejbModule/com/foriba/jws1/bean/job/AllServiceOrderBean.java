@@ -58,58 +58,104 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	public String OrderAddParameter(String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
+		String message = "";
 		Jws1Order jws = new Jws1Order();
 		jws.setProductName(pName);
-		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
-		jws.setOrderDate(date1);
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd hh:mm:ss.SSS");
-		Date date = simpleDateFormat.parse(orderArrivalDate);
-		Timestamp timestamp = new Timestamp(date.getTime());
-		jws.setOrderArrivalDate(timestamp);
+		try {
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
+			jws.setOrderDate(date1);
+			try {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+						"yyyy-MM-dd hh:mm:ss.SSS");
+				Date date = simpleDateFormat.parse(orderArrivalDate);
+				Timestamp timestamp = new Timestamp(date.getTime());
+				jws.setOrderArrivalDate(timestamp);
+			} catch (Exception e) {
+				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
+				return message;
+			}
+		} catch (Exception e) {
+			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
+			return message;
+		}
 		BigDecimal b = new BigDecimal(amount);
 		jws.setOrderAmount(b.setScale(2, BigDecimal.ROUND_UP));
 		jws.setOrderDetail(clob);
-		String str = new String(DatatypeConverter.parseBase64Binary(blob));
-		jws.setOrderInvoice(str.getBytes());
+		String str = "";
+		try {
+			str = new String(DatatypeConverter.parseBase64Binary(blob));
+			jws.setOrderInvoice(str.getBytes());
+		} catch (Exception e) {
+			message = "blob alan Base64 encode olmalıdır!";
+			return message;
+		}
+
 		persist(jws);
-		return "Kayit Basarili";
+		message = "Kayit Basarili";
+		return message;
 	}
 
 	@Override
 	public String OrderMerge(long idx, String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
+		String message = "";
 		Jws1Order jws = new Jws1Order();
-		jws.setIdx(idx);
 		jws.setProductName(pName);
-		Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
-		jws.setOrderDate(date1);
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-				"yyyy-MM-dd hh:mm:ss.SSS");
-		Date date = simpleDateFormat.parse(orderArrivalDate);
-		Timestamp timestamp = new Timestamp(date.getTime());
-		jws.setOrderArrivalDate(timestamp);
+		try {
+			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
+			jws.setOrderDate(date1);
+			try {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
+						"yyyy-MM-dd hh:mm:ss.SSS");
+				Date date = simpleDateFormat.parse(orderArrivalDate);
+				Timestamp timestamp = new Timestamp(date.getTime());
+				jws.setOrderArrivalDate(timestamp);
+			} catch (Exception e) {
+				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
+				return message;
+			}
+		} catch (Exception e) {
+			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
+			return message;
+		}
 		BigDecimal b = new BigDecimal(amount);
 		jws.setOrderAmount(b.setScale(2, BigDecimal.ROUND_UP));
 		jws.setOrderDetail(clob);
-		String str = new String(DatatypeConverter.parseBase64Binary(blob));
-		jws.setOrderInvoice(str.getBytes());
+		String str = "";
+		try {
+			str = new String(DatatypeConverter.parseBase64Binary(blob));
+			jws.setOrderInvoice(str.getBytes());
+		} catch (Exception e) {
+			message = "blob alan Base64 encode olmalıdır!";
+			return message;
+		}
+
 		merge(jws);
-		return "update Basarili";
+		message = "Merge Basarili";
+		return message;
 	}
 
 	@Override
 	public String UpdateOrder(long idx, String pName, double amount,
-		String clob, String blob) throws Exception {
+			String clob, String blob) throws Exception {
+		String message = "";
+		String str = null;
 		BigDecimal b = new BigDecimal(amount);
-		String str = new String(DatatypeConverter.parseBase64Binary(blob));
+		try {
+			str = new String(DatatypeConverter.parseBase64Binary(blob));
+		} catch (Exception e) {
+			message = "blob alan Base64 encode olmalıdır.?";
+			return message;
+		}
+
 		executeUpdate(
 				"UPDATE Jws1Order c SET c.productName = ?2,"
 						+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1",
 				idx, pName, b.setScale(2, BigDecimal.ROUND_UP), clob, str
 						.getBytes());
-		return "Update Başarılı";
+		message = "Update Başarılı";
+		return message;
 	}
 
 }
