@@ -16,17 +16,17 @@ import java.util.Date;
 @Entity
 @Table(name = "JWS1_ORDER")
 @NamedQueries( {
-		@NamedQuery(name = "findAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
-		@NamedQuery(name = "findAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
-		@NamedQuery(name = "findOrderBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderDate between ?1 and ?2"),
-		@NamedQuery(name = "updateOrder",query="UPDATE Jws1Order c SET c.productName = ?2,"
-						+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1") })
+		@NamedQuery(name = "getfindAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
+		@NamedQuery(name = "getfindAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
+		@NamedQuery(name = "getfindOrderArrivalBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
+		@NamedQuery(name = "updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2,"
+				+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1") })
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="SEQ_GEN", sequenceName="JWS1_IDX_SEQ", allocationSize=1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="SEQ_GEN")
+	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "JWS1_IDX_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@Column(name = "IDX")
 	private long idx;
 

@@ -2,7 +2,6 @@ package com.foriba.jws1.bean.job;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -11,6 +10,7 @@ import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.bean.ESGenericBean;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.AllServiceOrder;
+import com.foriba.jws1.util.DateUtil;
 
 @Stateless
 public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
@@ -27,19 +27,29 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	public List<Jws1Order> searchOrderProductName(String ProductName)
 			throws Exception {
 
-		return findByNamedQuery(Jws1Order.class, "findAccordingToProductName",
-				1, ProductName);
+		return findByNamedQuery(Jws1Order.class,
+				"getfindAccordingToProductName", 1, ProductName);
 
 	}
 
 	@Override
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception {
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date date = simpleDateFormat.parse(startDate);
-		Date date1 = simpleDateFormat.parse(endDate);
-		return findByNamedQuery(Jws1Order.class, "findOrderBetweenTwoDate", 1,
-				date, date1);
+		DateUtil dt = new DateUtil();
+		String message="";
+		Timestamp tms = null;
+		Timestamp tms1 = null;
+		try {
+			tms = dt.toTimeStampDate(startDate);
+			tms1 = dt.toTimeStampDate(endDate);
+
+		} catch (Exception e) {
+			message="Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
+			
+		}
+
+		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate",
+				1, tms, tms1);
 
 	}
 
@@ -51,24 +61,22 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 
 	@Override
 	public List<Jws1Order> searchOrderID(long ID) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "findAccordingToID", 1, ID);
+		return findByNamedQuery(Jws1Order.class, "getfindAccordingToID", 1, ID);
 	}
 
 	@Override
 	public String OrderAddParameter(String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
+		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
 		jws.setProductName(pName);
 		try {
-			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
+			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
 			try {
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-						"yyyy-MM-dd hh:mm:ss.SSS");
-				Date date = simpleDateFormat.parse(orderArrivalDate);
-				Timestamp timestamp = new Timestamp(date.getTime());
+				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
 				jws.setOrderArrivalDate(timestamp);
 			} catch (Exception e) {
 				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
@@ -99,17 +107,15 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	public String OrderMerge(long idx, String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
+		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
 		jws.setProductName(pName);
 		try {
-			Date date1 = new SimpleDateFormat("dd/MM/yyyy").parse(orderDate);
+			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
 			try {
-				SimpleDateFormat simpleDateFormat = new SimpleDateFormat(
-						"yyyy-MM-dd hh:mm:ss.SSS");
-				Date date = simpleDateFormat.parse(orderArrivalDate);
-				Timestamp timestamp = new Timestamp(date.getTime());
+				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
 				jws.setOrderArrivalDate(timestamp);
 			} catch (Exception e) {
 				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
