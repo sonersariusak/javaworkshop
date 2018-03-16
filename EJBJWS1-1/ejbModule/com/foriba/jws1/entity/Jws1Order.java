@@ -15,13 +15,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "JWS1_ORDER")
-@NamedQueries( {
-		@NamedQuery(name = "getfindAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
+@NamedQueries( {@NamedQuery(name = "getfindAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
 		@NamedQuery(name = "getfindAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
 		@NamedQuery(name = "getfindOrderArrivalBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
-		@NamedQuery(name = "updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2,"
-				+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
-		@NamedQuery(name = "updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1") })
+		@NamedQuery(name = "updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
+		@NamedQuery(name = "updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -59,8 +57,7 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	@Column(name = "SYS_VERSION")
 	private long sysVersion;
 
-	public Jws1Order() {
-	}
+	public Jws1Order() {}
 
 	public long getIdx() {
 		return this.idx;

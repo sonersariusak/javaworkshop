@@ -13,8 +13,7 @@ import com.foriba.jws1.service.AllServiceOrder;
 import com.foriba.jws1.util.DateUtil;
 
 @Stateless
-public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
-		AllServiceOrder {
+public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements AllServiceOrder {
 
 	public String orderAdd(Jws1Order jws) throws Exception {
 
@@ -24,17 +23,14 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderProductName(String ProductName)
-			throws Exception {
+	public List<Jws1Order> searchOrderProductName(String ProductName) throws Exception {
 
-		return findByNamedQuery(Jws1Order.class,
-				"getfindAccordingToProductName", 1, ProductName);
+		return findByNamedQuery(Jws1Order.class, "getfindAccordingToProductName", 1, ProductName);
 
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
-			throws Exception {
+	public List<Jws1Order> searchOrderDate(String startDate, String endDate) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Timestamp tms = null;
@@ -43,13 +39,13 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 			tms = dt.toTimeStampDate(startDate);
 			tms1 = dt.toTimeStampDate(endDate);
 
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
 
 		}
 
-		return findByNamedQuery(Jws1Order.class,
-				"getfindOrderArrivalBetweenTwoDate", 1, tms, tms1);
+		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate", 1, tms, tms1);
 
 	}
 
@@ -65,17 +61,16 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String orderAddParameter(String pName, String orderDate,
-			String orderArrivalDate, double amount, String clob, String blob)
-			throws Exception {
+	public String orderAddParameter(String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
 		try {
-			if (null != pName) {
+			if(null != pName) {
 				jws.setProductName(pName);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			return message = "Product Name alanı doldurulmalıdır.";
 		}
 		try {
@@ -84,11 +79,13 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 			try {
 				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
 				jws.setOrderArrivalDate(timestamp);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
 				return message;
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
 			return message;
 		}
@@ -99,7 +96,8 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 		try {
 			str = new String(DatatypeConverter.parseBase64Binary(blob));
 			jws.setOrderInvoice(str.getBytes());
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			message = "blob alan Base64 encode olmalıdır!";
 			return message;
 		}
@@ -110,17 +108,16 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String orderMerge(long idx, String pName, String orderDate,
-			String orderArrivalDate, double amount, String clob, String blob)
-			throws Exception {
+	public String orderMerge(long idx, String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
 		try {
-			if (null != pName) {
+			if(null != pName) {
 				jws.setProductName(pName);
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			return message = "Product Name alanı doldurulmalıdır.";
 		}
 		try {
@@ -129,11 +126,13 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 			try {
 				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
 				jws.setOrderArrivalDate(timestamp);
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
 				return message;
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
 			return message;
 		}
@@ -144,7 +143,8 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 		try {
 			str = new String(DatatypeConverter.parseBase64Binary(blob));
 			jws.setOrderInvoice(str.getBytes());
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			message = "blob alan Base64 encode olmalıdır!";
 			return message;
 		}
@@ -155,43 +155,38 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String updateOrder(long idx, String pName, double amount,
-			String clob, String blob) throws Exception {
+	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception {
 		String message = "";
 		String str = null;
-		if (null == pName || "".equals(pName)) {
+		if(null == pName || "".equals(pName)) {
 			message = "Product Name alanı doldurulmalıdır.";
-		} else {
+		}
+		else {
 			BigDecimal b = new BigDecimal(amount);
 			try {
 				str = new String(DatatypeConverter.parseBase64Binary(blob));
-			} catch (Exception e) {
+			}
+			catch (Exception e) {
 				message = "blob alan Base64 encode olmalıdır.?";
 				return message;
 			}
 
-			int count = executeUpdate(
-					"UPDATE Jws1Order c SET c.productName = ?2,"
-							+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1",
-					idx, pName, b.setScale(2, BigDecimal.ROUND_UP), clob, str
-							.getBytes());
+			int count = executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", 
+					idx, pName, b.setScale(2,BigDecimal.ROUND_UP), clob, str.getBytes());
 			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
 	}
 
 	@Override
-	public String updateOrderProductNameToAmount(String pName, double amount)
-			throws Exception {
+	public String updateOrderProductNameToAmount(String pName, double amount) throws Exception {
 		String message = "";
-		String str = null;
-		if (null == pName || "".equals(pName)) {
+		if(null == pName || "".equals(pName)) {
 			message = "Product Name alanı doldurulmalıdır.";
-		} else {
+		}
+		else {
 			BigDecimal b = new BigDecimal(amount);
-			int count = executeUpdate(
-					"UPDATE Jws1Order c SET c.orderAmount = ?2 WHERE c.productName=?1",
-					pName, b.setScale(2, BigDecimal.ROUND_UP));
+			int count = executeUpdate("updateOrderProductNameToAmount", pName, b.setScale(2, BigDecimal.ROUND_UP));
 			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
