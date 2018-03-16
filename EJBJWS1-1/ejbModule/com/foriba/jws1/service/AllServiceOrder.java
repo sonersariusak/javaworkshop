@@ -1,12 +1,13 @@
 package com.foriba.jws1.service;
 
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-import com.foriba.jws1.base.BaseEntity;
+import javax.ejb.Local;
+import javax.ejb.Remote;
+
 import com.foriba.jws1.entity.Jws1Order;
 
+@Local
 public interface AllServiceOrder {
 	public String orderAdd(Jws1Order jws) throws Exception;
 
