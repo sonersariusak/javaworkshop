@@ -16,7 +16,7 @@ import com.foriba.jws1.util.DateUtil;
 public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 		AllServiceOrder {
 
-	public String OrderAdd(Jws1Order jws) throws Exception {
+	public String orderAdd(Jws1Order jws) throws Exception {
 
 		persist(jws);
 		return "kayit basarili";
@@ -36,7 +36,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate)
 			throws Exception {
 		DateUtil dt = new DateUtil();
-		String message="";
+		String message = "";
 		Timestamp tms = null;
 		Timestamp tms1 = null;
 		try {
@@ -44,17 +44,17 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 			tms1 = dt.toTimeStampDate(endDate);
 
 		} catch (Exception e) {
-			message="Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
-			
+			message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
+
 		}
 
-		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate",
-				1, tms, tms1);
+		return findByNamedQuery(Jws1Order.class,
+				"getfindOrderArrivalBetweenTwoDate", 1, tms, tms1);
 
 	}
 
 	@Override
-	public String MergeOrder(Jws1Order jws) throws Exception {
+	public String mergeOrder(Jws1Order jws) throws Exception {
 		merge(jws);
 		return "Merge basarili";
 	}
@@ -65,13 +65,19 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String OrderAddParameter(String pName, String orderDate,
+	public String orderAddParameter(String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
-		jws.setProductName(pName);
+		try {
+			if (null != pName) {
+				jws.setProductName(pName);
+			}
+		} catch (Exception e) {
+			return message = "Product Name alanı doldurulmalıdır.";
+		}
 		try {
 			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
@@ -104,13 +110,19 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String OrderMerge(long idx, String pName, String orderDate,
+	public String orderMerge(long idx, String pName, String orderDate,
 			String orderArrivalDate, double amount, String clob, String blob)
 			throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
-		jws.setProductName(pName);
+		try {
+			if (null != pName) {
+				jws.setProductName(pName);
+			}
+		} catch (Exception e) {
+			return message = "Product Name alanı doldurulmalıdır.";
+		}
 		try {
 			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
@@ -143,24 +155,45 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements
 	}
 
 	@Override
-	public String UpdateOrder(long idx, String pName, double amount,
+	public String updateOrder(long idx, String pName, double amount,
 			String clob, String blob) throws Exception {
 		String message = "";
 		String str = null;
-		BigDecimal b = new BigDecimal(amount);
-		try {
-			str = new String(DatatypeConverter.parseBase64Binary(blob));
-		} catch (Exception e) {
-			message = "blob alan Base64 encode olmalıdır.?";
-			return message;
-		}
+		if (null == pName || "".equals(pName)) {
+			message = "Product Name alanı doldurulmalıdır.";
+		} else {
+			BigDecimal b = new BigDecimal(amount);
+			try {
+				str = new String(DatatypeConverter.parseBase64Binary(blob));
+			} catch (Exception e) {
+				message = "blob alan Base64 encode olmalıdır.?";
+				return message;
+			}
 
-		executeUpdate(
-				"UPDATE Jws1Order c SET c.productName = ?2,"
-						+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1",
-				idx, pName, b.setScale(2, BigDecimal.ROUND_UP), clob, str
-						.getBytes());
-		message = "Update Başarılı";
+			int count = executeUpdate(
+					"UPDATE Jws1Order c SET c.productName = ?2,"
+							+ "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1",
+					idx, pName, b.setScale(2, BigDecimal.ROUND_UP), clob, str
+							.getBytes());
+			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
+		}
+		return message;
+	}
+
+	@Override
+	public String updateOrderProductNameToAmount(String pName, double amount)
+			throws Exception {
+		String message = "";
+		String str = null;
+		if (null == pName || "".equals(pName)) {
+			message = "Product Name alanı doldurulmalıdır.";
+		} else {
+			BigDecimal b = new BigDecimal(amount);
+			int count = executeUpdate(
+					"UPDATE Jws1Order c SET c.orderAmount = ?2 WHERE c.productName=?1",
+					pName, b.setScale(2, BigDecimal.ROUND_UP));
+			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
+		}
 		return message;
 	}
 
