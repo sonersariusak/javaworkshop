@@ -77,11 +77,12 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
 			try {
-				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
+				Date date=dt.toDate(orderArrivalDate);
+				Timestamp timestamp = new Timestamp(date.getTime());
 				jws.setOrderArrivalDate(timestamp);
 			}
 			catch (Exception e) {
-				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
+				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı dd/MM/yyy formatında olmalıdır.";
 				return message;
 			}
 		}

@@ -7,6 +7,7 @@ import java.util.Date;
 
 
 public class DateUtil {
+	//DateUtil classı
 	public static final SimpleDateFormat FORMAT_MID = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	public static final SimpleDateFormat FORMAT_DATE = new SimpleDateFormat("dd/MM/yyyy");
 	public static final SimpleDateFormat FORMAT_TIMESTAMP = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
