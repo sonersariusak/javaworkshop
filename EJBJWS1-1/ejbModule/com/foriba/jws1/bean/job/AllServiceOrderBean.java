@@ -204,7 +204,9 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	@Override
 	public List<Jws1Order> searchOrderDateBiggerThan(String date) throws Exception {
 		// TODO Auto-generated method stub
-		return findByNamedQuery(Jws1Order.class, "getProductNameLikeQuery", 5, date);
+		DateUtil dt=new DateUtil();
+		Date dateNew =dt.toDateShort(date);
+		return findByNamedQuery(Jws1Order.class, "getOrderDateBiggerThan", 5, dateNew);
 	}
 
 	@Override
