@@ -2,9 +2,7 @@ package com.foriba.jws1.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-
 import com.foriba.jws1.base.BaseEntity;
-
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;

@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>EJBJWS1-1</project>
-		<project>EJBJWS1-1CLIENT</project>
+		<project>EJBJWS1-1Client</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

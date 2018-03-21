@@ -1,30 +1,34 @@
-package com.foriba.jws1.bean.job;
+package com.foriba.jws1.bean;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
+
 import com.foriba.jws1.base.BaseEntity;
-import com.foriba.jws1.bean.ESGenericBean;
 import com.foriba.jws1.entity.Jws1Order;
-import com.foriba.jws1.service.AllServiceOrder;
+import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
 
 @Stateless
-public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements AllServiceOrder {
+public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
 
-	public String orderAdd(Jws1Order jws) throws Exception {
-
-		persist(jws);
-		return "kayit basarili";
+	public static void main(String args[]){
+		
+		
+	}
+	public String addOrder1(Jws1Order jws) throws Exception {
+		int abc=jws.getOrderDate().getYear();
+		//persist(jws);
+		return "abc"+abc;
 
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderProductName(String productName) throws Exception {
+	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception {
 		if(null != productName) {
 			return findByNamedQuery(Jws1Order.class, "getfindAccordingToProductName", 1, productName);
 		}
@@ -36,7 +40,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderDate(String startDate, String endDate) throws Exception {
+	public List<Jws1Order> getFindByBetweenTwoDate(String startDate, String endDate) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Timestamp tms = null;
@@ -62,12 +66,12 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderID(long ID) throws Exception {
+	public List<Jws1Order> getFindByID(long ID) throws Exception {
 		return findByNamedQuery(Jws1Order.class, "getfindAccordingToID", 1, ID);
 	}
 
 	@Override
-	public String orderAddParameter(String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
+	public String addOrder(String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
@@ -115,7 +119,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	}
 
 	@Override
-	public String orderMerge(long idx, String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
+	public String mergeOrder(long idx, String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
@@ -202,15 +206,15 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderDateBiggerThan(String date) throws Exception {
+	public List<Jws1Order> getFindByOrderDateBiggerThan(String date) throws Exception {
 		// TODO Auto-generated method stub
-		DateUtil dt=new DateUtil();
-		Date dateNew =dt.toDateShort(date);
+		DateUtil dt = new DateUtil();
+		Date dateNew = dt.toDateShort(date);
 		return findByNamedQuery(Jws1Order.class, "getOrderDateBiggerThan", 5, dateNew);
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderProductNameLike(String productName) throws Exception {
+	public List<Jws1Order> getFindByProductName(String productName) throws Exception {
 		if(null != productName) {
 			return findByNamedQuery(Jws1Order.class, "getProductNameLikeQuery", 5, productName);
 		}
