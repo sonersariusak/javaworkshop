@@ -18,13 +18,18 @@ public interface AllServiceOrder {
 
 	public String mergeOrder(Jws1Order jws) throws Exception;
 
+	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
+
+	public String updateOrderProductNameToAmount(String pName, double amount) throws Exception;
+
 	public List<Jws1Order> searchOrderProductName(String ProductName) throws Exception;
 
 	public List<Jws1Order> searchOrderID(long ID) throws Exception;
 
 	public List<Jws1Order> searchOrderDate(String startDate, String endDate) throws Exception;
 
-	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
+	public List<Jws1Order> searchOrderDateBiggerThan(String date) throws Exception;
 
-	public String updateOrderProductNameToAmount(String pName, double amount) throws Exception;
+	public List<Jws1Order> searchOrderProductNameLike(String productName) throws Exception;
+
 }

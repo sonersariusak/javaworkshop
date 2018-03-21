@@ -2,6 +2,7 @@ package com.foriba.jws1.bean.job;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -23,9 +24,14 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 	}
 
 	@Override
-	public List<Jws1Order> searchOrderProductName(String ProductName) throws Exception {
+	public List<Jws1Order> searchOrderProductName(String productName) throws Exception {
+		if(null != productName) {
+			return findByNamedQuery(Jws1Order.class, "getfindAccordingToProductName", 1, productName);
+		}
+		else {
+			return null;
+		}
 
-		return findByNamedQuery(Jws1Order.class, "getfindAccordingToProductName", 1, ProductName);
 
 	}
 
@@ -45,7 +51,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 
 		}
 
-		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate", 1, tms, tms1);
+		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate", 5, tms, tms1);
 
 	}
 
@@ -77,7 +83,7 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 			Date date1 = dt.toDate(orderDate);
 			jws.setOrderDate(date1);
 			try {
-				Date date=dt.toDate(orderArrivalDate);
+				Date date = dt.toDate(orderArrivalDate);
 				Timestamp timestamp = new Timestamp(date.getTime());
 				jws.setOrderArrivalDate(timestamp);
 			}
@@ -172,8 +178,10 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 				return message;
 			}
 
-			int count = executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", 
-					idx, pName, b.setScale(2,BigDecimal.ROUND_UP), clob, str.getBytes());
+			int count =
+					executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
+							2,
+							BigDecimal.ROUND_UP), clob, str.getBytes());
 			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
@@ -191,6 +199,23 @@ public class AllServiceOrderBean extends ESGenericBean<BaseEntity> implements Al
 			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
+	}
+
+	@Override
+	public List<Jws1Order> searchOrderDateBiggerThan(String date) throws Exception {
+		// TODO Auto-generated method stub
+		return findByNamedQuery(Jws1Order.class, "getProductNameLikeQuery", 5, date);
+	}
+
+	@Override
+	public List<Jws1Order> searchOrderProductNameLike(String productName) throws Exception {
+		if(null != productName) {
+			return findByNamedQuery(Jws1Order.class, "getProductNameLikeQuery", 5, productName);
+		}
+		else {
+			return null;
+		}
+
 	}
 
 }
