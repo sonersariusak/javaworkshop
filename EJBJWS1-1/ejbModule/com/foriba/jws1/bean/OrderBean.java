@@ -21,16 +21,16 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		
 	}
 	public String addOrder1(Jws1Order jws) throws Exception {
-		int abc=jws.getOrderDate().getYear();
-		//persist(jws);
-		return "abc"+abc;
+	
+		persist(jws);
+		return "Kayıt gerçekleşti";
 
 	}
 
 	@Override
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "getfindAccordingToProductName", 1, productName);
+			return findByNamedQuery(Jws1Order.class, "Order.getFindByProductName", 1, productName);
 		}
 		else {
 			return null;
@@ -55,7 +55,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 		}
 
-		return findByNamedQuery(Jws1Order.class, "getfindOrderArrivalBetweenTwoDate", 5, tms, tms1);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, tms, tms1);
 
 	}
 
@@ -67,7 +67,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	@Override
 	public List<Jws1Order> getFindByID(long ID) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "getfindAccordingToID", 1, ID);
+		//return findByID(Jws1Order.class, ID);
+		return null;
 	}
 
 	@Override
@@ -192,7 +193,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public String updateOrderProductNameToAmount(String pName, double amount) throws Exception {
+	public String updateOrderSetAmountFromProductName(String pName, double amount) throws Exception {
 		String message = "";
 		if(null == pName || "".equals(pName)) {
 			message = "Product Name alanı doldurulmalıdır.";
@@ -210,13 +211,13 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		// TODO Auto-generated method stub
 		DateUtil dt = new DateUtil();
 		Date dateNew = dt.toDateShort(date);
-		return findByNamedQuery(Jws1Order.class, "getOrderDateBiggerThan", 5, dateNew);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, dateNew);
 	}
 
 	@Override
 	public List<Jws1Order> getFindByProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "getProductNameLikeQuery", 5, productName);
+			return findByNamedQuery(Jws1Order.class, "Order.getFindByProductNameLikeQuery", 5, productName);
 		}
 		else {
 			return null;

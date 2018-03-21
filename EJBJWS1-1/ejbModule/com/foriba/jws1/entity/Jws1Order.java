@@ -13,13 +13,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "JWS1_ORDER")
-@NamedQueries( {@NamedQuery(name = "getfindAccordingToID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
-		@NamedQuery(name = "getfindAccordingToProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
-		@NamedQuery(name = "getfindOrderArrivalBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
-		@NamedQuery(name = "updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
-		@NamedQuery(name = "getProductNameLikeQuery", query = "SELECT c FROM Jws1Order c where c.productName like ?1"),
-		@NamedQuery(name = "getOrderDateBiggerThan", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
-		@NamedQuery(name = "updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1")})
+@NamedQueries( {@NamedQuery(name = "Order.getFindByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
+		@NamedQuery(name = "Order.getFindByProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
+		@NamedQuery(name = "Order.getFindByOrderArrivalBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
+		@NamedQuery(name = "Order.updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
+		@NamedQuery(name = "Order.getFindByProductNameLikeQuery", query = "SELECT c FROM Jws1Order c where c.productName like ?1"),
+		@NamedQuery(name = "Order.getFindByOrderDateBiggerThan", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
+		@NamedQuery(name = "Order.updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
