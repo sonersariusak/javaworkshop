@@ -13,6 +13,7 @@ import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
 
+@SuppressWarnings("serial")
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
 
@@ -43,8 +44,11 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
+		DateUtil dt = new DateUtil();
+		Timestamp ts = dt.toTimeStampFormat(startDate);
+		Timestamp ts1 = dt.toTimeStampFormat(endDate);
 
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, ts, ts1);
 
 	}
 
@@ -197,7 +201,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 
 	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, date);
+		DateUtil dt = new DateUtil();
+		String date1 = dt.ToDateString(date);
+		Date da = dt.toDateMID(date1);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, da);
 	}
 
 	@Override
