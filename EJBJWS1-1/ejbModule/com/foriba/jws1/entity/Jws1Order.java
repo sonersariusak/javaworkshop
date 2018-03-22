@@ -114,20 +114,4 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
-	public Date getSysLastUpdate() {
-		return this.sysLastUpdate;
-	}
-
-	public void setSysLastUpdate(Date sysLastUpdate) {
-		this.sysLastUpdate = sysLastUpdate;
-	}
-
-	public long getSysVersion() {
-		return sysVersion;
-	}
-
-	public void setSysVersion(long sysVersion) {
-		this.sysVersion = sysVersion;
-	}
 }

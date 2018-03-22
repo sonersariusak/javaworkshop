@@ -1,5 +1,7 @@
 package com.foriba.jws1.service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -24,9 +26,9 @@ public interface OrderService {
 
 	public List<Jws1Order> getFindByID(long ID) throws Exception;
 
-	public List<Jws1Order> getFindByBetweenTwoDate(String startDate, String endDate) throws Exception;
+	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception;
 
-	public List<Jws1Order> getFindByOrderDateBiggerThan(String date) throws Exception;
+	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception;
 
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception;
 

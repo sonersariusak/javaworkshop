@@ -16,12 +16,13 @@ import com.foriba.jws1.util.DateUtil;
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
 
-	public static void main(String args[]){
-		
-		
+	public static void main(String args[]) {
+
+
 	}
+
 	public String addOrder1(Jws1Order jws) throws Exception {
-	
+
 		persist(jws);
 		return "Kayıt gerçekleşti";
 
@@ -40,22 +41,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getFindByBetweenTwoDate(String startDate, String endDate) throws Exception {
-		DateUtil dt = new DateUtil();
-		String message = "";
-		Timestamp tms = null;
-		Timestamp tms1 = null;
-		try {
-			tms = dt.toTimeStampDate(startDate);
-			tms1 = dt.toTimeStampDate(endDate);
+	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		}
-		catch (Exception e) {
-			message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
 
-		}
-
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, tms, tms1);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, startDate, endDate);
 
 	}
 
@@ -67,7 +56,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	@Override
 	public List<Jws1Order> getFindByID(long ID) throws Exception {
-		//return findByID(Jws1Order.class, ID);
+		// return findByID(Jws1Order.class, ID);
 		return null;
 	}
 
@@ -206,12 +195,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		return message;
 	}
 
-	@Override
-	public List<Jws1Order> getFindByOrderDateBiggerThan(String date) throws Exception {
-		// TODO Auto-generated method stub
-		DateUtil dt = new DateUtil();
-		Date dateNew = dt.toDateShort(date);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, dateNew);
+
+	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, date);
 	}
 
 	@Override
