@@ -22,13 +22,6 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
-	public String addOrder1(Jws1Order jws) throws Exception {
-
-		persist(jws);
-		return "Kayıt gerçekleşti";
-
-	}
-
 	@Override
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception {
 		if(null != productName) {
@@ -37,7 +30,6 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		else {
 			return null;
 		}
-
 
 	}
 
@@ -65,7 +57,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public String addOrder(String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
+	public String addOrder(String pName, Date orderDate, Timestamp orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
@@ -78,12 +70,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 			return message = "Product Name alanı doldurulmalıdır.";
 		}
 		try {
-			Date date1 = dt.toDate(orderDate);
-			jws.setOrderDate(date1);
+			jws.setOrderDate(orderDate);
 			try {
-				Date date = dt.toDate(orderArrivalDate);
-				Timestamp timestamp = new Timestamp(date.getTime());
-				jws.setOrderArrivalDate(timestamp);
+				jws.setOrderArrivalDate(orderArrivalDate);
 			}
 			catch (Exception e) {
 				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı dd/MM/yyy formatında olmalıdır.";
@@ -109,53 +98,6 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 		persist(jws);
 		message = "Kayit Basarili";
-		return message;
-	}
-
-	@Override
-	public String mergeOrder(long idx, String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception {
-		DateUtil dt = new DateUtil();
-		String message = "";
-		Jws1Order jws = new Jws1Order();
-		try {
-			if(null != pName) {
-				jws.setProductName(pName);
-			}
-		}
-		catch (Exception e) {
-			return message = "Product Name alanı doldurulmalıdır.";
-		}
-		try {
-			Date date1 = dt.toDate(orderDate);
-			jws.setOrderDate(date1);
-			try {
-				Timestamp timestamp = dt.toTimeStampDate(orderArrivalDate);
-				jws.setOrderArrivalDate(timestamp);
-			}
-			catch (Exception e) {
-				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı yyyy-MM-dd hh:mm:ss.SSS formatında olmalıdır.";
-				return message;
-			}
-		}
-		catch (Exception e) {
-			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
-			return message;
-		}
-		BigDecimal b = new BigDecimal(amount);
-		jws.setOrderAmount(b.setScale(2, BigDecimal.ROUND_UP));
-		jws.setOrderDetail(clob);
-		String str = "";
-		try {
-			str = new String(DatatypeConverter.parseBase64Binary(blob));
-			jws.setOrderInvoice(str.getBytes());
-		}
-		catch (Exception e) {
-			message = "blob alan Base64 encode olmalıdır!";
-			return message;
-		}
-
-		merge(jws);
-		message = "Merge Basarili";
 		return message;
 	}
 
@@ -186,7 +128,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public String updateOrderSetAmountFromProductName(String pName, double amount) throws Exception {
+	public String updateOrderByProductNameChangeAmount(String pName, double amount) throws Exception {
 		String message = "";
 		if(null == pName || "".equals(pName)) {
 			message = "Product Name alanı doldurulmalıdır.";

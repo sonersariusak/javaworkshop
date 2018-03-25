@@ -10,17 +10,14 @@ import com.foriba.jws1.entity.Jws1Order;
 
 @Local
 public interface OrderService {
-	public String addOrder1(Jws1Order jws) throws Exception;
 
-	public String addOrder(String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception;
-
-	public String mergeOrder(long idx, String pName, String orderDate, String orderArrivalDate, double amount, String clob, String blob) throws Exception;
+	public String addOrder(String pName, Date orderDate, Timestamp orderArrivalDate, double amount, String clob, String blob) throws Exception;
 
 	public String mergeOrder(Jws1Order jws) throws Exception;
 
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
 
-	public String updateOrderSetAmountFromProductName(String pName, double amount) throws Exception;
+	public String updateOrderByProductNameChangeAmount(String pName, double amount) throws Exception;
 
 	public List<Jws1Order> getFindByProductName(String ProductName) throws Exception;
 
