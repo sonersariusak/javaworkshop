@@ -36,11 +36,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		DateUtil dt = new DateUtil();
-		Timestamp ts = dt.toTimeStampFormat(startDate);
-		Timestamp ts1 = dt.toTimeStampFormat(endDate);
-
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, ts, ts1);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, startDate, endDate);
 
 	}
 
@@ -52,8 +48,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	@Override
 	public List<Jws1Order> getFindByID(long ID) throws Exception {
-		// return findByID(Jws1Order.class, ID);
-		return null;
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByID", 1, ID);
+
 	}
 
 	@Override
@@ -144,9 +140,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
-		String date1 = dt.ToDateString(date);
-		Date da = dt.toDateMID(date1);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, da);
+		String convertDate = dt.ToDateString(date);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 5, convertDate);
 	}
 
 	@Override
