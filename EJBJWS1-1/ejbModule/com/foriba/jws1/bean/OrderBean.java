@@ -36,7 +36,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 5, startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 100, startDate, endDate);
 
 	}
 
@@ -54,7 +54,6 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	@Override
 	public String addOrder(String pName, Date orderDate, Timestamp orderArrivalDate, double amount, String clob, String blob) throws Exception {
-		DateUtil dt = new DateUtil();
 		String message = "";
 		Jws1Order jws = new Jws1Order();
 		try {
@@ -65,20 +64,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		catch (Exception e) {
 			return message = "Product Name alanı doldurulmalıdır.";
 		}
-		try {
-			jws.setOrderDate(orderDate);
-			try {
-				jws.setOrderArrivalDate(orderArrivalDate);
-			}
-			catch (Exception e) {
-				message = "Tarih ayarlarını kontrol ediniz! Timestamp Tarih ayarı dd/MM/yyy formatında olmalıdır.";
-				return message;
-			}
-		}
-		catch (Exception e) {
-			message = "Hata! Tarih ayarlarını kontrol ediniz! Tarih ayarı dd/MM/yyy formatında olmalıdır.";
-			return message;
-		}
+
+		jws.setOrderDate(orderDate);
+		jws.setOrderArrivalDate(orderArrivalDate);
 		BigDecimal b = new BigDecimal(amount);
 		jws.setOrderAmount(b.setScale(2, BigDecimal.ROUND_UP));
 		jws.setOrderDetail(clob);
