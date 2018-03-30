@@ -1,5 +1,6 @@
 package com.foriba.jws1.service;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -28,5 +29,7 @@ public interface OrderService {
 	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception;
 
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception;
+
+	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount,Timestamp startDate, Timestamp endDate) throws Exception;
 
 }

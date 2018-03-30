@@ -19,7 +19,8 @@ import java.util.Date;
 		@NamedQuery(name = "Order.updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
 		@NamedQuery(name = "Order.getFindByProductNameLikeQuery", query = "SELECT c FROM Jws1Order c where c.productName like ?1"),
 		@NamedQuery(name = "Order.getFindByOrderDateBiggerThan", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
-		@NamedQuery(name = "Order.updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1")})
+		@NamedQuery(name = "Order.updateOrderProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1"),
+		@NamedQuery(name = "Order.getFindByAmountBiggerThanBetweenTwoDay", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
