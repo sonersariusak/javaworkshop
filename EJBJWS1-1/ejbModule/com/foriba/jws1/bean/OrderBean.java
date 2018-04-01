@@ -135,7 +135,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getFindByProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "Order.getFindByProductNameLikeQuery", 10, productName);
+			return findByQuery(Jws1Order.class, "Order.getFindByProductNameLikeQuery", 10, productName);
 		}
 		else {
 			return null;
