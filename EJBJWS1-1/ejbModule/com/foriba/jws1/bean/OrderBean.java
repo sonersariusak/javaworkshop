@@ -129,13 +129,13 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
 		String convertDate = dt.ToDateString(date);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderDateBiggerThan", 10, convertDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByDateBiggerThan", 10, convertDate);
 	}
 
 	@Override
 	public List<Jws1Order> getFindByProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByQuery(Jws1Order.class, "Order.getFindByProductNameLikeQuery", 10, productName);
+			return findByQuery(Jws1Order.class, "Order.getFindByProductNameQuery", 10, productName);
 		}
 		else {
 			return null;

@@ -1,6 +1,5 @@
 package com.foriba.jws1.service;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;

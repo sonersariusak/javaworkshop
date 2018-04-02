@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Locale;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
