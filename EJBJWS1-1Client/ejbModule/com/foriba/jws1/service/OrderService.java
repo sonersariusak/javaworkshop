@@ -29,6 +29,8 @@ public interface OrderService {
 
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception;
 
-	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount,Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getFindByOrderProductNameEqualAmountLessThan(String productName, double amount) throws Exception;
+
+	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
 
 }

@@ -20,6 +20,7 @@ import java.util.Date;
 		@NamedQuery(name = "Order.getFindByOrderProductName", query = "SELECT c FROM Jws1Order c where c.productName LIKE ?1"),
 		@NamedQuery(name = "Order.getFindByDateBiggerThan", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
 		@NamedQuery(name = "Order.updateProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1"),
+		@NamedQuery(name = "Order.getFindByProductNameAmountEqualLessThan", query = "SELECT c FROM Jws1Order c where c.productName LIKE ?1 and c.orderAmount<= ?2"),
 		@NamedQuery(name = "Order.getFindByAmountBiggerThanBetweenTwoDay", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -115,6 +116,7 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
 	public Date getSysLastUpdate() {
 		return this.sysLastUpdate;
 	}

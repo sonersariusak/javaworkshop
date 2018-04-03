@@ -16,16 +16,10 @@ import com.foriba.jws1.util.DateUtil;
 @SuppressWarnings("serial")
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
-
-	public static void main(String args[]) {
-
-
-	}
-
 	@Override
 	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderProductName", 10, "%"+productName+"%");
+			return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderProductName", 10, "%" + productName + "%");
 		}
 		else {
 			return null;
@@ -146,8 +140,15 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByAmountBiggerThanBetweenTwoDay", 10,b.setScale(2, BigDecimal.ROUND_UP),startDate, endDate);
-		
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByAmountBiggerThanBetweenTwoDay", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
+
+	}
+
+	@Override
+	public List<Jws1Order> getFindByOrderProductNameEqualAmountLessThan(String productName, double amount) throws Exception {
+		BigDecimal b = new BigDecimal(amount);
+		return findByNamedQuery(Jws1Order.class, "Order.getFindByProductNameAmountEqualLessThan", 10, "%" + productName + "%",b.setScale(2, BigDecimal.ROUND_UP));
+
 	}
 
 }
