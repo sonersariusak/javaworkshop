@@ -15,20 +15,20 @@ public interface OrderService {
 
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
 
-	public String updateOrderByProductNameChangeAmount(String pName, double amount) throws Exception;
+	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception;
 
-	public List<Jws1Order> getFindByProductName(String ProductName) throws Exception;
+	public List<Jws1Order> getByOrderProductName(String ProductName) throws Exception;
 
-	public List<Jws1Order> getFindByID(long ID) throws Exception;
+	public List<Jws1Order> getByID(long ID) throws Exception;
 
-	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception;
 
-	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception;
+	public List<Jws1Order> getByOrderDate(Date date) throws Exception;
 
-	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception;
+	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception;
 
-	public List<Jws1Order> getFindByOrderProductNameEqualAmountLessThan(String productName, double amount) throws Exception;
+	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception;
 
-	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
 
 }

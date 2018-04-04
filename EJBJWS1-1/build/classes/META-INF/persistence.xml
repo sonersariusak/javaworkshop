@@ -6,9 +6,5 @@
 
 		<jta-data-source>DS_ORDER_TEST</jta-data-source>
 		<class>com.foriba.jws1.entity.Jws1Order</class>
-		<!--
-			properties> <property name="com.sap.jpa.execution.generate-proxies"
-			value="true" /> </properties
-		-->
 	</persistence-unit>
 </persistence>

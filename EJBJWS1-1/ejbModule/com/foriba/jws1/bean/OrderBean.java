@@ -15,9 +15,9 @@ import com.foriba.jws1.util.DateUtil;
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
 	@Override
-	public List<Jws1Order> getFindByOrderProductName(String productName) throws Exception {
+	public List<Jws1Order> getByOrderProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderProductName", 10, "%" + productName + "%");
+			return findByNamedQuery(Jws1Order.class, "Order.getByOrderProductName", 10, "%" + productName + "%");
 		}
 		else {
 			return null;
@@ -26,9 +26,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getFindByBetweenTwoDate(Timestamp startDate, Timestamp endDate) throws Exception {
+	public List<Jws1Order> getByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByOrderArrivalBetweenTwoDate", 10, startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getByOrderArrivalDate", 10, startDate, endDate);
 
 	}
 
@@ -39,8 +39,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getFindByID(long ID) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByID", 1, ID);
+	public List<Jws1Order> getByID(long ID) throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getByID", 1, ID);
 
 	}
 
@@ -50,7 +50,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		Jws1Order jws = new Jws1Order();
 		try {
 			if(null != pName) {
-				jws.setProductName(pName);
+				jws.setOrderedProductName(pName);
 			}
 		}
 		catch (Exception e) {
@@ -98,13 +98,13 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 					executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
 							2,
 							BigDecimal.ROUND_UP), clob, str.getBytes());
-			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
+			message = "Update Başarılı, Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
 	}
 
 	@Override
-	public String updateOrderByProductNameChangeAmount(String pName, double amount) throws Exception {
+	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception {
 		String message = "";
 		if(null == pName || "".equals(pName)) {
 			message = "Product Name alanı doldurulmalıdır.";
@@ -112,22 +112,22 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		else {
 			BigDecimal b = new BigDecimal(amount);
 			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", pName, b.setScale(2, BigDecimal.ROUND_UP));
-			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
+			message = "Update Başarılı, Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
 	}
 
 
-	public List<Jws1Order> getFindByOrderDateBiggerThan(Date date) throws Exception {
+	public List<Jws1Order> getByOrderDate(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
 		String convertDate = dt.ToDateString(date);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByDateBiggerThan", 10, convertDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getByOrderDate", 10, convertDate);
 	}
 
 	@Override
-	public List<Jws1Order> getFindByProductName(String productName) throws Exception {
+	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByQuery(Jws1Order.class, "Order.getFindByProductNameQuery", 10, productName);
+			return findByQuery(Jws1Order.class, "Order.getByOrderedProductName", 10, productName);
 		}
 		else {
 			return null;
@@ -136,16 +136,16 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
+	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByAmountBiggerThanBetweenTwoDay", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getByAmountByOrderArrivalDate", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
 
 	}
 
 	@Override
-	public List<Jws1Order> getFindByOrderProductNameEqualAmountLessThan(String productName, double amount) throws Exception {
+	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getFindByProductNameAmountEqualLessThan", 10, "%" + productName + "%",b.setScale(2, BigDecimal.ROUND_UP));
+		return findByNamedQuery(Jws1Order.class, "Order.getByOrderedProductNameByAmount", 10, "%" + productName + "%", b.setScale(2, BigDecimal.ROUND_UP));
 
 	}
 

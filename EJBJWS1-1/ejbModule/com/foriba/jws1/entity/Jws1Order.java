@@ -2,10 +2,13 @@ package com.foriba.jws1.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import com.foriba.jws1.base.BaseEntity;
+
 import java.sql.Timestamp;
 import java.math.BigDecimal;
 import java.util.Date;
+
 
 /**
  * The persistent class for the JWS1_ORDER database table.
@@ -13,15 +16,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "JWS1_ORDER")
-@NamedQueries( {@NamedQuery(name = "Order.getFindByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
-		@NamedQuery(name = "Order.getFindByProductName", query = "SELECT c FROM Jws1Order c where c.productName=?1"),
-		@NamedQuery(name = "Order.getFindByOrderArrivalBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
-		//@NamedQuery(name = "Order.updateOrder", query = "UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1"),
-		@NamedQuery(name = "Order.getFindByOrderProductName", query = "SELECT c FROM Jws1Order c where c.productName LIKE ?1"),
-		@NamedQuery(name = "Order.getFindByDateBiggerThan", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
-		//@NamedQuery(name = "Order.updateProductNameToAmount", query = "UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1"),
-		@NamedQuery(name = "Order.getFindByProductNameAmountEqualLessThan", query = "SELECT c FROM Jws1Order c where c.productName LIKE ?1 and c.orderAmount<= ?2"),
-		@NamedQuery(name = "Order.getFindByAmountBiggerThanBetweenTwoDate", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
+@NamedQueries( {@NamedQuery(name = "Order.getByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
+		@NamedQuery(name = "Order.getByOrderedProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName=?1"),
+		@NamedQuery(name = "Order.getByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
+		@NamedQuery(name = "Order.getByOrderProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1"),
+		@NamedQuery(name = "Order.getByOrderDate", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
+		@NamedQuery(name = "Order.getByOrderedProductNameByAmount", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1 and c.orderAmount<= ?2"),
+		@NamedQuery(name = "Order.getByAmountByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -49,15 +50,8 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	@Column(name = "ORDER_INVOICE")
 	private byte[] orderInvoice;
 
-	@Column(name = "PRODUCT_NAME")
-	private String productName;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "SYS_LAST_UPDATE")
-	private Date sysLastUpdate;
-
-	@Column(name = "SYS_VERSION")
-	private long sysVersion;
+	@Column(name = "ORDERED_PRODUCT_NAME")
+	private String orderedProductName;
 
 	public Jws1Order() {}
 
@@ -109,27 +103,12 @@ public class Jws1Order extends BaseEntity implements Serializable {
 		this.orderInvoice = orderInvoice;
 	}
 
-	public String getProductName() {
-		return this.productName;
+	public String getOrderedProductName() {
+		return this.orderedProductName;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setOrderedProductName(String orderedProductName) {
+		this.orderedProductName = orderedProductName;
 	}
 
-	public Date getSysLastUpdate() {
-		return this.sysLastUpdate;
-	}
-
-	public void setSysLastUpdate(Date sysLastUpdate) {
-		this.sysLastUpdate = sysLastUpdate;
-	}
-
-	public long getSysVersion() {
-		return sysVersion;
-	}
-
-	public void setSysVersion(long sysVersion) {
-		this.sysVersion = sysVersion;
-	}
 }
