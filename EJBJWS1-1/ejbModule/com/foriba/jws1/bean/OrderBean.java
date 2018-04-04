@@ -15,9 +15,9 @@ import com.foriba.jws1.util.DateUtil;
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
 	@Override
-	public List<Jws1Order> getByOrderProductName(String productName) throws Exception {
+	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception {
 		if(null != productName) {
-			return findByNamedQuery(Jws1Order.class, "Order.getByOrderProductName", 10, "%" + productName + "%");
+			return findByNamedQuery(Jws1Order.class, "Order.getByOrderedProductName", 10, "%" + productName + "%");
 		}
 		else {
 			return null;
@@ -125,17 +125,6 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception {
-		if(null != productName) {
-			return findByQuery(Jws1Order.class, "Order.getByOrderedProductName", 10, productName);
-		}
-		else {
-			return null;
-		}
-
-	}
-
-	@Override
 	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
 		return findByNamedQuery(Jws1Order.class, "Order.getByAmountByOrderArrivalDate", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
@@ -149,4 +138,15 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
+	@Override
+	public List<Jws1Order> getByOrderProductName(String orderedProductName) throws Exception {
+		if(null != orderedProductName) {
+			return findByNamedQuery(Jws1Order.class, "Order.getByOrderProductName", 10, orderedProductName);
+		}
+		else {
+			return null;
+		}
+	}
+
+	
 }

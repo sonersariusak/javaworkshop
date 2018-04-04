@@ -17,7 +17,7 @@ public interface OrderService {
 
 	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception;
 
-	public List<Jws1Order> getByOrderProductName(String ProductName) throws Exception;
+	public List<Jws1Order> getByOrderProductName(String orderProductName) throws Exception;
 
 	public List<Jws1Order> getByID(long ID) throws Exception;
 
@@ -25,7 +25,7 @@ public interface OrderService {
 
 	public List<Jws1Order> getByOrderDate(Date date) throws Exception;
 
-	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception;
+	public List<Jws1Order> getByOrderedProductName(String orderedProductName) throws Exception;
 
 	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception;
 
