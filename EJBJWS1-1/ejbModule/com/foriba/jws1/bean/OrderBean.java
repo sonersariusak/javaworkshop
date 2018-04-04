@@ -14,6 +14,11 @@ import com.foriba.jws1.util.DateUtil;
 @SuppressWarnings("serial")
 @Stateless
 public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
+	
+	 /**
+     * getByOrderedProductName metodun sorgusunda orderedProductName alanı için LIKE kullanılmıştır.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception {
 		if(null != productName) {
@@ -24,7 +29,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		}
 
 	}
-
+	 /**
+     * getByOrderArrivalDate metodu, başlangıç ve bitiş orderArrivalDate arasındaki kayıtları getirir.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public List<Jws1Order> getByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
@@ -32,6 +40,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
+	 /**
+     * mergeOrder metodu, eğer IDX'e göre eşleşen kayıt var ise güncellerler, yok ise yeni kayıt olarak ekler.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public String mergeOrder(Jws1Order jws) throws Exception {
 		merge(jws);
@@ -44,6 +56,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
+	 /**
+     * addOrder metodu, tabloya yeni kayıt ekler.
+     * @param 
+     */
 	@Override
 	public String addOrder(String pName, Date orderDate, Timestamp orderArrivalDate, double amount, String clob, String blob) throws Exception {
 		String message = "";
@@ -77,6 +93,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		return message;
 	}
 
+	 /**
+     * updateOrder metodu, tabloyu günceller.
+     * @param 
+     */
 	@Override
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception {
 		String message = "";
@@ -103,6 +123,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		return message;
 	}
 
+	/**
+     * updateAmountByOrderedProductName metodu, eşleşen orderedProductName'lerin Amount'larını günceller.
+     * @param 
+     */
 	@Override
 	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception {
 		String message = "";
@@ -117,13 +141,21 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		return message;
 	}
 
-
+	/**
+     * getByOrderDate metodu, Girilen tarihten daha büyük olan tarihtki kayıtları listeler.
+     * @return records of JWS1_ORDER Tables
+     */
+	@Override
 	public List<Jws1Order> getByOrderDate(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
 		String convertDate = dt.ToDateString(date);
 		return findByNamedQuery(Jws1Order.class, "Order.getByOrderDate", 10, convertDate);
 	}
 
+	/**
+     * getByAmountByOrderArrivalDate metodu, İki orderArrivalDate arasındaki ve Amount'ları girilen değerden büyük olanları listeler.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
@@ -131,6 +163,11 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
+	/**
+     * getByOrderDate metodu, girilen orderedProductName ve girilen Amounttan küçük olanları listeler.
+     * orderedProductName alanı için LIKE kullanılmıştır.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
@@ -138,6 +175,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 
 	}
 
+	/**
+     * getByOrderDate metodu, Girilen orderedProductName'e göre gelen kayıtları listeler.
+     * @return records of JWS1_ORDER Tables
+     */
 	@Override
 	public List<Jws1Order> getByOrderProductName(String orderedProductName) throws Exception {
 		if(null != orderedProductName) {
