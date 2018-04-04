@@ -4,10 +4,8 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
-
 import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
