@@ -113,7 +113,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
-			int count = executeUpdate("updateOrderProductNameToAmount", pName, b.setScale(2, BigDecimal.ROUND_UP));
+			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", pName, b.setScale(2, BigDecimal.ROUND_UP));
 			message = "Update Başarılı" + ", Güncellenen kayıt sayısı:" + count;
 		}
 		return message;
@@ -138,7 +138,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
+	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
 		return findByNamedQuery(Jws1Order.class, "Order.getFindByAmountBiggerThanBetweenTwoDay", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
 

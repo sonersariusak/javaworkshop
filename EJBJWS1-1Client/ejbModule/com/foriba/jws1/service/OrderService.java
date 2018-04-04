@@ -3,9 +3,7 @@ package com.foriba.jws1.service;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-
 import javax.ejb.Local;
-
 import com.foriba.jws1.entity.Jws1Order;
 
 @Local
@@ -31,6 +29,6 @@ public interface OrderService {
 
 	public List<Jws1Order> getFindByOrderProductNameEqualAmountLessThan(String productName, double amount) throws Exception;
 
-	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDay(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getFindByAmountBiggerThanBetweenTwoDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
 
 }
