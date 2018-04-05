@@ -36,7 +36,7 @@ public class DateUtil {
 		return timestamp;
 	}
 	
-	public String ToDateString(Date date) throws ParseException {
+	public String toDateString(Date date) throws ParseException {
 		String getDate = FORMAT_MID.format(date);
 		return getDate;
 	}

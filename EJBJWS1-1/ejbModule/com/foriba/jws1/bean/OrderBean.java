@@ -133,7 +133,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public List<Jws1Order> getByOrderDate(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
-		String convertDate = dt.ToDateString(date);
+		String convertDate = dt.toDateString(date);
 		return findByNamedQuery(Jws1Order.class, "Order.getByOrderDate", 10, convertDate);
 	}
 
