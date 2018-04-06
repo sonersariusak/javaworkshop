@@ -21,8 +21,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByOrderedProductName(String productName) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getByOrderedProductName", 10, "%" + productName + "%");
+	public List<Jws1Order> getOrderListByOrderedProductName(String productName) throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductName", 10, "%" + productName + "%");
 
 	}
 
@@ -32,9 +32,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
+	public List<Jws1Order> getOrderListByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		return findByNamedQuery(Jws1Order.class, "Order.getByOrderArrivalDate", 10, startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderArrivalDate", 10, startDate, endDate);
 
 	}
 
@@ -50,8 +50,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	@Override
-	public List<Jws1Order> getByID(long ID) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getByID", 1, ID);
+	public List<Jws1Order> getOrderByID(long ID) throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderByID", 1, ID);
 
 	}
 
@@ -122,10 +122,10 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByOrderDate(Date date) throws Exception {
+	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception {
 		DateUtil dt = new DateUtil();
 		String convertDate = dt.toDateString(date);
-		return findByNamedQuery(Jws1Order.class, "Order.getByOrderDate", 10, convertDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, convertDate);
 	}
 
 	/**
@@ -134,9 +134,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
+	public List<Jws1Order> getOrderListByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getByAmountByOrderArrivalDate", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByAmountByOrderArrivalDate", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
 
 	}
 
@@ -146,9 +146,9 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception {
+	public List<Jws1Order> getOrderListByOrderedProductNameByAmount(String productName, double amount) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getByOrderedProductNameByAmount", 10, "%" + productName + "%", b.setScale(2, BigDecimal.ROUND_UP));
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductNameByAmount", 10, "%" + productName + "%", b.setScale(2, BigDecimal.ROUND_UP));
 
 	}
 
@@ -158,8 +158,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 * @return records of JWS1_ORDER Tables
 	 */
 	@Override
-	public List<Jws1Order> getByOrderProductName(String orderedProductName) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getByOrderProductName", 10, orderedProductName);
+	public List<Jws1Order> getOrderListByOrderProductName(String orderedProductName) throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderProductName", 10, orderedProductName);
 
 	}
 

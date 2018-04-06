@@ -14,13 +14,13 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "JWS1_ORDER")
-@NamedQueries( {@NamedQuery(name = "Order.getByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
-		@NamedQuery(name = "Order.getByOrderProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName = ?1"),
-		@NamedQuery(name = "Order.getByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
-		@NamedQuery(name = "Order.getByOrderedProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1"),
-		@NamedQuery(name = "Order.getByOrderDate", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
-		@NamedQuery(name = "Order.getByOrderedProductNameByAmount", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1 and c.orderAmount<= ?2"),
-		@NamedQuery(name = "Order.getByAmountByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
+@NamedQueries( {@NamedQuery(name = "Order.getOrderByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
+		@NamedQuery(name = "Order.getOrderListByOrderProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName = ?1"),
+		@NamedQuery(name = "Order.getOrderListByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
+		@NamedQuery(name = "Order.getOrderListByOrderedProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1"),
+		@NamedQuery(name = "Order.getOrderListByOrderDate", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),
+		@NamedQuery(name = "Order.getOrderListByOrderedProductNameByAmount", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1 and c.orderAmount<= ?2"),
+		@NamedQuery(name = "Order.getOrderListByAmountByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderAmount>?1 and c.orderArrivalDate BETWEEN ?2 and ?3")})
 public class Jws1Order extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 

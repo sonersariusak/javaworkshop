@@ -20,18 +20,18 @@ public interface OrderService {
 
 	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception;
 
-	public List<Jws1Order> getByOrderProductName(String orderProductName) throws Exception;
+	public List<Jws1Order> getOrderListByOrderProductName(String orderProductName) throws Exception;
 
-	public List<Jws1Order> getByID(long ID) throws Exception;
+	public List<Jws1Order> getOrderByID(long ID) throws Exception;
 
-	public List<Jws1Order> getByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getOrderListByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception;
 
-	public List<Jws1Order> getByOrderDate(Date date) throws Exception;
+	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception;
 
-	public List<Jws1Order> getByOrderedProductName(String orderedProductName) throws Exception;
+	public List<Jws1Order> getOrderListByOrderedProductName(String orderedProductName) throws Exception;
 
-	public List<Jws1Order> getByOrderedProductNameByAmount(String productName, double amount) throws Exception;
+	public List<Jws1Order> getOrderListByOrderedProductNameByAmount(String productName, double amount) throws Exception;
 
-	public List<Jws1Order> getByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
+	public List<Jws1Order> getOrderListByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception;
 
 }
