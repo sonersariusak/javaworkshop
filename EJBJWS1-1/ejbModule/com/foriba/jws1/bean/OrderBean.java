@@ -46,7 +46,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public String mergeOrder(Jws1Order jws) throws Exception {
 		merge(jws);
-		return "Merge basarili";
+		return "Merge işlemi başarılı bir şekilde gerçekleşti.";
 	}
 
 	@Override
@@ -62,17 +62,8 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	 */
 	@Override
 	public String addOrder(Jws1Order jws1) throws Exception {
-		String message = "";
-		/*
-		 * Jws1Order jws = new Jws1Order(); try { if(null != pName) { jws.setOrderedProductName(pName); } } catch (Exception e) { return message = "Product Name alanı doldurulmalıdır."; }
-		 * 
-		 * jws.setOrderDate(orderDate); jws.setOrderArrivalDate(orderArrivalDate); BigDecimal b = new BigDecimal(amount); jws.setOrderAmount(b.setScale(2, BigDecimal.ROUND_UP));
-		 * jws.setOrderDetail(clob); String str = ""; try { str = new String(DatatypeConverter.parseBase64Binary(blob)); jws.setOrderInvoice(str.getBytes()); } catch (Exception e) { message =
-		 * "blob alan Base64 encode olmalıdır!"; return message; }
-		 */
 		persist(jws1);
-		message = "Kayit Basarili";
-		return message;
+		return "Order başarılı bir şekilde kayıt edildi.";
 	}
 
 	/**
