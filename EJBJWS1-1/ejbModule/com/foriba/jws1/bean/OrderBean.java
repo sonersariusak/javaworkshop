@@ -18,7 +18,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * In the get By Ordered Product Name method query, LIKE is used for the orderedProductName field.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderedProductName(String productName) throws Exception {
@@ -29,7 +29,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * The getByOrderArrivalDate method retrieves the records between the start and end orderArrivalDate.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
@@ -41,7 +41,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * The mergeOrder method updates if there is a matching record according to IDX, or adds it as a new record if it does not exist.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public String mergeOrder(Jws1Order jws) throws Exception {
@@ -119,7 +119,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * UpdateAmountByOrdered method by ProductName updates the order Product Name amount. getByOrderDate metodu, Girilen tarihten daha büyük olan tarihtki kayıtları listeler.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception {
@@ -131,7 +131,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * The getByOrderDate method lists the records that are older than the entered date.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
@@ -143,7 +143,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * The getByOrderDate method lists the entered orderedProductName and the smaller of the entered Amount. The orderedProductName field is used for LIKE.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderedProductNameByAmount(String productName, double amount) throws Exception {
@@ -155,7 +155,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	/**
 	 * The getByOrderDate method lists the records according to the entered orderedProductName.
 	 * 
-	 * @return records of JWS1_ORDER Tables
+	 * @return records of JWS1_ORDER Table
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderProductName(String orderedProductName) throws Exception {
