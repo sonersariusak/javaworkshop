@@ -29,13 +29,6 @@ public class DateUtil {
 		return timestamp;
 	}
 	
-	public Timestamp toTimeStampFormat(Timestamp t) throws ParseException {
-		String getDate = FORMAT_TIMESTAMP.format(t);
-		Date dt=DateUtil.FORMAT_TIMESTAMP.parse(getDate);
-		Timestamp timestamp = new Timestamp(dt.getTime());
-		return timestamp;
-	}
-	
 	public String toDateString(Date date) throws ParseException {
 		String getDate = FORMAT_MID.format(date);
 		return getDate;
