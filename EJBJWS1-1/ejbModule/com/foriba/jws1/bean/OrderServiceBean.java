@@ -13,10 +13,10 @@ import com.foriba.jws1.util.DateUtil;
 
 @SuppressWarnings("serial")
 @Stateless
-public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService {
+public class OrderServiceBean extends ESGenericBean<BaseEntity> implements OrderService {
 
 	/**
-	 * In the get By Ordered Product Name method query, LIKE is used for the orderedProductName field.
+	 * In the getOrderListByOrderedProductName method query, LIKE is used for the getOrderListByOrderedProductName field.
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
@@ -27,7 +27,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	/**
-	 * The getByOrderArrivalDate method retrieves the records between the start and end orderArrivalDate.
+	 * The getOrderListByOrderArrivalDate method retrieves the records between the start and end orderArrivalDate.
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
@@ -46,9 +46,14 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public String mergeOrder(Jws1Order jws) throws Exception {
 		merge(jws);
-		return "Merge işlemi başarılı bir şekilde gerçekleşti.";
+		return "The Merge process has been successful.";
 	}
 
+	/**
+	 * The getOrderByID method searches by the ID entered.
+	 * 
+	 * @return record of JWS1_ORDER Table
+	 */
 	@Override
 	public List<Jws1Order> getOrderByID(long ID) throws Exception {
 		return findByNamedQuery(Jws1Order.class, "Order.getOrderByID", 1, ID);
@@ -63,7 +68,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	@Override
 	public String addOrder(Jws1Order jws1) throws Exception {
 		persist(jws1);
-		return "Order başarılı bir şekilde kayıt edildi.";
+		return "The order was successfully recorded.";
 	}
 
 	/**
@@ -76,7 +81,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 		String message = "";
 		String str = null;
 		if(null == pName || "".equals(pName)) {
-			message = "Product Name alanı doldurulmalıdır.";
+			message = "The Product Name field must be filled.";
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
@@ -84,7 +89,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 				str = new String(DatatypeConverter.parseBase64Binary(blob));
 			}
 			catch (Exception e) {
-				message = "blob alan Base64 encode olmalıdır.?";
+				message = "The blob field must be Base64 encoded.";
 				return message;
 			}
 
@@ -92,13 +97,13 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 					executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
 							2,
 							BigDecimal.ROUND_UP), clob, str.getBytes());
-			message = "Update Başarılı, Güncellenen kayıt sayısı:" + count;
+			message = "Update Succesful!, Number of records updated:" + count;
 		}
 		return message;
 	}
 
 	/**
-	 * UpdateAmountByOrdered method by ProductName updates the order Product Name amount.
+	 * updateAmountByOrderedProductName method by ProductName updates the order Product Name amount.
 	 * 
 	 * @param
 	 */
@@ -106,18 +111,18 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception {
 		String message = "";
 		if(null == pName || "".equals(pName)) {
-			message = "Product Name alanı doldurulmalıdır.";
+			message = "The Product Name field must be filled.";
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
 			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", pName, b.setScale(2, BigDecimal.ROUND_UP));
-			message = "Update Başarılı, Güncellenen kayıt sayısı:" + count;
+			message = "Update Succesful!, Number of records updated:" + count;
 		}
 		return message;
 	}
 
 	/**
-	 * UpdateAmountByOrdered method by ProductName updates the order Product Name amount. getByOrderDate metodu, Girilen tarihten daha büyük olan tarihtki kayıtları listeler.
+	 * The getOrderListByOrderDate method lists the records that are older than the entered date..
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
@@ -129,7 +134,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	/**
-	 * The getByOrderDate method lists the records that are older than the entered date.
+	 * The getOrderListByAmountByOrderArrivalDate method returns the data between the two dates entered and the lower of the entered amount.
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
@@ -141,7 +146,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	/**
-	 * The getByOrderDate method lists the entered orderedProductName and the smaller of the entered Amount. The orderedProductName field is used for LIKE.
+	 * The getOrderListByOrderedProductNameByAmount method lists the entered orderedProductName and the smaller of the entered Amount. The orderedProductName field is used for LIKE.
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
@@ -153,7 +158,7 @@ public class OrderBean extends ESGenericBean<BaseEntity> implements OrderService
 	}
 
 	/**
-	 * The getByOrderDate method lists the records according to the entered orderedProductName.
+	 * The getOrderListByOrderProductName method lists the records according to the entered orderedProductName.
 	 * 
 	 * @return records of JWS1_ORDER Table
 	 */
