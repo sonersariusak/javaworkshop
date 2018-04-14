@@ -67,8 +67,10 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public String addOrder(Jws1Order jws1) throws Exception {
+		jws1.setSysVersion(0);
+		jws1.setSysLastUpdate(new Date());
 		persist(jws1);
-		return "The order was successfully recorded.";
+		return jws1.getSysLastUpdate().toString();
 	}
 
 	/**

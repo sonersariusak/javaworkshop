@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://com.foriba.jws1/Order" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:xs="http://com.foriba.jws1/Order" xmlns:intf="http://com.foriba.jws1/Order" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://com.foriba.jws1/Order" version="1.0">
+<xs:element name="getOrderListByOrderProductNameRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="orderProductName" type="xsd:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getOrderListByOrderProductNameResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="ID" type="xs:string"/>
+<xs:element name="orderedProductName" type="xs:string"/>
+<xs:element name="orderDate" type="xs:string"/>
+<xs:element name="orderDetail" type="xs:string"/>
+<xs:element name="orderAmount" type="xs:float"/>
+<xs:element name="sysVersion" type="xs:string"/>
+<xs:element name="sysLastUpdate" type="xs:string"/>
+<xs:element name="orderInvoice" type="xs:base64Binary"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getOrderListByOrderProductNameIn">
+<wsdl:part element="xs:getOrderListByOrderProductNameRequest" name="parameter"/>
+</wsdl:message>
+<wsdl:message name="getOrderListByOrderProductNameOut">
+<wsdl:part element="xs:getOrderListByOrderProductNameResponse" name="parameter"/>
+</wsdl:message>
+<wsdl:portType name="JWS1OrderPortType">
+	 <wsdl:operation name="getOrderListByOrderProductName">
+	 <wsdl:input message="xs:getOrderListByOrderProductNameIn"/>
+	 <wsdl:output message="xs:getOrderListByOrderProductNameOut"/>
+	 </wsdl:operation>
+</wsdl:portType>
+<wsdl:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="JWS1OrderSoapBinding" type="xs:JWS1OrderPortType">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="getOrderListByOrderProductName">
+         <soap:operation soapAction="getOrderListByOrderProductName"/>
+         <wsdl:input>
+		 <soap:body parts="parameter" use="literal"/>
+		 </wsdl:input>
+         <wsdl:output>
+		 <soap:body use="literal"/>
+		 </wsdl:output>
+      </wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="JWS1OrderService">
+<wsdl:port binding="xs:JWS1OrderSoapBinding" name="JWS1OrderPort">
+<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://192.20.107.202:50000/foribaJws1Service/OrderService/JWS1OrderPortTypeBean"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>
