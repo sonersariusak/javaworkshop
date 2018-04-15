@@ -110,14 +110,14 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 * @param
 	 */
 	@Override
-	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception {
+	public String updateAmountByOrderedProductName(String productName, double amount) throws Exception {
 		String message = "";
-		if(null == pName || "".equals(pName)) {
+		if(null == productName || "".equals(productName)) {
 			message = "The Product Name field must be filled.";
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
-			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", pName, b.setScale(2, BigDecimal.ROUND_UP));
+			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", productName, b.setScale(2, BigDecimal.ROUND_UP));
 			message = "Update Succesful!, Number of records updated:" + count;
 		}
 		return message;

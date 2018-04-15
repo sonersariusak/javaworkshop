@@ -2,6 +2,7 @@ package com.foriba.jws1.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import com.foriba.jws1.base.BaseEntity;
 import java.sql.Timestamp;
 import java.math.BigDecimal;
@@ -50,6 +51,14 @@ public class Jws1Order extends BaseEntity implements Serializable {
 
 	@Column(name = "ORDERED_PRODUCT_NAME")
 	private String orderedProductName;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="SYS_LAST_UPDATE")
+	private Date sysLastUpdate;
+
+	@Version
+	@Column(name="SYS_VERSION")
+	private long sysVersion;
 
 	public Jws1Order() {}
 
@@ -107,6 +116,22 @@ public class Jws1Order extends BaseEntity implements Serializable {
 
 	public void setOrderedProductName(String orderedProductName) {
 		this.orderedProductName = orderedProductName;
+	}
+	
+	public Date getSysLastUpdate() {
+		return this.sysLastUpdate;
+	}
+
+	public void setSysLastUpdate(Date sysLastUpdate) {
+		this.sysLastUpdate = sysLastUpdate;
+	}
+
+	public long getSysVersion() {
+		return sysVersion;
+	}
+
+	public void setSysVersion(long sysVersion) {
+		this.sysVersion = sysVersion;
 	}
 
 }

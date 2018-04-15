@@ -18,7 +18,7 @@ public interface OrderService {
 
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
 
-	public String updateAmountByOrderedProductName(String pName, double amount) throws Exception;
+	public String updateAmountByOrderedProductName(String productName, double amount) throws Exception;
 
 	public List<Jws1Order> getOrderListByOrderProductName(String orderProductName) throws Exception;
 
