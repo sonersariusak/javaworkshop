@@ -1,409 +1,393 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<wsdl:definitions targetNamespace="http://com.foriba.jws1/Order" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:xs="http://com.foriba.jws1/Order" xmlns:intf="http://com.foriba.jws1/Order" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<wsdl:types>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://com.foriba.jws1/Order" version="1.0">
-<xs:element name="getOrderListByOrderProductNameRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="orderProductName" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderProductNameResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderByIDRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderByIDResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderDateRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="Date" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderDateResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderArrivalDateRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="startDate" type="xsd:string"/>
-<xs:element name="endDate" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderArrivalDateResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="addOrderRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-<xs:element name="orderAmount" type="xs:float"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="addOrderResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="Result" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="updateOrderRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-<xs:element name="orderAmount" type="xs:float"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="updateOrderResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="Result" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="updateAmountByOrderedProductNameRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="updateAmountByOrderedProductNameResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="Result" type="xsd:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderedProductNameByAmountRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderedProductNameByAmountResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByAmountByOrderArrivalDateRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="startDate" type="xs:string"/>
-<xs:element name="endDate" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByAmountByOrderArrivalDateResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderedProductNameRequest">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="startDate" type="xs:string"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-<xs:element name="getOrderListByOrderedProductNameResponse">
-<xs:complexType>
-<xs:sequence>
-<xs:element name="ID" type="xs:string"/>
-<xs:element name="orderedProductName" type="xs:string"/>
-<xs:element name="orderDate" type="xs:string"/>
-<xs:element name="orderDetail" type="xs:string"/>
-<xs:element name="orderAmount" type="xs:float"/>
-<xs:element name="sysVersion" type="xs:string"/>
-<xs:element name="sysLastUpdate" type="xs:string"/>
-<xs:element name="orderInvoice" type="xs:base64Binary"/>
-</xs:sequence>
-</xs:complexType>
-</xs:element>
-</xs:schema>
-</wsdl:types>
-<wsdl:message name="getOrderByIDIn">
-<wsdl:part element="xs:getOrderByIDRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderByIDOut">
-<wsdl:part element="xs:getOrderByIDResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="addOrderIn">
-<wsdl:part element="xs:addOrderRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="addOrderOut">
-<wsdl:part element="xs:addOrderResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="updateOrderIn">
-<wsdl:part element="xs:updateOrderRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="updateOrderOut">
-<wsdl:part element="xs:updateOrderResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="updateAmountByOrderedProductNameIn">
-<wsdl:part element="xs:updateAmountByOrderedProductNameRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="updateAmountByOrderedProductNameOut">
-<wsdl:part element="xs:updateAmountByOrderedProductNameResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderProductNameIn">
-<wsdl:part element="xs:getOrderListByOrderProductNameRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderProductNameOut">
-<wsdl:part element="xs:getOrderListByOrderProductNameResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderArrivalDateIn">
-<wsdl:part element="xs:getOrderListByOrderArrivalDateRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderArrivalDateOut">
-<wsdl:part element="xs:getOrderListByOrderArrivalDateResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderDateIn">
-<wsdl:part element="xs:getOrderListByOrderDateRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderDateOut">
-<wsdl:part element="xs:getOrderListByOrderDateResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderedProductNameByAmountIn">
-<wsdl:part element="xs:getOrderListByOrderedProductNameByAmountRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderedProductNameByAmountOut">
-<wsdl:part element="xs:getOrderListByOrderedProductNameByAmountResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByAmountByOrderArrivalDateIn">
-<wsdl:part element="xs:getOrderListByAmountByOrderArrivalDateRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByAmountByOrderArrivalDateOut">
-<wsdl:part element="xs:getOrderListByAmountByOrderArrivalDateResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderedProductNameIn">
-<wsdl:part element="xs:getOrderListByOrderedProductNameRequest" name="parameter"/>
-</wsdl:message>
-<wsdl:message name="getOrderListByOrderedProductNameOut">
-<wsdl:part element="xs:getOrderListByOrderedProductNameResponse" name="parameter"/>
-</wsdl:message>
-<wsdl:portType name="JWS1OrderPortType">
-	 <wsdl:operation name="getOrderListByOrderProductName">
-	 <wsdl:input message="xs:getOrderListByOrderProductNameIn"/>
-	 <wsdl:output message="xs:getOrderListByOrderProductNameOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="addOrder">
-	 <wsdl:input message="xs:addOrderIn"/>
-	 <wsdl:output message="xs:addOrderOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderByID">
-	 <wsdl:input message="xs:getOrderByIDIn"/>
-	 <wsdl:output message="xs:getOrderByIDOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="updateOrder">
-	 <wsdl:input message="xs:updateOrderIn"/>
-	 <wsdl:output message="xs:updateOrderOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="updateAmountByOrderedProductName">
-	 <wsdl:input message="xs:updateAmountByOrderedProductNameIn"/>
-	 <wsdl:output message="xs:updateAmountByOrderedProductNameOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderListByOrderArrivalDate">
-	 <wsdl:input message="xs:getOrderListByOrderArrivalDateIn"/>
-	 <wsdl:output message="xs:getOrderListByOrderArrivalDateOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderListByOrderDate">
-	 <wsdl:input message="xs:getOrderListByOrderDateIn"/>
-	 <wsdl:output message="xs:getOrderListByOrderDateOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderListByOrderedProductNameByAmount">
-	 <wsdl:input message="xs:getOrderListByOrderedProductNameByAmountIn"/>
-	 <wsdl:output message="xs:getOrderListByOrderedProductNameByAmountOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderListByAmountByOrderArrivalDate">
-	 <wsdl:input message="xs:getOrderListByAmountByOrderArrivalDateIn"/>
-	 <wsdl:output message="xs:getOrderListByAmountByOrderArrivalDateOut"/>
-	 </wsdl:operation>
-	 <wsdl:operation name="getOrderListByOrderedProductName">
-	 <wsdl:input message="xs:getOrderListByOrderedProductNameIn"/>
-	 <wsdl:output message="xs:getOrderListByOrderedProductNameOut"/>
-	 </wsdl:operation>
-</wsdl:portType>
-<wsdl:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="JWS1OrderSoapBinding" type="xs:JWS1OrderPortType">
-      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-      <wsdl:operation name="getOrderListByOrderProductName">
-         <soap:operation soapAction="getOrderListByOrderProductName"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderByID">
-         <soap:operation soapAction="getOrderByID"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="addOrder">
-         <soap:operation soapAction="addOrder"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="updateOrder">
-         <soap:operation soapAction="updateOrder"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="updateAmountByOrderedProductName">
-         <soap:operation soapAction="updateAmountByOrderedProductName"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderListByOrderArrivalDate">
-         <soap:operation soapAction="getOrderListByOrderArrivalDate"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderListByOrderDate">
-         <soap:operation soapAction="getOrderListByOrderDate"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderListByOrderedProductNameByAmount">
-         <soap:operation soapAction="getOrderListByOrderedProductNameByAmount"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderListByAmountByOrderArrivalDate">
-         <soap:operation soapAction="getOrderListByAmountByOrderArrivalDate"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-	  <wsdl:operation name="getOrderListByOrderedProductName">
-         <soap:operation soapAction="getOrderListByOrderedProductName"/>
-         <wsdl:input>
-		 <soap:body parts="parameter" use="literal"/>
-		 </wsdl:input>
-         <wsdl:output>
-		 <soap:body use="literal"/>
-		 </wsdl:output>
-      </wsdl:operation>
-</wsdl:binding>
-<wsdl:service name="JWS1OrderService">
-<wsdl:port binding="xs:JWS1OrderSoapBinding" name="JWS1OrderPort">
-<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://192.20.107.202:50000/foribaJws1Service/OrderService/JWS1OrderPortTypeBean"/>
-</wsdl:port>
-</wsdl:service>
+<wsdl:definitions targetNamespace="http://com.foriba/JWS1Order"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:ord="http://com.foriba/JWS1Order"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://com.foriba/JWS1Order">
+			<xs:complexType name="Jws1Order">
+					<xs:sequence>
+						<xs:element name="ID" type="xs:string" />
+						<xs:element name="orderedProductName" type="xs:string" />
+						<xs:element name="orderDate" type="xs:date" />
+						<xs:element name="orderArrivalDate" type="xs:date" />
+						<xs:element name="orderDetail" type="xs:string" />
+						<xs:element name="orderAmount" type="xs:float" />
+						<xs:element name="sysVersion" type="xs:string" />
+						<xs:element name="sysLastUpdate" type="xs:date" />
+						<xs:element name="orderInvoice" type="xs:base64Binary" />
+					</xs:sequence>
+				</xs:complexType>
+			<xs:element name="getOrderListByOrderProductNameRequest">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="orderProductName" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="getOrderListByOrderProductNameResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+					</xs:sequence>
+				</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderByIDRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ID" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderByIDResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderDateRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Date" type="xs:date" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderDateResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderArrivalDateRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="startDate" type="xs:date" />
+							<xs:element name="endDate" type="xs:date" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderArrivalDateResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="addOrderRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderedProductName" type="xs:string" />
+							<xs:element name="orderDate" type="xs:date" />
+							<xs:element name="orderDetail" type="xs:string" />
+							<xs:element name="orderInvoice" type="xs:base64Binary" />
+							<xs:element name="orderAmount" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="addOrderResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Result" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="updateOrderRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ID" type="xs:string" />
+							<xs:element name="orderedProductName" type="xs:string" />
+							<xs:element name="orderDetail" type="xs:string" />
+							<xs:element name="orderInvoice" type="xs:base64Binary" />
+							<xs:element name="orderAmount" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="updateOrderResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Result" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="updateAmountByOrderedProductNameRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderedProductName" type="xs:string" />
+							<xs:element name="orderAmount" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="updateAmountByOrderedProductNameResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Result" type="xs:string" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderedProductNameByAmountRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="orderedProductName" type="xs:string" />
+							<xs:element name="orderAmount" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderedProductNameByAmountResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByAmountByOrderArrivalDateRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="startDate" type="xs:date" />
+							<xs:element name="endDate" type="xs:date" />
+							<xs:element name="orderAmount" type="xs:float" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByAmountByOrderArrivalDateResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderedProductNameRequest">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="startDate" type="xs:date" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="getOrderListByOrderedProductNameResponse">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element maxOccurs="20" name="Result" type="ord:Jws1Order" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="getOrderByIDIn">
+		<wsdl:part element="ord:getOrderByIDRequest" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderByIDOut">
+		<wsdl:part element="ord:getOrderByIDResponse" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="addOrderIn">
+		<wsdl:part element="ord:addOrderRequest" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="addOrderOut">
+		<wsdl:part element="ord:addOrderResponse" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="updateOrderIn">
+		<wsdl:part element="ord:updateOrderRequest" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="updateOrderOut">
+		<wsdl:part element="ord:updateOrderResponse" name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="updateAmountByOrderedProductNameIn">
+		<wsdl:part element="ord:updateAmountByOrderedProductNameRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="updateAmountByOrderedProductNameOut">
+		<wsdl:part element="ord:updateAmountByOrderedProductNameResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderProductNameIn">
+		<wsdl:part element="ord:getOrderListByOrderProductNameRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderProductNameOut">
+		<wsdl:part element="ord:getOrderListByOrderProductNameResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderArrivalDateIn">
+		<wsdl:part element="ord:getOrderListByOrderArrivalDateRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderArrivalDateOut">
+		<wsdl:part element="ord:getOrderListByOrderArrivalDateResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderDateIn">
+		<wsdl:part element="ord:getOrderListByOrderDateRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderDateOut">
+		<wsdl:part element="ord:getOrderListByOrderDateResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderedProductNameByAmountIn">
+		<wsdl:part element="ord:getOrderListByOrderedProductNameByAmountRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderedProductNameByAmountOut">
+		<wsdl:part element="ord:getOrderListByOrderedProductNameByAmountResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByAmountByOrderArrivalDateIn">
+		<wsdl:part element="ord:getOrderListByAmountByOrderArrivalDateRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByAmountByOrderArrivalDateOut">
+		<wsdl:part element="ord:getOrderListByAmountByOrderArrivalDateResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderedProductNameIn">
+		<wsdl:part element="ord:getOrderListByOrderedProductNameRequest"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:message name="getOrderListByOrderedProductNameOut">
+		<wsdl:part element="ord:getOrderListByOrderedProductNameResponse"
+			name="parameter" />
+	</wsdl:message>
+	<wsdl:portType name="JWS1OrderPortType">
+		<wsdl:operation name="getOrderListByOrderProductName">
+			<wsdl:input message="ord:getOrderListByOrderProductNameIn" />
+			<wsdl:output message="ord:getOrderListByOrderProductNameOut" />
+		</wsdl:operation>
+		<wsdl:operation name="addOrder">
+			<wsdl:input message="ord:addOrderIn" />
+			<wsdl:output message="ord:addOrderOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderByID">
+			<wsdl:input message="ord:getOrderByIDIn" />
+			<wsdl:output message="ord:getOrderByIDOut" />
+		</wsdl:operation>
+		<wsdl:operation name="updateOrder">
+			<wsdl:input message="ord:updateOrderIn" />
+			<wsdl:output message="ord:updateOrderOut" />
+		</wsdl:operation>
+		<wsdl:operation name="updateAmountByOrderedProductName">
+			<wsdl:input message="ord:updateAmountByOrderedProductNameIn" />
+			<wsdl:output message="ord:updateAmountByOrderedProductNameOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderArrivalDate">
+			<wsdl:input message="ord:getOrderListByOrderArrivalDateIn" />
+			<wsdl:output message="ord:getOrderListByOrderArrivalDateOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderDate">
+			<wsdl:input message="ord:getOrderListByOrderDateIn" />
+			<wsdl:output message="ord:getOrderListByOrderDateOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderedProductNameByAmount">
+			<wsdl:input message="ord:getOrderListByOrderedProductNameByAmountIn" />
+			<wsdl:output message="ord:getOrderListByOrderedProductNameByAmountOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByAmountByOrderArrivalDate">
+			<wsdl:input message="ord:getOrderListByAmountByOrderArrivalDateIn" />
+			<wsdl:output message="ord:getOrderListByAmountByOrderArrivalDateOut" />
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderedProductName">
+			<wsdl:input message="ord:getOrderListByOrderedProductNameIn" />
+			<wsdl:output message="ord:getOrderListByOrderedProductNameOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		name="JWS1OrderSoapBinding" type="ord:JWS1OrderPortType">
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getOrderListByOrderProductName">
+			<soap:operation soapAction="getOrderListByOrderProductName" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderByID">
+			<soap:operation soapAction="getOrderByID" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="addOrder">
+			<soap:operation soapAction="addOrder" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateOrder">
+			<soap:operation soapAction="updateOrder" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="updateAmountByOrderedProductName">
+			<soap:operation soapAction="updateAmountByOrderedProductName" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderArrivalDate">
+			<soap:operation soapAction="getOrderListByOrderArrivalDate" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderDate">
+			<soap:operation soapAction="getOrderListByOrderDate" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderedProductNameByAmount">
+			<soap:operation soapAction="getOrderListByOrderedProductNameByAmount" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByAmountByOrderArrivalDate">
+			<soap:operation soapAction="getOrderListByAmountByOrderArrivalDate" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getOrderListByOrderedProductName">
+			<soap:operation soapAction="getOrderListByOrderedProductName" />
+			<wsdl:input>
+				<soap:body parts="parameter" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="JWS1OrderService">
+		<wsdl:port binding="ord:JWS1OrderSoapBinding" name="JWS1OrderPort">
+			<soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+				location="http://192.20.107.202:50000/foribaJws1Service/OrderService/JWS1OrderPortTypeBean" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>
