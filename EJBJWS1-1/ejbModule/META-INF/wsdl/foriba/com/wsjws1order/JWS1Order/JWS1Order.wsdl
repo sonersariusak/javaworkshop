@@ -77,10 +77,10 @@
 						<xs:sequence>
 							<xs:element name="orderedProductName" type="xs:string"/>
 							<xs:element name="orderDate" type="xs:date"/>
-							<xs:element name="orderArrivalDate" type="xs:date"/>
 							<xs:element name="orderDetail" type="xs:string"/>
 							<xs:element name="orderInvoice" type="xs:base64Binary"/>
 							<xs:element name="orderAmount" type="xs:float"/>
+							<xs:element name="orderArrivalDate" type="xs:date"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -94,7 +94,7 @@
 				<xs:element name="updateOrderRequest">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="ID" type="xs:long"/>
+							<xs:element name="ID" type="xs:string"/>
 							<xs:element name="orderedProductName" type="xs:string"/>
 							<xs:element name="orderDetail" type="xs:string"/>
 							<xs:element name="orderInvoice" type="xs:base64Binary"/>

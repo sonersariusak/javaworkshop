@@ -10,22 +10,22 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java class for Jws1Order complex type.
+ * <p>Java class for Jws1OrderList complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="Jws1Order">
+ * &lt;complexType name="Jws1OrderList">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ID" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="orderedProductName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="orderArrivalDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="orderDetail" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderAmount" type="{http://www.w3.org/2001/XMLSchema}float"/>
- *         &lt;element name="sysVersion" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="sysVersion" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="sysLastUpdate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="orderInvoice" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *       &lt;/sequence>
@@ -37,7 +37,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Jws1Order", propOrder = {
+@XmlType(name = "Jws1OrderList", propOrder = {
     "id",
     "orderedProductName",
     "orderDate",
@@ -50,7 +50,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class Jws1OrderList {
 
-    @XmlElement(name = "ID", required = true)
+    @XmlElement(name = "ID")
     protected long id;
     @XmlElement(required = true)
     protected String orderedProductName;
@@ -63,8 +63,7 @@ public class Jws1OrderList {
     @XmlElement(required = true)
     protected String orderDetail;
     protected float orderAmount;
-    @XmlElement(required = true)
-    protected String sysVersion;
+    protected long sysVersion;
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar sysLastUpdate;
@@ -74,10 +73,6 @@ public class Jws1OrderList {
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
     public long getID() {
         return id;
@@ -86,10 +81,6 @@ public class Jws1OrderList {
     /**
      * Sets the value of the id property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
     public void setID(long value) {
         this.id = value;
@@ -210,24 +201,16 @@ public class Jws1OrderList {
     /**
      * Gets the value of the sysVersion property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getSysVersion() {
+    public long getSysVersion() {
         return sysVersion;
     }
 
     /**
      * Sets the value of the sysVersion property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setSysVersion(String value) {
+    public void setSysVersion(long value) {
         this.sysVersion = value;
     }
 

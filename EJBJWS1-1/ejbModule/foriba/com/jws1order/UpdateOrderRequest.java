@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="ID" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="ID" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="orderedProductName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderDetail" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderInvoice" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
@@ -42,8 +42,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "updateOrderRequest")
 public class UpdateOrderRequest {
 
-    @XmlElement(name = "ID", required = true)
-    protected String id;
+    @XmlElement(name = "ID")
+    protected long id;
     @XmlElement(required = true)
     protected String orderedProductName;
     @XmlElement(required = true)
@@ -55,24 +55,16 @@ public class UpdateOrderRequest {
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
      */
-    public String getID() {
+    public long getID() {
         return id;
     }
 
     /**
      * Sets the value of the id property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
      */
-    public void setID(String value) {
+    public void setID(long value) {
         this.id = value;
     }
 

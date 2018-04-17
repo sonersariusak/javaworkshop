@@ -22,6 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element name="orderedProductName" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
+ *         &lt;element name="orderArrivalDate" type="{http://www.w3.org/2001/XMLSchema}date"/>
  *         &lt;element name="orderDetail" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="orderInvoice" type="{http://www.w3.org/2001/XMLSchema}base64Binary"/>
  *         &lt;element name="orderAmount" type="{http://www.w3.org/2001/XMLSchema}float"/>
@@ -37,6 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlType(name = "", propOrder = {
     "orderedProductName",
     "orderDate",
+    "orderArrivalDate",
     "orderDetail",
     "orderInvoice",
     "orderAmount"
@@ -49,6 +51,9 @@ public class AddOrderRequest {
     @XmlElement(required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar orderDate;
+    @XmlElement(required = true)
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar orderArrivalDate;
     @XmlElement(required = true)
     protected String orderDetail;
     @XmlElement(required = true)
@@ -101,6 +106,30 @@ public class AddOrderRequest {
      */
     public void setOrderDate(XMLGregorianCalendar value) {
         this.orderDate = value;
+    }
+
+    /**
+     * Gets the value of the orderArrivalDate property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getOrderArrivalDate() {
+        return orderArrivalDate;
+    }
+
+    /**
+     * Sets the value of the orderArrivalDate property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setOrderArrivalDate(XMLGregorianCalendar value) {
+        this.orderArrivalDate = value;
     }
 
     /**

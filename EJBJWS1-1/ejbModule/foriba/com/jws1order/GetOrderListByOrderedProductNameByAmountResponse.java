@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Result" type="{http://com.foriba/JWS1Order}Jws1Order" maxOccurs="20"/>
+ *         &lt;element name="Result" type="{http://com.foriba/JWS1Order}Jws1OrderList" maxOccurs="20"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -57,7 +57,7 @@ public class GetOrderListByOrderedProductNameByAmountResponse {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Jws1Order }
+     * {@link Jws1OrderList }
      * 
      * 
      */

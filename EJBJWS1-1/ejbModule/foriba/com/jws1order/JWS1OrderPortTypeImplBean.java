@@ -1,43 +1,39 @@
 package foriba.com.jws1order;
 
-import javax.ejb.EJB;
+import java.math.BigDecimal;
+
 import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-import com.foriba.jws1.bean.OrderServiceBean;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
+import com.foriba.jws1.util.DateUtil;
 
 @WebService(portName = "JWS1OrderPort", serviceName = "JWS1OrderService", endpointInterface = "foriba.com.jws1order.JWS1OrderPortType", targetNamespace = "http://com.foriba/JWS1Order", wsdlLocation = "META-INF/wsdl/foriba/com/jws1order/JWS1Order/JWS1Order.wsdl")
 @Stateless
 public class JWS1OrderPortTypeImplBean {
-
-	@EJB
-	private OrderService OrderService;
-	@SuppressWarnings("unused")
-	private JWS1OrderService jws1OrderService;
-	public  foriba.com.jws1order.GetOrderListByOrderProductNameResponse getOrderListByOrderProductName(foriba.com.jws1order.GetOrderListByOrderProductNameRequest parameter) throws Exception {
-		OrderServiceBean response = new OrderServiceBean();
-		response.getOrderListByOrderProductName(parameter.orderProductName);
-		return null;
+    private OrderService orderService;
+	public  GetOrderListByOrderProductNameResponse getOrderListByOrderProductName(GetOrderListByOrderProductNameRequest parameter) {
+	  return null;
 	 }
 
 	public  AddOrderResponse addOrder(AddOrderRequest parameter) throws Exception {
 		AddOrderResponse aor=new AddOrderResponse();
+		BigDecimal amnt=new BigDecimal(parameter.orderAmount);
 		Jws1Order jws=new Jws1Order();
 		jws.setOrderedProductName(parameter.orderedProductName);
-		//jws.setOrderAmount(parameter.orderAmount);
-		jws.setOrderDate(null);
-		OrderService.addOrder(jws);
+		jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
+		jws.setOrderDate(DateUtil.toDate(parameter.orderDate));
+		jws.setOrderArrivalDate(DateUtil.toTimestamp(parameter.orderArrivalDate));
+		jws.setOrderDetail(parameter.orderDetail);
+		jws.setOrderInvoice(parameter.orderInvoice);
+		orderService.addOrder(jws);
 		aor.result="The order was saved successfully.";
 		return aor;
-	    
 	 }
 
-	public  GetOrderByIDResponse getOrderByID(GetOrderByIDRequest parameter) throws Exception {
-		GetOrderByIDResponse rs=new GetOrderByIDResponse();
-		//rs.result.add((Jws1Order) OrderService.getOrderByID(parameter.id));
-		return rs;
+	public  GetOrderByIDResponse getOrderByID(GetOrderByIDRequest parameter) {
+	  return null;
 	 }
 
 	public  UpdateOrderResponse updateOrder(UpdateOrderRequest parameter) {

@@ -5,6 +5,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 public class DateUtil {
 
@@ -37,6 +40,31 @@ public class DateUtil {
 	public Date toDateMID(String date) throws ParseException {
 		Date getDate = FORMAT_MID.parse(date);
 		return getDate;
+	}
+	
+	public static Date toDateWithGivenTime(XMLGregorianCalendar calendar, XMLGregorianCalendar issueTime) throws DatatypeConfigurationException {
+	    if (calendar == null) {
+	      return null;
+	    }
+	    calendar.setHour(issueTime.getHour());
+	    calendar.setMinute(issueTime.getMinute());
+	    calendar.setSecond(issueTime.getSecond());
+	    calendar.setMillisecond(issueTime.getMillisecond());
+	    return calendar.toGregorianCalendar().getTime();
+	  }
+	
+	public static Date toDate(XMLGregorianCalendar calendar) {
+	    if (calendar == null) {
+	      return null;
+	    }
+	    return calendar.toGregorianCalendar().getTime();
+	  }
+	
+	public static Timestamp toTimestamp(XMLGregorianCalendar calendar) throws ParseException {
+		Date date=toDate(calendar);
+		Timestamp timestamp = new Timestamp(date.getTime());
+		return timestamp;
+		
 	}
 
 }

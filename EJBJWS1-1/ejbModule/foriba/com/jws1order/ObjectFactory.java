@@ -30,75 +30,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOrderListByOrderedProductNameRequest }
+     * Create an instance of {@link GetOrderListByAmountByOrderArrivalDateResponse }
      * 
      */
-    public GetOrderListByOrderedProductNameRequest createGetOrderListByOrderedProductNameRequest() {
-        return new GetOrderListByOrderedProductNameRequest();
-    }
-
-    /**
-     * Create an instance of {@link UpdateAmountByOrderedProductNameRequest }
-     * 
-     */
-    public UpdateAmountByOrderedProductNameRequest createUpdateAmountByOrderedProductNameRequest() {
-        return new UpdateAmountByOrderedProductNameRequest();
-    }
-
-    /**
-     * Create an instance of {@link AddOrderRequest }
-     * 
-     */
-    public AddOrderRequest createAddOrderRequest() {
-        return new AddOrderRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderListByAmountByOrderArrivalDateRequest }
-     * 
-     */
-    public GetOrderListByAmountByOrderArrivalDateRequest createGetOrderListByAmountByOrderArrivalDateRequest() {
-        return new GetOrderListByAmountByOrderArrivalDateRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderListByOrderArrivalDateResponse }
-     * 
-     */
-    public GetOrderListByOrderArrivalDateResponse createGetOrderListByOrderArrivalDateResponse() {
-        return new GetOrderListByOrderArrivalDateResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderListByOrderDateResponse }
-     * 
-     */
-    public GetOrderListByOrderDateResponse createGetOrderListByOrderDateResponse() {
-        return new GetOrderListByOrderDateResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderListByOrderedProductNameByAmountRequest }
-     * 
-     */
-    public GetOrderListByOrderedProductNameByAmountRequest createGetOrderListByOrderedProductNameByAmountRequest() {
-        return new GetOrderListByOrderedProductNameByAmountRequest();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderListByOrderProductNameRequest }
-     * 
-     */
-    public GetOrderListByOrderProductNameRequest createGetOrderListByOrderProductNameRequest() {
-        return new GetOrderListByOrderProductNameRequest();
-    }
-
-    /**
-     * Create an instance of {@link Jws1Order }
-     * 
-     */
-    public Jws1OrderList createJws1Order() {
-        return new Jws1OrderList();
+    public GetOrderListByAmountByOrderArrivalDateResponse createGetOrderListByAmountByOrderArrivalDateResponse() {
+        return new GetOrderListByAmountByOrderArrivalDateResponse();
     }
 
     /**
@@ -110,19 +46,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOrderListByOrderArrivalDateRequest }
+     * Create an instance of {@link GetOrderByIDRequest }
      * 
      */
-    public GetOrderListByOrderArrivalDateRequest createGetOrderListByOrderArrivalDateRequest() {
-        return new GetOrderListByOrderArrivalDateRequest();
+    public GetOrderByIDRequest createGetOrderByIDRequest() {
+        return new GetOrderByIDRequest();
     }
 
     /**
-     * Create an instance of {@link UpdateOrderRequest }
+     * Create an instance of {@link GetOrderListByAmountByOrderArrivalDateRequest }
      * 
      */
-    public UpdateOrderRequest createUpdateOrderRequest() {
-        return new UpdateOrderRequest();
+    public GetOrderListByAmountByOrderArrivalDateRequest createGetOrderListByAmountByOrderArrivalDateRequest() {
+        return new GetOrderListByAmountByOrderArrivalDateRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOrderListByOrderedProductNameRequest }
+     * 
+     */
+    public GetOrderListByOrderedProductNameRequest createGetOrderListByOrderedProductNameRequest() {
+        return new GetOrderListByOrderedProductNameRequest();
     }
 
     /**
@@ -134,19 +78,35 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetOrderListByAmountByOrderArrivalDateResponse }
+     * Create an instance of {@link UpdateOrderResponse }
      * 
      */
-    public GetOrderListByAmountByOrderArrivalDateResponse createGetOrderListByAmountByOrderArrivalDateResponse() {
-        return new GetOrderListByAmountByOrderArrivalDateResponse();
+    public UpdateOrderResponse createUpdateOrderResponse() {
+        return new UpdateOrderResponse();
     }
 
     /**
-     * Create an instance of {@link AddOrderResponse }
+     * Create an instance of {@link GetOrderListByOrderArrivalDateRequest }
      * 
      */
-    public AddOrderResponse createAddOrderResponse() {
-        return new AddOrderResponse();
+    public GetOrderListByOrderArrivalDateRequest createGetOrderListByOrderArrivalDateRequest() {
+        return new GetOrderListByOrderArrivalDateRequest();
+    }
+
+    /**
+     * Create an instance of {@link Jws1OrderList }
+     * 
+     */
+    public Jws1OrderList createJws1OrderList() {
+        return new Jws1OrderList();
+    }
+
+    /**
+     * Create an instance of {@link GetOrderListByOrderDateResponse }
+     * 
+     */
+    public GetOrderListByOrderDateResponse createGetOrderListByOrderDateResponse() {
+        return new GetOrderListByOrderDateResponse();
     }
 
     /**
@@ -158,11 +118,67 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link UpdateOrderResponse }
+     * Create an instance of {@link AddOrderResponse }
      * 
      */
-    public UpdateOrderResponse createUpdateOrderResponse() {
-        return new UpdateOrderResponse();
+    public AddOrderResponse createAddOrderResponse() {
+        return new AddOrderResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateAmountByOrderedProductNameResponse }
+     * 
+     */
+    public UpdateAmountByOrderedProductNameResponse createUpdateAmountByOrderedProductNameResponse() {
+        return new UpdateAmountByOrderedProductNameResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetOrderListByOrderArrivalDateResponse }
+     * 
+     */
+    public GetOrderListByOrderArrivalDateResponse createGetOrderListByOrderArrivalDateResponse() {
+        return new GetOrderListByOrderArrivalDateResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetOrderListByOrderedProductNameByAmountRequest }
+     * 
+     */
+    public GetOrderListByOrderedProductNameByAmountRequest createGetOrderListByOrderedProductNameByAmountRequest() {
+        return new GetOrderListByOrderedProductNameByAmountRequest();
+    }
+
+    /**
+     * Create an instance of {@link UpdateOrderRequest }
+     * 
+     */
+    public UpdateOrderRequest createUpdateOrderRequest() {
+        return new UpdateOrderRequest();
+    }
+
+    /**
+     * Create an instance of {@link AddOrderRequest }
+     * 
+     */
+    public AddOrderRequest createAddOrderRequest() {
+        return new AddOrderRequest();
+    }
+
+    /**
+     * Create an instance of {@link UpdateAmountByOrderedProductNameRequest }
+     * 
+     */
+    public UpdateAmountByOrderedProductNameRequest createUpdateAmountByOrderedProductNameRequest() {
+        return new UpdateAmountByOrderedProductNameRequest();
+    }
+
+    /**
+     * Create an instance of {@link GetOrderListByOrderProductNameRequest }
+     * 
+     */
+    public GetOrderListByOrderProductNameRequest createGetOrderListByOrderProductNameRequest() {
+        return new GetOrderListByOrderProductNameRequest();
     }
 
     /**
@@ -179,22 +195,6 @@ public class ObjectFactory {
      */
     public GetOrderListByOrderProductNameResponse createGetOrderListByOrderProductNameResponse() {
         return new GetOrderListByOrderProductNameResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetOrderByIDRequest }
-     * 
-     */
-    public GetOrderByIDRequest createGetOrderByIDRequest() {
-        return new GetOrderByIDRequest();
-    }
-
-    /**
-     * Create an instance of {@link UpdateAmountByOrderedProductNameResponse }
-     * 
-     */
-    public UpdateAmountByOrderedProductNameResponse createUpdateAmountByOrderedProductNameResponse() {
-        return new UpdateAmountByOrderedProductNameResponse();
     }
 
 }

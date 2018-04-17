@@ -35,7 +35,7 @@ import javax.xml.bind.annotation.XmlType;
 public class GetOrderByIDRequest {
 
     @XmlElement(name = "ID", required = true)
-    protected long id;
+    protected String id;
 
     /**
      * Gets the value of the id property.
@@ -45,7 +45,7 @@ public class GetOrderByIDRequest {
      *     {@link String }
      *     
      */
-    public long getID() {
+    public String getID() {
         return id;
     }
 
@@ -57,7 +57,7 @@ public class GetOrderByIDRequest {
      *     {@link String }
      *     
      */
-    public void setID(long value) {
+    public void setID(String value) {
         this.id = value;
     }
 
