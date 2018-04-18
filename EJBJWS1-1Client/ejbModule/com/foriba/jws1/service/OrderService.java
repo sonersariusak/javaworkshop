@@ -10,7 +10,7 @@ import com.foriba.jws1.entity.Jws1Order;
 
 @Remote
 @Local
-public interface OrderService {
+public interface OrderService  {
 
 	public String addOrder(Jws1Order jws1) throws Exception;
 

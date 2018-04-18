@@ -61,9 +61,8 @@ public class DateUtil {
 	  }
 	
 	public static Timestamp toTimestamp(XMLGregorianCalendar calendar) throws ParseException {
-		Date date=toDate(calendar);
-		Timestamp timestamp = new Timestamp(date.getTime());
-		return timestamp;
+		Timestamp timestamp = new Timestamp(calendar.toGregorianCalendar().getTimeInMillis());
+	    return timestamp;
 		
 	}
 

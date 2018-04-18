@@ -68,7 +68,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public String addOrder(Jws1Order jws1) throws Exception {
 		persist(jws1);
-		return "";
+		return "Succesfull";
 	}
 
 	/**
