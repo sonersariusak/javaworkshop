@@ -23,7 +23,29 @@ public class JWS1OrderPortTypeImplBean {
 	private OrderService orderService;
 
 	public GetOrderListByOrderProductNameResponse getOrderListByOrderProductName(GetOrderListByOrderProductNameRequest parameter) {
-		return null;
+		GetOrderListByOrderProductNameResponse response = new GetOrderListByOrderProductNameResponse();
+		List<Jws1Order> orderProductNameList = new ArrayList<Jws1Order>();
+		try {
+			orderProductNameList = orderService.getOrderListByOrderProductName(parameter.orderProductName);
+			for(int i = 0; i < orderProductNameList.size(); i++) {
+				Jws1Order jws = orderProductNameList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public AddOrderResponse addOrder(AddOrderRequest parameter) {
@@ -59,14 +81,14 @@ public class JWS1OrderPortTypeImplBean {
 	}
 
 	public GetOrderByIDResponse getOrderByID(GetOrderByIDRequest parameter) {
-		
+
 		GetOrderByIDResponse response = new GetOrderByIDResponse();
-		List<Jws1Order> orderIDList=new ArrayList<Jws1Order>();
+		List<Jws1Order> orderIDList = new ArrayList<Jws1Order>();
 		try {
-			orderIDList=orderService.getOrderByID(parameter.id);
+			orderIDList = orderService.getOrderByID(parameter.id);
 			for(int i = 0; i < orderIDList.size(); i++) {
-				Jws1Order jws=orderIDList.get(i);
-				Jws1OrderList list =new Jws1OrderList();
+				Jws1Order jws = orderIDList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
 				list.setID(jws.getIdx());
 				list.setOrderedProductName(jws.getOrderedProductName());
 				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
@@ -94,22 +116,133 @@ public class JWS1OrderPortTypeImplBean {
 	}
 
 	public GetOrderListByOrderArrivalDateResponse getOrderListByOrderArrivalDate(GetOrderListByOrderArrivalDateRequest parameter) {
-		return null;
+		GetOrderListByOrderArrivalDateResponse response = new GetOrderListByOrderArrivalDateResponse();
+		List<Jws1Order> orderArrivalDateList = new ArrayList<Jws1Order>();
+		try {
+			orderArrivalDateList = orderService.getOrderListByOrderArrivalDate(DateUtil.toTimestamp(parameter.startDate), DateUtil.toTimestamp(parameter.endDate));
+			for(int i = 0; i < orderArrivalDateList.size(); i++) {
+				Jws1Order jws = orderArrivalDateList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public GetOrderListByOrderDateResponse getOrderListByOrderDate(GetOrderListByOrderDateRequest parameter) {
-		return null;
+		GetOrderListByOrderDateResponse response = new GetOrderListByOrderDateResponse();
+		List<Jws1Order> orderDateList = new ArrayList<Jws1Order>();
+		try {
+			orderDateList = orderService.getOrderListByOrderDate(DateUtil.toDate(parameter.date));
+			for(int i = 0; i < orderDateList.size(); i++) {
+				Jws1Order jws = orderDateList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public GetOrderListByOrderedProductNameByAmountResponse getOrderListByOrderedProductNameByAmount(GetOrderListByOrderedProductNameByAmountRequest parameter) {
-		return null;
+		GetOrderListByOrderedProductNameByAmountResponse response = new GetOrderListByOrderedProductNameByAmountResponse();
+		List<Jws1Order> orderByProductNameByAmount = new ArrayList<Jws1Order>();
+		try {
+			orderByProductNameByAmount = orderService.getOrderListByOrderedProductNameByAmount(parameter.orderedProductName, parameter.orderAmount);
+			for(int i = 0; i < orderByProductNameByAmount.size(); i++) {
+				Jws1Order jws = orderByProductNameByAmount.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public GetOrderListByAmountByOrderArrivalDateResponse getOrderListByAmountByOrderArrivalDate(GetOrderListByAmountByOrderArrivalDateRequest parameter) {
-		return null;
+		GetOrderListByAmountByOrderArrivalDateResponse response = new GetOrderListByAmountByOrderArrivalDateResponse();
+		List<Jws1Order> orderArrivalDatebyAmountList = new ArrayList<Jws1Order>();
+		try {
+			orderArrivalDatebyAmountList =
+					orderService.getOrderListByAmountByOrderArrivalDate(parameter.orderAmount, DateUtil.toTimestamp(parameter.startDate), DateUtil.toTimestamp(parameter.endDate));
+			for(int i = 0; i < orderArrivalDatebyAmountList.size(); i++) {
+				Jws1Order jws = orderArrivalDatebyAmountList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public GetOrderListByOrderedProductNameResponse getOrderListByOrderedProductName(GetOrderListByOrderedProductNameRequest parameter) {
-		return null;
+		GetOrderListByOrderedProductNameResponse response = new GetOrderListByOrderedProductNameResponse();
+		List<Jws1Order> orderedProductNameList = new ArrayList<Jws1Order>();
+		try {
+			orderedProductNameList = orderService.getOrderListByOrderedProductName(parameter.orderProductName);
+			for(int i = 0; i < orderedProductNameList.size(); i++) {
+				Jws1Order jws = orderedProductNameList.get(i);
+				Jws1OrderList list = new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 }
