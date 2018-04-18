@@ -4,8 +4,11 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -65,5 +68,20 @@ public class DateUtil {
 	    return timestamp;
 		
 	}
+	public static XMLGregorianCalendar toXmlDateTime(Date date) throws DatatypeConfigurationException {
+	    GregorianCalendar calendar = new GregorianCalendar();
+	    calendar.setTime(date);
+	    XMLGregorianCalendar xmlCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+	    xmlCalendar.setTimezone(DatatypeConstants.FIELD_UNDEFINED);
+	    return xmlCalendar;
+	  }
+	public static XMLGregorianCalendar toXmlDate(Date date) throws DatatypeConfigurationException {
+	    XMLGregorianCalendar xmlCalendar = toXmlDateTime(date);
+	    xmlCalendar.setHour(DatatypeConstants.FIELD_UNDEFINED);
+	    xmlCalendar.setMinute(DatatypeConstants.FIELD_UNDEFINED);
+	    xmlCalendar.setSecond(DatatypeConstants.FIELD_UNDEFINED);
+	    xmlCalendar.setMillisecond(DatatypeConstants.FIELD_UNDEFINED);
+	    return xmlCalendar;
+	  }
 
 }

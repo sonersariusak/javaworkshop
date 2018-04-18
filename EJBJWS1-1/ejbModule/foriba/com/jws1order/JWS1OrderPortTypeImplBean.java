@@ -2,6 +2,8 @@ package foriba.com.jws1order;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -11,7 +13,7 @@ import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
 import com.foriba.jws1.util.StringUtil;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 
 @WebService(portName = "JWS1OrderPort", serviceName = "JWS1OrderService", endpointInterface = "foriba.com.jws1order.JWS1OrderPortType", targetNamespace = "http://com.foriba/JWS1Order", wsdlLocation = "META-INF/wsdl/foriba/com/jws1order/JWS1Order/JWS1Order.wsdl")
 @Stateless
@@ -57,7 +59,30 @@ public class JWS1OrderPortTypeImplBean {
 	}
 
 	public GetOrderByIDResponse getOrderByID(GetOrderByIDRequest parameter) {
-		return null;
+		
+		GetOrderByIDResponse response = new GetOrderByIDResponse();
+		List<Jws1Order> orderIDList=new ArrayList<Jws1Order>();
+		try {
+			orderIDList=orderService.getOrderByID(parameter.id);
+			for(int i = 0; i < orderIDList.size(); i++) {
+				Jws1Order jws=orderIDList.get(i);
+				Jws1OrderList list =new Jws1OrderList();
+				list.setID(jws.getIdx());
+				list.setOrderedProductName(jws.getOrderedProductName());
+				list.setOrderDate(DateUtil.toXmlDate(jws.getOrderDate()));
+				list.setOrderArrivalDate(DateUtil.toXmlDate(jws.getOrderArrivalDate()));
+				list.setOrderAmount(jws.getOrderAmount().floatValue());
+				list.setOrderDetail(jws.getOrderDetail());
+				list.setSysVersion(jws.getSysVersion());
+				list.setSysLastUpdate(DateUtil.toXmlDate(jws.getSysLastUpdate()));
+				list.setOrderInvoice(jws.getOrderInvoice());
+				response.getResult().add(list);
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return response;
 	}
 
 	public UpdateOrderResponse updateOrder(UpdateOrderRequest parameter) {
