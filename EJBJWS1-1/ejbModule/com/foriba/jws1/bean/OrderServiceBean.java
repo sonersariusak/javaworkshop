@@ -11,6 +11,7 @@ import javax.xml.bind.DatatypeConverter;
 import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
+import com.foriba.jws1.util.DateUtil;
 
 @SuppressWarnings("serial")
 @Stateless
@@ -124,7 +125,8 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, date);
+		Date date1= DateUtil.toDateString(date);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, date1);
 	}
 
 	/**

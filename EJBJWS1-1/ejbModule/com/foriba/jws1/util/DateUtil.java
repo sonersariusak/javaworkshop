@@ -24,7 +24,7 @@ public class DateUtil {
 		return getDate;
 	}
 
-	public Date toDateShort(String date) throws ParseException {
+	public static Date toDateShort(String date) throws ParseException {
 		Date getDate = FORMAT_SHORT.parse(date);
 		return getDate;
 	}
@@ -35,8 +35,9 @@ public class DateUtil {
 		return timestamp;
 	}
 	
-	public String toDateString(Date date) throws ParseException {
-		String getDate = FORMAT_MID.format(date);
+	public static Date toDateString(Date date) throws ParseException {
+		String date1 = FORMAT_MID.format(date);
+		Date getDate= FORMAT_MID.parse(date1);
 		return getDate;
 	}
 	
