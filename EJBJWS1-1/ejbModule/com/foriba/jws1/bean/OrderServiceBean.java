@@ -4,12 +4,13 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.xml.bind.DatatypeConverter;
+
 import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
-import com.foriba.jws1.util.DateUtil;
 
 @SuppressWarnings("serial")
 @Stateless
@@ -80,25 +81,20 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception {
 		String message = "";
 		String str = null;
-		if(null == pName || "".equals(pName)) {
-			message = "The Product Name field must be filled.";
+		BigDecimal b = new BigDecimal(amount);
+		try {
+			str = new String(DatatypeConverter.parseBase64Binary(blob));
 		}
-		else {
-			BigDecimal b = new BigDecimal(amount);
-			try {
-				str = new String(DatatypeConverter.parseBase64Binary(blob));
-			}
-			catch (Exception e) {
-				message = "The blob field must be Base64 encoded.";
-				return message;
-			}
+		catch (Exception e) {
+			message = "The blob field must be Base64 encoded.";
+			return message;
+		}
+		int count =
+				executeUpdate("UPDATE Jws1Order c SET c.orderedProductName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
+						2,
+						BigDecimal.ROUND_UP), clob, str.getBytes());
+		message = "Update Succesful!, Number of records updated:" + count;
 
-			int count =
-					executeUpdate("UPDATE Jws1Order c SET c.productName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
-							2,
-							BigDecimal.ROUND_UP), clob, str.getBytes());
-			message = "Update Succesful!, Number of records updated:" + count;
-		}
 		return message;
 	}
 

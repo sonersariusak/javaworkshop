@@ -108,7 +108,19 @@ public class JWS1OrderPortTypeImplBean {
 	}
 
 	public UpdateOrderResponse updateOrder(UpdateOrderRequest parameter) {
-		return null;
+		UpdateOrderResponse response = new UpdateOrderResponse();
+		if(!StringUtil.stringNullorEmpty(parameter.orderedProductName)) {
+			response.result = "The value entered can not be null or empty.";
+			return response;
+		}
+		try {
+			response.result = orderService.updateOrder(parameter.id, parameter.orderedProductName, parameter.orderAmount, parameter.orderDetail, parameter.orderInvoice.toString());
+		}
+		catch (Exception e) {
+			response.result=e.getMessage();
+			return response;
+		}
+		return response;
 	}
 
 	public UpdateAmountByOrderedProductNameResponse updateAmountByOrderedProductName(UpdateAmountByOrderedProductNameRequest parameter) {
