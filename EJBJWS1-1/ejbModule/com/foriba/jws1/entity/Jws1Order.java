@@ -37,7 +37,7 @@ public class Jws1Order extends BaseEntity implements Serializable {
 	@Column(name = "ORDER_ARRIVAL_DATE")
 	private Timestamp orderArrivalDate;
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "ORDER_DATE")
 	private Date orderDate;
 

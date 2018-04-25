@@ -125,8 +125,8 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception {
-		Date date1= DateUtil.toDateString(date);
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, date1);
+		System.err.println("Nobuz: getOrderList "+date);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, date);
 	}
 
 	/**
