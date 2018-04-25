@@ -169,7 +169,6 @@ public class JWS1OrderPortTypeImplBean {
 		GetOrderListByOrderDateResponse response = new GetOrderListByOrderDateResponse();
 		List<Jws1Order> orderDateList = new ArrayList<Jws1Order>();
 		try {
-			System.err.println("Nobuz: "+parameter.getDate());
 			orderDateList = orderService.getOrderListByOrderDate(DateUtil.toDate(parameter.getDate()));
 			for(int i = 0; i < orderDateList.size(); i++) {
 				Jws1Order jws = orderDateList.get(i);
