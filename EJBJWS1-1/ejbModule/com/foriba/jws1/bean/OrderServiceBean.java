@@ -112,7 +112,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
-			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.productName = ?1", productName, b.setScale(2, BigDecimal.ROUND_UP));
+			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.orderedProductName = ?1", productName, b.setScale(2, BigDecimal.ROUND_UP));
 			message = "Update Succesful!, Number of records updated:" + count;
 		}
 		return message;
