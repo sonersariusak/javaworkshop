@@ -5,6 +5,7 @@
 	<projects>
 		<project>EJBJWS1-1</project>
 		<project>EJBJWS1-1Client</project>
+		<project>JWS1DYNWEB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
