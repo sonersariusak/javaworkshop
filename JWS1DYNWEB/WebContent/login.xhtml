@@ -17,40 +17,23 @@ body {
 	color: #fff;
 	font-family: Arial;
 	font-size: 12px;
+	background-image: url("#{facesContext.externalContext.requestContextPath}/resources/images/loginWallpaper.jpg"); 
+	
+	
 }
-
-.body {
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
-	width: auto;
-	height: auto;
-	background-image: url("#{facesContext.externalContext.requestContextPath}/resources/image/forest.jpg"); 
-	background-size: cover;
-	z-index: 0;
-}
-
 .grad {
-	position: absolute;
-	top: -20px;
-	left: -20px;
-	right: -40px;
-	bottom: -40px;
+	position: absolute;	
 	width: auto;
-	height: auto;
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0
-		, 0, 0) ), color-stop(100%, rgba(0, 0, 0, 0.65) ) );
-	/* Chrome,Safari4+ */
+	height: auto;	
 	z-index: 1;
 	opacity: 0.7;
+	background-image: url("#{facesContext.externalContext.requestContextPath}/resources/images/loginWallpaper.jpg"); 
 }
 
 .header {
 	position: absolute;
 	top: calc(50% -         35px);
-	left: calc(45% -         255px);
+	left: calc(45% -         245px);
 	z-index: 2;
 }
 
@@ -63,13 +46,13 @@ body {
 }
 
 .header div span {
-	color: #5379fa !important;
+	color: #9ae4a2 !important;
 }
 
 .login {
 	position: absolute;
 	top: calc(50% -         75px);
-	left: calc(50% -         50px);
+	left: calc(50% -         70px);
 	height: 150px;
 	width: 350px;
 	padding: 10px;
@@ -155,13 +138,13 @@ body {
 	<div class="body"></div>
 	<div class="grad"></div>
 	<div class="header">
-		<div>e-Archive&nbsp;<span>LOGIN</span></div>
+		<div>Login&nbsp;<span style="color:white;"><b>Order</b></span></div>
 	</div>
 	<br/>
 	<div class="login">
-		<h:inputText value="#{loginPage.webUser.username}" />
+		<h:inputText autocomplete="false" value="#{loginPage.webUser.username}" />
 		<br/>
-		<h:inputSecret value="#{loginPage.webUser.password}" /> 
+		<h:inputSecret autocomplete="false" value="#{loginPage.webUser.password}" /> 
 		<br/>
 		<a4j:commandButton value="Login" action="#{loginPage.login}" reRender="Message" /> 
 		<h:outputText value="#{loginPage.loginMessage}" id="Message" />
