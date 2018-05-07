@@ -3,7 +3,7 @@
     <wb-module deploy-name="JWS1DYNWEB">
         <wb-resource deploy-path="/" source-path="/WebContent"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="JWS1DYNWEB"/>
         <property name="java-output-path" value="/JWS1DYNWEB/build/classes"/>
+        <property name="context-root" value="order"/>
     </wb-module>
 </project-modules>
