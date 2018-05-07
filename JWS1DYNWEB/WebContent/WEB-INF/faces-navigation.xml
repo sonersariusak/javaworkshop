@@ -5,7 +5,7 @@
  <navigation-rule>
   <from-view-id>*</from-view-id>
   <navigation-case>
-   <to-view-id>/login.jsf</to-view-id>
+   <to-view-id>/login.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>
