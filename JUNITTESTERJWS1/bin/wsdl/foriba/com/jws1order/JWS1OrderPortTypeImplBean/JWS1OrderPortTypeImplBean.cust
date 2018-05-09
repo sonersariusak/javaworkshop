@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" wsdlLocation="JWS1OrderPortTypeImplBean.wsdl">
+  <jaxws:bindings node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://com.foriba/JWS1Order']">
+    <jaxb:globalBindings fixedAttributeAsConstantProperty="true" generateElementClass="true" localScoping="toplevel" underscoreBinding="asWordSeparator"/>
+  </jaxws:bindings>
+</jaxws:bindings>
