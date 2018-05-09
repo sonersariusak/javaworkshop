@@ -142,9 +142,9 @@ body {
 	</div>
 	<br/>
 	<div class="login">
-		<h:inputText autocomplete="false" value="#{loginPage.webUser.username}" />
+		<h:inputText value="#{loginPage.webUser.username}" />
 		<br/>
-		<h:inputSecret autocomplete="false" value="#{loginPage.webUser.password}" /> 
+		<h:inputSecret value="#{loginPage.webUser.password}" /> 
 		<br/>
 		<a4j:commandButton value="Login" action="#{loginPage.login}" reRender="Message" /> 
 		<h:outputText value="#{loginPage.loginMessage}" id="Message" />

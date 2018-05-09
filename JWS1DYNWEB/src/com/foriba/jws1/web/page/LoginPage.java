@@ -28,14 +28,9 @@ public class LoginPage extends AbstractPage {
 	}
 
 	public String login() throws Exception {
-		try {
-			String authkey = "order";
-			
-			if (authkey.equals((webUser.getUsername() + webUser.getPassword()).getBytes("UTF-8"))) {
-				isLoggedIn = true;
-				storeOnSession(AUTH_KEY, webUser);
-				setLoginMessage("Success");
-				return "loginSuccess";
+		try {			
+			if ("order".equals(webUser.getUsername()) || "order".equals(webUser.getPassword())){
+				return "success";
 			}
 			setLoginMessage("Invalid credentials");
 			return null;
@@ -44,6 +39,7 @@ public class LoginPage extends AbstractPage {
 		e.printStackTrace();
 		return null;
 		}
+		
 		
 	}
 

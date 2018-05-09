@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<head>
+<title>FIT Solutions e-Archive Application</title>
+<link rel="stylesheet" type="text/css"
+	href="#{facesContext.externalContext.requestContextPath}/resources/css/layout.css" />
+</head>
+<body>
+<f:facet name="sidebar">
+</f:facet>
+<rich:panel styleClass="container">
+	<h:panelGrid columns="3" rowClasses="col-top">
+		<h:form>
+		<h:graphicImage value="/resources/image/fit_logo.png" width="180" height="60"/>
+		<br />
+			<div align="center"><span>Menu</span></div>
+			<h:panelGroup layout="block" style="width:150px;height:50px;">
+				<a4j:status>
+					<f:facet name="start">
+						<h:panelGrid>
+							<h:graphicImage value="/resources/image/ajax-loader.gif" />
+							<h:outputText value="Loading, Please Wait..." />
+						</h:panelGrid>
+					</f:facet>
+				</a4j:status>
+			</h:panelGroup>
+			
+		</h:form>
+		<rich:separator width="3px" height="800px" />
+		<h:panelGroup layout="block">
+			<ui:insert name="content" />
+		</h:panelGroup>
+	</h:panelGrid>
+	<rich:separator height="3px" />
+	<div align="center"><span>#{bundle['message.footer']}
+	#{bundle['message.version']}</span></div>
+	<a4j:outputPanel ajaxRendered="true">
+		<rich:modalPanel id="messagesPanel" rendered="#{showMessages}"
+			showWhenRendered="true" autosized="true" style="padding-bottom:0px">
+			<f:facet name="header">
+				<h:outputText value="Message(s)" />
+			</f:facet>
+			<a4j:outputPanel layout="block"
+				style="width:450px;height:140px;overflow-y:auto;">
+				<rich:messages>
+					<f:facet name="errorMarker">
+						<h:graphicImage style="margin-right:10px"
+							value="/resources/image/error.gif" />
+					</f:facet>
+					<f:facet name="fatalMarker">
+						<h:graphicImage style="margin-right:10px"
+							value="/resources/image/fatal.gif" />
+					</f:facet>
+					<f:facet name="infoMarker">
+						<h:graphicImage style="margin-right:10px"
+							value="/resources/image/info.gif" />
+					</f:facet>
+					<f:facet name="warnMarker">
+						<h:graphicImage style="margin-right:10px"
+							value="/resources/image/warn.gif" />
+					</f:facet>
+				</rich:messages>
+			</a4j:outputPanel>
+			<h:form style="text-align:center;margin:0px;">
+				<a4j:commandButton value="Close"
+					onclick="Richfaces.hideModalPanel('messagesPanel')"
+					style="padding:5px 20px;">
+					<a4j:actionparam assignTo="#{showMessages}" value="#{false}" />
+				</a4j:commandButton>
+			</h:form>
+		</rich:modalPanel>
+	</a4j:outputPanel>
+</rich:panel>
+</body>
+
+</html>
