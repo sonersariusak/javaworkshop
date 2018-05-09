@@ -15,7 +15,7 @@ import foriba.com.jws1order.JWS1OrderService;
 
 public class JUnitTestCase {
 	@Test
-	public void test() {
+	public void testSuccessful() {
 
 		JWS1OrderService jos;
 		try {
@@ -35,6 +35,44 @@ public class JUnitTestCase {
 				try {
 					AddOrderResponse response = port.addOrder(request);
 					assertEquals("The order was saved successfully.", response.getResult());
+					
+				}
+				catch (Exception e) {
+					e.printStackTrace();
+				}
+
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	@Test
+	public void testFail() {
+
+		JWS1OrderService jos;
+		try {
+			jos = new JWS1OrderService();
+			JWS1OrderPortType port = jos.getJWS1OrderPort();
+			String endpointURL = "http://192.20.107.202:50000/JWS1OrderService/JWS1OrderPortTypeImplBean";
+			BindingProvider bp = (BindingProvider) port;
+			bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, endpointURL);
+			try {
+				AddOrderRequest request = new AddOrderRequest();
+				request.setOrderedProductName("Deneme");
+				request.setOrderDate(DateUtil.toXmlDate(new Date()));
+				request.setOrderArrivalDate(DateUtil.toXmlDate(new Date()));
+				request.setOrderDetail("Deneme");
+				request.setOrderInvoice(null);
+				request.setOrderAmount(4000);
+				try {
+					AddOrderResponse response = port.addOrder(request);
+					assertEquals("The successfully.", response.getResult());
 					
 				}
 				catch (Exception e) {
