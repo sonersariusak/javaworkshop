@@ -30,6 +30,7 @@ public class LoginPage extends AbstractPage {
 	public String login() throws Exception {
 		try {			
 			if ("order".equals(webUser.getUsername()) || "order".equals(webUser.getPassword())){
+				storeOnSession(AUTH_KEY, webUser);
 				return "success";
 			}
 			setLoginMessage("Invalid credentials");
