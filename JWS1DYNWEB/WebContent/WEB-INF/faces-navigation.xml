@@ -11,5 +11,9 @@
    <from-outcome>success</from-outcome>
    <to-view-id>/view/sample.xhtml</to-view-id>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>customers</from-outcome>
+   <to-view-id>/view/customers.xhtml</to-view-id>
+  </navigation-case>
  </navigation-rule>
 </faces-config>

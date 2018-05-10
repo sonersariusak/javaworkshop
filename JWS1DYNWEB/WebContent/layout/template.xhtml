@@ -17,8 +17,7 @@
 	<h:panelGrid columns="3" rowClasses="col-top">
 		<h:form>
 		<h:graphicImage value="/resources/image/fit_logo.png" width="180" height="60"/>
-		<br />
-			<div align="center"><span>Menu</span></div>
+		<br />			 
 			<h:panelGroup layout="block" style="width:150px;height:50px;">
 				<a4j:status>
 					<f:facet name="start">
@@ -36,37 +35,15 @@
 					iconCollapsedTopGroup="chevronDown">
 					<!-- h:commandLink value="Home" action="parameter"
 						styleClass="menu-link" /-->
-					<rich:panelMenuGroup label="Settings">
-						<rich:panelMenuItem label="General Param" action="generalparam">
+					<rich:panelMenuGroup label="JWS1 Order Applications">
+						<rich:panelMenuItem label="Order Management">
 							<!-- h:commandLink value="General Params" action="generalparam"
 						styleClass="menu-link" / -->
 						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Customer Settings" action="customers">
+						<rich:panelMenuItem label="Order Search Management">
 							<!-- h:commandLink value="Cutomer Settings" action="customers"
 						styleClass="menu-link" /-->
 						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Customer Invoice ID" action="customerinvoiceid" />
-						<rich:panelMenuItem label="AdminLogger" action="AdminLogger"/>
-					</rich:panelMenuGroup>
-					<rich:panelMenuGroup label="Monitoring">
-						<rich:panelMenuItem label="Invoice" action="invoice">
-							<!-- h:commandLink value="Find Invoice" action="invoice"
-						styleClass="menu-link" /-->
-						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Analysis" action="analysis">
-							<!-- h:commandLink value="Find Invoice" action="invoice"
-						styleClass="menu-link" /-->
-						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Envelope" action="envelope">
-							<!-- h:commandLink value="Find Envelope" action="envelope"
-						styleClass="menu-link" /-->
-						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Notification" action="notification">
-							<!--h:commandLink value="Notifications" action="notification"
-						styleClass="menu-link" /-->
-						</rich:panelMenuItem>
-						<rich:panelMenuItem label="Report" action="report"/>
-						<rich:panelMenuItem label="Logger" action="logger"/>
 					</rich:panelMenuGroup>
 				</rich:panelMenu>
 			</h:panelGrid>

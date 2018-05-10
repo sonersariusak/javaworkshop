@@ -6,5 +6,10 @@
 	version="1.2">
 	<application>
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		
+		<resource-bundle>
+			<base-name>com.fit.earsiv.web.bundle.ResourceBundle</base-name>
+			<var>bundle</var>
+		</resource-bundle>
 	</application>
 </faces-config>

@@ -56,6 +56,7 @@ public class JUnitTestCase {
 	public void testFail() {
 
 		JWS1OrderService jos;
+		AddOrderResponse response = null;
 		try {
 			jos = new JWS1OrderService();
 			JWS1OrderPortType port = jos.getJWS1OrderPort();
@@ -65,18 +66,19 @@ public class JUnitTestCase {
 			try {
 				AddOrderRequest request = new AddOrderRequest();
 				request.setOrderedProductName("Deneme");
-				request.setOrderDate(DateUtil.toXmlDate(new Date()));
-				request.setOrderArrivalDate(DateUtil.toXmlDate(new Date()));
+				request.setOrderDate(null);
+				request.setOrderArrivalDate(null);
 				request.setOrderDetail("Deneme");
 				request.setOrderInvoice(null);
 				request.setOrderAmount(4000);
 				try {
-					AddOrderResponse response = port.addOrder(request);
-					assertEquals("The successfully.", response.getResult());
+					response = port.addOrder(request);
+					
 					
 				}
 				catch (Exception e) {
 					e.printStackTrace();
+					assertEquals("The order was saved successfully.", response.getResult());
 				}
 
 			}
