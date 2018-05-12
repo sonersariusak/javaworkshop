@@ -12,6 +12,7 @@ import com.foriba.jws1.base.BaseEntity;
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
+import com.sun.org.apache.bcel.internal.generic.NEW;
 
 @SuppressWarnings("serial")
 @Stateless
@@ -161,6 +162,13 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	public List<Jws1Order> getOrderListByOrderProductName(String orderedProductName) throws Exception {
 		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderProductName", 10, orderedProductName);
 
+	}
+
+	@Override
+	public String deleteOrder(long idx) throws Exception {
+		Jws1Order jws = findByNamedQuery(Jws1Order.class, "Order.getOrderByID", 1, idx).get(0);
+		remove(jws);
+		return null;
 	}
 
 

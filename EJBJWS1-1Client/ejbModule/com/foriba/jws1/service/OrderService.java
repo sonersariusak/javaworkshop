@@ -15,6 +15,8 @@ public interface OrderService  {
 	public String addOrder(Jws1Order jws1) throws Exception;
 
 	public String mergeOrder(Jws1Order jws) throws Exception;
+	
+	public String deleteOrder(long idx) throws Exception;
 
 	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
 

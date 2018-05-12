@@ -8,7 +8,7 @@
 		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
 		
 		<resource-bundle>
-			<base-name>com.fit.earsiv.web.bundle.ResourceBundle</base-name>
+			<base-name>com.foriba.jws1.web.bundle.ResourceBundle</base-name>
 			<var>bundle</var>
 		</resource-bundle>
 	</application>

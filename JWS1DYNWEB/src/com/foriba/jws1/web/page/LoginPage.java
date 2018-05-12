@@ -1,7 +1,7 @@
 package com.foriba.jws1.web.page;
 
 
-//import com.fit.earsiv.util.CryptoUtil;
+// import com.fit.earsiv.util.CryptoUtil;
 import com.foriba.jws1.web.model.WebUser;
 import com.foriba.jws1.web.service.ServiceLocator;
 
@@ -22,14 +22,14 @@ public class LoginPage extends AbstractPage {
 	public void setLoggedIn(boolean isLoggedIn) {
 		this.isLoggedIn = isLoggedIn;
 	}
-	
-	public LoginPage(){
-		webUser= new WebUser();
+
+	public LoginPage() {
+		webUser = new WebUser();
 	}
 
 	public String login() throws Exception {
-		try {			
-			if ("order".equals(webUser.getUsername()) || "order".equals(webUser.getPassword())){
+		try {
+			if("order".equals(webUser.getUsername()) || "order".equals(webUser.getPassword())) {
 				storeOnSession(AUTH_KEY, webUser);
 				return "success";
 			}
@@ -37,11 +37,11 @@ public class LoginPage extends AbstractPage {
 			return null;
 		}
 		catch (Exception e) {
-		e.printStackTrace();
-		return null;
+			e.printStackTrace();
+			return null;
 		}
-		
-		
+
+
 	}
 
 	public String getLoginMessage() {
