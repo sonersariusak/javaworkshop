@@ -6,9 +6,9 @@
     ID="orderManagement::#view#getByProductName.xhtml" NAME="output"
     PATH="/view/getByProductName.xhtml"
     TARGET="rules:#view#getByProductName.xhtml" TITLE="orderManagement" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="admLoginSuccess::#view#admin.jsf"
-    NAME="output1" PATH="/view/admin.jsf" TARGET="rules:#view#admin.jsf"
-    TITLE="admLoginSuccess" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="searchSucces::#view#jws1Search.jsf"
+    NAME="output1" PATH="/view/jws1Search.jsf"
+    TARGET="rules:#view#jws1Search.jsf" TITLE="searchSucces" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#view#mainPage.xhtml"
@@ -24,6 +24,6 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#view#getByProductName.xhtml"
   PATH="/view/getByProductName.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#view#admin.jsf" PATH="/view/admin.jsf"
-  SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#jws1Search.jsf"
+  PATH="/view/jws1Search.jsf" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

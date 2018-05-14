@@ -8,25 +8,33 @@
 
 
 	<ui:define name="content">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shortcut icon" href="../resources/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../resources/style.css" />
+		<link rel="stylesheet" type="text/css"
+			href="../resources/js/css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css"
+			href="../resources/js/css/jquery-ui-timepicker-addon.css" />
+		<link rel="stylesheet" type="text/css" href="../resources/style.css" />
 		<a4j:keepAlive beanName="OrderManagementPage" ajaxOnly="true" />
-			<h:form id="filterForm">
-    		SenderID: <h:inputText size="11"
-			value="#{clientWSMonitoringManagedBean.senderID}" />&nbsp;
-    		UUID: <h:inputText size="36"
-			value="#{clientWSMonitoringManagedBean.uuid}" />&nbsp;
-    		StartDate: <h:inputText id="startDate" size="16"
-			value="#{clientWSMonitoringManagedBean.startDate}" />&nbsp;
-    		EndDate: <h:inputText id="endDate" size="16"
-			value="#{clientWSMonitoringManagedBean.endDate}" />&nbsp;
-			ResultSize: <h:inputText id="ResultSize" size="16"
-			value="#{clientWSMonitoringManagedBean.resultSize}" />&nbsp;
+		<h:form id="filterForm">
+			<br />
+			<br />
+			<hr />
+			<br />
+    		Ordered Product Name: <h:inputText size="11"
+				value="#{clientWSMonitoringManagedBean.senderID}" />&nbsp;
     		<h:commandButton value="Filter"
-			action="#{clientWSMonitoringManagedBean.refresh}" />
-			
-		<h:commandButton value="Reset"
-			action="#{clientWSMonitoringManagedBean.reset}" />
+				action="#{clientWSMonitoringManagedBean.refresh}" />
 
-	</h:form>
+			<h:commandButton value="Reset"
+				action="#{clientWSMonitoringManagedBean.reset}" />
+			<br />
+			<br />
+			<hr />
+			<br />
+			
+		</h:form>
 
 	</ui:define>
 

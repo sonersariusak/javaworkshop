@@ -52,17 +52,17 @@ ul {
 
 a {
 	text-decoration: none;
-	color: #A66100;
+	
 }
 
 a:hover {
 	border-bottom: none;
-	color: #FFCC00;
+	
 }
 
 a:visited {
 	text-decoration: none;
-	color: #A66100;
+	
 }
 
 a img {
@@ -146,6 +146,7 @@ img.right {
 .col-left {
 	float: left;
 }
+ 
 
 .panel-grid-table {
 	border-top: solid 1px #C0C0C0;

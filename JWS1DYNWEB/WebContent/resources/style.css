@@ -1,18 +1,16 @@
-body {
+html,body {
 	min-width: 1000px;
 	max-width: 100%;
-	padding: 30px;
 	margin-right: auto;
 	margin-left: auto;
 	font-family: arial;
 	font-size: 12px;
 }
-
 .adminContainerDiv {
 	width:660px;
 	margin-top: 30px;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 250px;
+	margin-right: 250px;
 	a:link {text-decoration:none;}
 	a:visited {text-decoration:none;}
 	a:hover {text-decoration:underline;}
@@ -22,7 +20,7 @@ body {
 .adminTopDiv {
 	width: 100%;
 	height:113px; 
-	background-image: url('topLogo.png');
+	background-image: url('logoForibaBanner.png');
 }
 
 .adminTopTitle {
@@ -114,7 +112,7 @@ body {
 .table{   
 	border-collapse: collapse;
 	border: 1px dashed #000000;
-	width: 98%;
+	width: 100%;
 	text-align: center;
 }
 .table-header{
