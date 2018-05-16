@@ -6,12 +6,12 @@
   <from-view-id>*</from-view-id>
   <navigation-case>
    <from-outcome>orderManagement</from-outcome>
-   <to-view-id>/view/getByProductName.xhtml</to-view-id>
+   <to-view-id>/view/ProductName.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
   <navigation-case>
    <from-outcome>searchSucces</from-outcome>
-   <to-view-id>/view/jws1Search.jsf</to-view-id>
+   <to-view-id>/view/search.jsf</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>

@@ -2,13 +2,12 @@
 <PROCESS model-entity="JSFProcess">
  <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="orderManagement::#view#getByProductName.xhtml" NAME="output"
-    PATH="/view/getByProductName.xhtml"
-    TARGET="rules:#view#getByProductName.xhtml" TITLE="orderManagement" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="searchSucces::#view#jws1Search.jsf"
-    NAME="output1" PATH="/view/jws1Search.jsf"
-    TARGET="rules:#view#jws1Search.jsf" TITLE="searchSucces" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="orderManagement::#view#ProductName.xhtml"
+    NAME="output" PATH="/view/ProductName.xhtml"
+    TARGET="rules:#view#ProductName.xhtml" TITLE="orderManagement" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="searchSucces::#view#search.jsf"
+    NAME="output1" PATH="/view/search.jsf"
+    TARGET="rules:#view#search.jsf" TITLE="searchSucces" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#view#mainPage.xhtml"
@@ -22,8 +21,8 @@
     TITLE="success" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#view#getByProductName.xhtml"
-  PATH="/view/getByProductName.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#view#jws1Search.jsf"
-  PATH="/view/jws1Search.jsf" SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#ProductName.xhtml"
+  PATH="/view/ProductName.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#search.jsf" PATH="/view/search.jsf"
+  SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

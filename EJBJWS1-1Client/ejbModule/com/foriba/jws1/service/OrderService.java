@@ -4,11 +4,9 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Local;
-import javax.ejb.Remote;
-
 import com.foriba.jws1.entity.Jws1Order;
 
-@Remote
+
 @Local
 public interface OrderService  {
 

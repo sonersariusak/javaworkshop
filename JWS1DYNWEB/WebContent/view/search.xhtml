@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/layout/template.xhtml">
+
+
+	<ui:define name="content">
+		<link rel="shortcut icon" href="../resources/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="../resources/style.css" />
+		<a4j:keepAlive beanName="OrderManagementPage" ajaxOnly="true" />
+		<body>
+		<f:view>
+
+			<div class="adminContainerDiv" align="center">
+			<div class="adminTopDiv">
+			<div class="adminTopTitle">JWS1 ORDER SEARCH PAGE</div>
+
+			</div>
+			<br />
+			<br />
+
+			<div class="adminLinksInnerDiv">
+			<hr />
+			<br />
+			<a class="customButton adminLink" href="ProductName.jsf">By
+			ProductName</a> <a class="customButton adminLink"
+				href="processorMonitoring.jsf">OrderList By Amount By
+			OrderArrivalDate</a> <a class="customButton adminLink"
+				href="notificationMonitoring.jsf">By ID</a> <br />
+			<br />
+			<hr />
+			<br />
+			<a class="customButton adminLink" href="healthCheck.jsf">OrderList
+			By OrderArrivalDate</a> <a class="customButton adminLink"
+				href="healthCheck.jsf">OrderList By OrderDate</a> <a
+				class="customButton adminLink" href="healthCheck.jsf">By
+			ProductName By Amount</a></div>
+			<br />
+			<hr />
+			<br />
+
+			</div>
+		</f:view>
+		</body>
+	</ui:define>
+
+</ui:composition>
+

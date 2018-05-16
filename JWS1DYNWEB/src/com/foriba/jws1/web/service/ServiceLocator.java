@@ -21,8 +21,8 @@ import javax.naming.NamingException;
  */
 public class ServiceLocator {
 
-	private static String CORE_LOOKUP = "ejb:/appName=sap.com/fit.earsiv.core.app, beanName={0}Bean, interfaceName={1}";
-	private static String CORE_LOOKUPIMPL = "ejb:/appName=sap.com/fit.earsiv.core.app, beanName={0}Impl, interfaceName={1}";
+	private static String CORE_LOOKUP = "ejb:/appName=sap.com/foriba.jws1Order.core.app, beanName={0}Bean, interfaceName={1}";
+	private static String CORE_LOOKUPIMPL = "ejb:/appName=sap.com/foriba.jws1Order.core.app, beanName={0}Impl, interfaceName={1}";
 	private ServiceLocator() {}
 
 	public static <T> T getCoreService(Class<?> serviceClass) {

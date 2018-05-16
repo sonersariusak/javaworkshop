@@ -3,7 +3,6 @@ package com.foriba.jws1.web.page;
 
 // import com.fit.earsiv.util.CryptoUtil;
 import com.foriba.jws1.web.model.WebUser;
-import com.foriba.jws1.web.service.ServiceLocator;
 
 public class LoginPage extends AbstractPage {
 
