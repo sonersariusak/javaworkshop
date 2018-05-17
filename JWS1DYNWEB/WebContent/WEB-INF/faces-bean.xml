@@ -8,8 +8,13 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
+  <managed-bean-name>OrderManagementSearchPage</managed-bean-name>
+  <managed-bean-class>com.foriba.jws1.web.page.OrderManagementSearchPage</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
   <managed-bean-name>OrderManagementPage</managed-bean-name>
-  <managed-bean-class>com.foriba.jws1.web.page.OrderManagementPage</managed-bean-class>
+  <managed-bean-class>com.foriba.jws1.web.page.OrderManagementSearchPage</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>

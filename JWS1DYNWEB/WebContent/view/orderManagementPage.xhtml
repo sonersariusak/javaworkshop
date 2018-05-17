@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/layout/template.xhtml">
+
+
+	<ui:define name="content">
+		<a4j:keepAlive beanName="OrderManagementPage" ajaxOnly="true" />
+		<fieldset><legend><h:outputText
+			value="Order Management Page" /></legend> <rich:panel style="border:0px;">
+			<h:form id="MainForm" enctype="multipart/form-data">
+				<h:panelGrid columns="2">
+					<h:outputText value="Ordered Product Name: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<h:outputText value="Order Date: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<h:outputText value="Order Arrival Date: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<h:outputText value="Order Detail: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<h:outputText value="Order Amount: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<h:outputText value="Order Invoice: " />
+					<h:inputText value="#{ProductNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />	
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+				<a4j:commandButton value="Add"
+						action="#{ProductNamePage.searchByProductName}"
+						reRender="orderTable">
+					</a4j:commandButton>
+					<a4j:commandButton value="Update"
+						action="#{ProductNamePage.searchByProductName}"
+						reRender="orderTable">
+					</a4j:commandButton>
+					<br />
+				</h:panelGrid>
+				
+				<rich:dataTable id="orderTable"
+					value="#{ProductNamePage.orderList}" var="order"
+					rows="30" reRender="datascroller"
+					onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+					onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+					cellpadding="0" cellspacing="0">
+					<f:facet name="header">
+						<h:outputText value="Order Table" />
+					</f:facet>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="ID" />
+						</f:facet>
+						<h:outputText value="#{order.idx}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Product Name" />
+						</f:facet>
+						<h:outputText value="#{order.orderedProductName}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Order Date" />
+						</f:facet>
+						<h:outputText value="#{order.orderDate}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Order Arrival Date" />
+						</f:facet>
+						<h:outputText value="#{order.orderArrivalDate}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Order Detail" />
+						</f:facet>
+						<h:outputText value="#{order.orderDetail}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Order Amount" />
+						</f:facet>
+						<h:outputText value="#{order.orderAmount}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Sys Version" />
+						</f:facet>
+						<h:outputText value="#{order.sysVersiyon}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Sys Last Update" />
+						</f:facet>
+						<h:outputText value="#{order.sysLastUpdate}" />
+					</rich:column>
+
+					<rich:column>
+						<f:facet name="header">
+							<h:outputText value="Order Invoice" />
+						</f:facet>
+						<h:outputText value="#{order.orderInvoice}" />
+					</rich:column>
+
+
+					<!-- <rich:column>
+						<f:facet name="header">
+							<h:outputText value="DELETE" />
+						</f:facet>
+						<h:panelGrid columns="1">
+							<a4j:commandButton value="Delete"
+								image="#{bundle['image.delete']}"
+								reRender="DeleteCustomer,DeleteCustomerPanel"
+								oncomplete="#{rich:component('DeleteCustomerPanel')}.show()">
+								<f:setPropertyActionListener value="#{order}"
+									target="#{customersPage.selectedCustomer}" />
+							</a4j:commandButton>
+						</h:panelGrid>
+					</rich:column> -->
+
+					<f:facet name="footer">
+						<rich:datascroller id="datascroller" />
+					</f:facet>
+				</rich:dataTable>
+			</h:form>
+		</rich:panel></fieldset>
+
+
+
+		<!--  <h:panelGroup id="DeleteCustomer">
+			<rich:modalPanel id="DeleteCustomerPanel" width="380" height="100">
+				<f:facet name="header">
+					<h:outputText value="Delete Customer" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="#{bundle['image.close']}" id="hidelink3"
+							styleClass="hidelink" />
+						<rich:componentControl for="DeleteCustomerPanel"
+							attachTo="hidelink3" operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:graphicImage value="#{bundle['image.warn']}" />
+						<h:outputText value="Are you sure you want to delete customer?"
+							style="font-size: 14px;" />
+					</h:panelGrid>
+					<br />
+					<h:panelGrid columns="2">
+						<a4j:commandButton value="Yes" action="#{customersPage.delete}"
+							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;"
+							reRender="MainForm,CustomerTable" />
+						<a4j:commandButton value="No" reRender="MainForm,CustomerTable"
+							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;" />
+					</h:panelGrid>
+				</h:form>
+			</rich:modalPanel>
+		</h:panelGroup>-->
+
+	</ui:define>
+
+</ui:composition>
