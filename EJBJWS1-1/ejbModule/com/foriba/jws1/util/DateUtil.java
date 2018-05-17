@@ -29,7 +29,7 @@ public class DateUtil {
 		return getDate;
 	}
 
-	public Timestamp toTimeStampDate(String date) throws ParseException {
+	public static Timestamp toTimeStampDate(String date) throws ParseException {
 		Date getDate = FORMAT_TIMESTAMP.parse(date);
 		Timestamp timestamp = new Timestamp(getDate.getTime());
 		return timestamp;

@@ -18,6 +18,7 @@ import java.util.Date;
 @NamedQueries( {@NamedQuery(name = "Order.getOrderByID", query = "SELECT c FROM Jws1Order c where c.idx=?1"),
 		//@NamedQuery(name = "Order.deleteOrder", query = "Delete c FROM Jws1Order c where c.idx = ?1"),
 		@NamedQuery(name = "Order.getOrderListByOrderProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName = ?1"),
+		@NamedQuery(name = "Order.getProductNameByOrderSort", query = "SELECT c FROM Jws1Order c order by c.sysLastUpdate desc"),
 		@NamedQuery(name = "Order.getOrderListByOrderArrivalDate", query = "SELECT c FROM Jws1Order c where c.orderArrivalDate BETWEEN ?1 and ?2"),
 		@NamedQuery(name = "Order.getOrderListByOrderedProductName", query = "SELECT c FROM Jws1Order c where c.orderedProductName LIKE ?1"),
 		@NamedQuery(name = "Order.getOrderListByOrderDate", query = "SELECT c FROM Jws1Order c where c.orderDate > ?1"),

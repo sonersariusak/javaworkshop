@@ -6,6 +6,13 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.FlushModeType;
+import javax.persistence.LockModeType;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.xml.bind.DatatypeConverter;
 
 import com.foriba.jws1.base.BaseEntity;
@@ -13,6 +20,7 @@ import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
 import com.sun.org.apache.bcel.internal.generic.NEW;
+import com.sun.xml.internal.stream.Entity;
 
 @SuppressWarnings("serial")
 @Stateless
@@ -169,6 +177,13 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 		Jws1Order jws = findByNamedQuery(Jws1Order.class, "Order.getOrderByID", 1, idx).get(0);
 		remove(jws);
 		return null;
+	}
+
+
+	@Override
+	public List<Jws1Order> getProductNameByOrderSort() throws Exception {
+		return findByNamedQuery(Jws1Order.class, "Order.getProductNameByOrderSort", 20);
+	
 	}
 
 

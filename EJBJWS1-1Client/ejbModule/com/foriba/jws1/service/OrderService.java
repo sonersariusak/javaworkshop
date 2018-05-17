@@ -23,6 +23,8 @@ public interface OrderService  {
 	public List<Jws1Order> getOrderListByOrderProductName(String orderProductName) throws Exception;
 
 	public List<Jws1Order> getOrderByID(long ID) throws Exception;
+	
+	public List<Jws1Order> getProductNameByOrderSort() throws Exception;
 
 	public List<Jws1Order> getOrderListByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception;
 
