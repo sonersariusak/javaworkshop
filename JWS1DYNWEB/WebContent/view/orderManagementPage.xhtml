@@ -8,29 +8,6 @@
 
 
 	<ui:define name="content">
-		<link rel="stylesheet" type="text/css" href="../resources/style.css" />
-		<link rel="stylesheet" type="text/css"
-			href="../resources/js/css/jquery-ui.css" />
-		<link rel="stylesheet" type="text/css"
-			href="../resources/js/css/jquery-ui-timepicker-addon.css" />
-		<link rel="stylesheet" type="text/css" href="../resources/style.css" />
-
-		<script src="../resources/js/jquery-1.9.1.js"></script>
-		<script src="../resources/js/jquery-ui-1.10.3.js"></script>
-		<script src="../resources/js/jquery-ui-timepicker-addon.js"></script>
-		<script>
-			$(function() {
-				$( "#filterForm\\:startDate" ).datetimepicker({
-					dateFormat: 'dd/mm/yy',
-					timeFormat: 'HH:mm:ss'
-				});
-				$( "#filterForm\\:endDate" ).datetimepicker({
-					dateFormat: 'dd/mm/yy',
-					timeFormat: 'HH:mm:ss'
-				});
-				$( "#accordion" ).accordion();
-			});
-		</script>
 		<a4j:keepAlive beanName="OrderManagementPage" ajaxOnly="true" />
 		<fieldset><legend><h:outputText
 			value="Order Management Page" /></legend> <rich:panel style="border:0px;">
