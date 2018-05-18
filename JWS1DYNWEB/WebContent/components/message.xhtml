@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<rich:message for="#{for}" rendered="#{rendered eq null ? true : rendered }" ajaxRendered="true" styleClass="error">
+		<f:facet name="errorMarker">
+			<h:graphicImage style="margin-right:5px" value="#{bundle['image.required']}" />
+		</f:facet>
+		<f:facet name="fatalMarker">
+			<h:graphicImage style="margin-right:5px" value="#{bundle['image.required']}" />
+		</f:facet>
+		<f:facet name="warnMarker">
+			<h:graphicImage style="margin-right:5px" value="#{bundle['image.required']}" />
+		</f:facet>
+	</rich:message>
+</ui:composition>
+

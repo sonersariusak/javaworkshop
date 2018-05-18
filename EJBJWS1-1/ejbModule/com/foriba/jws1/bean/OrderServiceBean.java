@@ -33,7 +33,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderedProductName(String productName) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductName", 10, "%" + productName + "%");
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductName", 60, "%" + productName + "%");
 
 	}
 
@@ -168,7 +168,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderProductName(String orderedProductName) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderProductName", 10, orderedProductName);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderProductName", 60, orderedProductName);
 
 	}
 

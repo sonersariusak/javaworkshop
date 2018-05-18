@@ -10,6 +10,9 @@
     PATH="/view/orderManagementPage.xhtml"
     TARGET="rules:#view#orderManagementPage.xhtml"
     TITLE="orderManagement" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="searchSuccess::#view#search.jsf"
+    NAME="output2" PATH="/view/search.jsf"
+    TARGET="rules:#view#search.jsf" TITLE="searchSuccess" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#view#mainPage.xhtml"

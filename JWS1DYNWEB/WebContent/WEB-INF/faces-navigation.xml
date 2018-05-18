@@ -15,7 +15,7 @@
    <redirect/>
   </navigation-case>
   <navigation-case>
-   <from-outcome>searchSucces</from-outcome>
+   <from-outcome>searchSuccess</from-outcome>
    <to-view-id>/view/search.jsf</to-view-id>
    <redirect/>
   </navigation-case>

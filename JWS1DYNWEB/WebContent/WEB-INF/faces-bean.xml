@@ -18,7 +18,7 @@
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
  <managed-bean>
-  <managed-bean-name>ProductNamePage</managed-bean-name>
+  <managed-bean-name>productNamePage</managed-bean-name>
   <managed-bean-class>com.foriba.jws1.web.page.ProductNamePage</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
