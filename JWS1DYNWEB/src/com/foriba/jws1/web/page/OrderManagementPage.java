@@ -3,7 +3,6 @@ package com.foriba.jws1.web.page;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.util.Date;
 import java.util.List;
 
 import com.foriba.jws1.entity.Jws1Order;
@@ -18,13 +17,13 @@ import com.foriba.jws1.web.service.ServiceLocator;
  * 
  */
 
-public class OrderManagementPage extends AbstractPage{
+public class OrderManagementPage extends AbstractPage {
 
 	private String orderProductNameText = null;
-	private Date orderDateText;
-	private Timestamp orderArrivalDateText;
+	private String orderDateText;
+	private String orderArrivalDateText;
 	private String orderDetailText;
-	private Byte orderInvoiceText;
+	private String orderInvoiceText;
 	private float orderAmountText;
 	private static final long serialVersionUID = 1L;
 	private List<Jws1Order> orderList;
@@ -38,7 +37,7 @@ public class OrderManagementPage extends AbstractPage{
 			if(null != orderList) {
 				orderList.clear();
 			}
-			System.err.println("Soner:  " +"APPLE");
+			System.err.println("Soner:  " + "APPLE");
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			orderList = service.getProductNameByOrderSort();
 			System.err.println("Soner:  " + orderList.size());
@@ -49,35 +48,41 @@ public class OrderManagementPage extends AbstractPage{
 		return "orderManagement";
 
 	}
-
+	public void refresh() {
+		orderProductNameText="";
+		orderDateText="";
+		orderArrivalDateText="";
+		orderDetailText="";
+		orderInvoiceText="";
+		orderAmountText=0;
+	}
 	public void addOrder() {
 		try {
-		System.err.println("Soner:  1");
-		OrderService service = ServiceLocator.getCoreService(OrderService.class);
-		System.err.println("Soner:  1");
-		BigDecimal amnt = new BigDecimal(orderAmountText);
-		Jws1Order jws = new Jws1Order();
-		jws.setOrderedProductName(orderProductNameText);
-		try {
-			jws.setOrderDate(DateUtil.toDateString(orderDateText));
-		}
-		catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
-		jws.setOrderDetail(orderDetailText);
-		jws.setOrderInvoice(null);
-		jws.setOrderArrivalDate(orderArrivalDateText);
-		System.err.println("Soner:  2");
-		try {
-			service.addOrder(jws);
-			System.err.println("Soner:  3");
-		}
-		catch (Exception e) {
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			BigDecimal amnt = new BigDecimal(orderAmountText);
+			Jws1Order jws = new Jws1Order();
+			jws.setOrderedProductName(orderProductNameText);
+			try {
+				jws.setOrderDate(DateUtil.toDate(orderDateText));
+				System.err.println("Soner :"+DateUtil.toDate(orderDateText));
+			}
+			catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
+			jws.setOrderDetail(orderDetailText);
+			jws.setOrderInvoice(null);
+			Timestamp t = DateUtil.toTimeStampDate(orderArrivalDateText);
+			jws.setOrderArrivalDate(t);
+			try {
+				service.addOrder(jws);
+				onLoad();
+			}
+			catch (Exception e) {
 
-			e.printStackTrace();
-		}
+				e.printStackTrace();
+			}
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -93,19 +98,19 @@ public class OrderManagementPage extends AbstractPage{
 		return orderProductNameText;
 	}
 
-	public void setOrderDateText(Date orderDateText) {
+	public void setOrderDateText(String orderDateText) {
 		this.orderDateText = orderDateText;
 	}
 
-	public Date getOrderDateText() {
+	public String getOrderDateText() {
 		return orderDateText;
 	}
 
-	public void setOrderArrivalDateText(Timestamp orderArrivalDateText) {
+	public void setOrderArrivalDateText(String orderArrivalDateText) {
 		this.orderArrivalDateText = orderArrivalDateText;
 	}
 
-	public Timestamp getOrderArrivalDateText() {
+	public String getOrderArrivalDateText() {
 		return orderArrivalDateText;
 	}
 
@@ -117,11 +122,11 @@ public class OrderManagementPage extends AbstractPage{
 		return orderDetailText;
 	}
 
-	public void setOrderInvoiceText(Byte orderInvoiceText) {
+	public void setOrderInvoiceText(String orderInvoiceText) {
 		this.orderInvoiceText = orderInvoiceText;
 	}
 
-	public Byte getOrderInvoiceText() {
+	public String getOrderInvoiceText() {
 		return orderInvoiceText;
 	}
 
@@ -132,7 +137,7 @@ public class OrderManagementPage extends AbstractPage{
 	public float getOrderAmountText() {
 		return orderAmountText;
 	}
-	
+
 	public List<Jws1Order> getOrderList() {
 		return orderList;
 	}

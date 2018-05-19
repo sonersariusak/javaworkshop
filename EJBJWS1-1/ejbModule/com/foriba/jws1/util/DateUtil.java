@@ -19,7 +19,7 @@ public class DateUtil {
 	public static final SimpleDateFormat FORMAT_TIMESTAMP = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
 	public static final SimpleDateFormat FORMAT_SHORT = new SimpleDateFormat("yyyy-MM-dd");
 
-	public Date toDate(String date) throws ParseException {
+	public static Date toDate(String date) throws ParseException {
 		Date getDate = FORMAT_DATE.parse(date);
 		return getDate;
 	}
