@@ -134,7 +134,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public List<Jws1Order> getOrderListByOrderDate(Date date) throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 10, date);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderDate", 60, date);
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public List<Jws1Order> getOrderListByAmountByOrderArrivalDate(double amount, Timestamp startDate, Timestamp endDate) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByAmountByOrderArrivalDate", 10, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByAmountByOrderArrivalDate", 60, b.setScale(2, BigDecimal.ROUND_UP), startDate, endDate);
 
 	}
 
@@ -157,7 +157,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public List<Jws1Order> getOrderListByOrderedProductNameByAmount(String productName, double amount) throws Exception {
 		BigDecimal b = new BigDecimal(amount);
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductNameByAmount", 10, "%" + productName + "%", b.setScale(2, BigDecimal.ROUND_UP));
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderedProductNameByAmount", 60, "%" + productName + "%", b.setScale(2, BigDecimal.ROUND_UP));
 
 	}
 

@@ -10,8 +10,8 @@
 	<ui:define name="content">
 		<a4j:keepAlive beanName="amountByArrivalDate" ajaxOnly="true" />
 		<fieldset><legend> <h:outputText
-			value="Search By Amount and ArrivalDate" /> </legend> <rich:panel id="MainPanel"
-			style="border:0px;">
+			value="Search By Amount and ArrivalDate" /> </legend> <rich:panel
+			id="MainPanel" style="border:0px;">
 			<h:form id="MainForm" enctype="multipart/form-data">
 				<h:panelGrid columns="7">
 					<h:outputText value="Amount : " />
@@ -29,8 +29,8 @@
 				</h:panelGrid>
 				<br />
 				<a4j:outputPanel id="mypanel" ajaxRendered="true">
-					<rich:dataTable value="#{amountByArrivalDate.orderList}" var="o" rows="30"
-						reRender="datascroller"
+					<rich:dataTable value="#{amountByArrivalDate.orderList}" var="o"
+						rows="30" reRender="datascroller"
 						onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
 						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
 						cellpadding="0" cellspacing="0">
