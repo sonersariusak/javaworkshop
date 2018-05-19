@@ -22,4 +22,14 @@
   <managed-bean-class>com.foriba.jws1.web.page.ProductNamePage</managed-bean-class>
   <managed-bean-scope>request</managed-bean-scope>
  </managed-bean>
+  <managed-bean>
+  <managed-bean-name>IDPage</managed-bean-name>
+  <managed-bean-class>com.foriba.jws1.web.page.IDPage</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>amountByArrivalDate</managed-bean-name>
+  <managed-bean-class>com.foriba.jws1.web.page.AmountByArrivalDate</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
 </faces-config>

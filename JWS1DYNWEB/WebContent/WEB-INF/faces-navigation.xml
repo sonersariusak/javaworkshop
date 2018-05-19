@@ -9,6 +9,16 @@
    <to-view-id>/view/productName.xhtml</to-view-id>
    <redirect/>
   </navigation-case>
+  <navigation-case>
+   <from-outcome>id</from-outcome>
+   <to-view-id>/view/ID.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+   <navigation-case>
+   <from-outcome>amountByArrivalDate</from-outcome>
+   <to-view-id>/view/amountByArrivalDate.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
    <navigation-case>
    <from-outcome>orderManagement</from-outcome>
    <to-view-id>/view/orderManagementPage.xhtml</to-view-id>

@@ -5,18 +5,20 @@
    <PROCESS-ITEM-OUTPUT ID="productName::#view#productName.xhtml"
     NAME="output" PATH="/view/productName.xhtml"
     TARGET="rules:#view#productName.xhtml" TITLE="productName" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="id::#view#ID.xhtml" NAME="output1"
+    PATH="/view/ID.xhtml" TARGET="rules:#view#ID.xhtml" TITLE="id" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="orderManagement::#view#orderManagementPage.xhtml" NAME="output1"
+    ID="amountByArrivalDate::#view#amountByArrivalDate.xhtml"
+    NAME="output2" PATH="/view/amountByArrivalDate.xhtml"
+    TARGET="rules:#view#amountByArrivalDate.xhtml"
+    TITLE="amountByArrivalDate" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="orderManagement::#view#orderManagementPage.xhtml" NAME="output3"
     PATH="/view/orderManagementPage.xhtml"
     TARGET="rules:#view#orderManagementPage.xhtml"
     TITLE="orderManagement" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="searchSuccess::#view#search.jsf"
-    NAME="output2" PATH="/view/search.jsf"
-    TARGET="rules:#view#search.jsf" TITLE="searchSuccess" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#view#mainPage.xhtml"
-  PATH="/view/mainPage.xhtml" SHAPE="448,17,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
@@ -26,10 +28,16 @@
     TITLE="success" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#view#orderManagementPage.xhtml"
+  PATH="/view/orderManagementPage.xhtml" SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#mainPage.xhtml"
+  PATH="/view/mainPage.xhtml" SHAPE="448,17,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#ID.xhtml" PATH="/view/ID.xhtml"
+  SHAPE="272,545,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#view#productName.xhtml"
   PATH="/view/productName.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#view#search.jsf" PATH="/view/search.jsf"
   SHAPE="256,289,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#view#orderManagementPage.xhtml"
-  PATH="/view/orderManagementPage.xhtml" SHAPE="256,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#view#amountByArrivalDate.xhtml"
+  PATH="/view/amountByArrivalDate.xhtml" SHAPE="288,689,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

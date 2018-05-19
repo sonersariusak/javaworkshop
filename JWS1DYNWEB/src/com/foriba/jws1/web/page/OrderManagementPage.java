@@ -1,6 +1,5 @@
 package com.foriba.jws1.web.page;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -19,7 +18,7 @@ import com.foriba.jws1.web.service.ServiceLocator;
  * 
  */
 
-public class OrderManagementPage extends AbstractPage implements Serializable {
+public class OrderManagementPage extends AbstractPage{
 
 	private String orderProductNameText = null;
 	private Date orderDateText;
@@ -40,8 +39,8 @@ public class OrderManagementPage extends AbstractPage implements Serializable {
 				orderList.clear();
 			}
 			System.err.println("Soner:  " +"APPLE");
-			OrderService productNameService = ServiceLocator.getCoreService(OrderService.class);
-			orderList = productNameService.getProductNameByOrderSort();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			orderList = service.getProductNameByOrderSort();
 			System.err.println("Soner:  " + orderList.size());
 		}
 		catch (Exception e) {
@@ -51,13 +50,21 @@ public class OrderManagementPage extends AbstractPage implements Serializable {
 
 	}
 
-	public void add() throws ParseException {
+	public void addOrder() {
+		try {
+		System.err.println("Soner:  1");
 		OrderService service = ServiceLocator.getCoreService(OrderService.class);
 		System.err.println("Soner:  1");
 		BigDecimal amnt = new BigDecimal(orderAmountText);
 		Jws1Order jws = new Jws1Order();
 		jws.setOrderedProductName(orderProductNameText);
-		jws.setOrderDate(DateUtil.toDateString(orderDateText));
+		try {
+			jws.setOrderDate(DateUtil.toDateString(orderDateText));
+		}
+		catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
 		jws.setOrderDetail(orderDetailText);
 		jws.setOrderInvoice(null);
@@ -69,6 +76,10 @@ public class OrderManagementPage extends AbstractPage implements Serializable {
 		}
 		catch (Exception e) {
 
+			e.printStackTrace();
+		}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 
