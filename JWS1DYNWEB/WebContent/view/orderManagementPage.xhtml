@@ -41,7 +41,7 @@
 				</a4j:outputPanel>
 				<h:panelGrid columns="3">
 						<a4j:commandButton value="Refresh"
-							action="#{OrderManagementPage.refresh}" reRender="mypanel1"></a4j:commandButton>
+							action="#{OrderManagementPage.refresh}" reRender="mypanel1,mypanel"></a4j:commandButton>
 						<a4j:commandButton value="Add"
 							action="#{OrderManagementPage.addOrder}" reRender="mypanel">
 						</a4j:commandButton>
@@ -50,6 +50,15 @@
 						</a4j:commandButton>
 						<br />
 					</h:panelGrid>
+					<h:panelGrid columns="3">
+					<h:outputText value="ID : " />
+					<h:inputText value="#{OrderManagementPage.searchTextForID}"
+						maxlength="11" style="width: 100px;" />
+					<a4j:commandButton value="Search"
+						action="#{OrderManagementPage.searchByID}"
+						reRender="mypanel">
+					</a4j:commandButton>
+				</h:panelGrid>
 				<a4j:outputPanel id="mypanel" ajaxRendered="true">
 					<rich:dataTable value="#{OrderManagementPage.orderList}" var="o"
 						rows="30" reRender="datascroller"
@@ -58,7 +67,7 @@
 						cellpadding="0" cellspacing="0">
 
 						<f:facet name="header">
-							<h:outputText value="Ordered ProductName Table" />
+							<h:outputText value="Ordered Table" />
 						</f:facet>
 
 						<h:column>
@@ -130,12 +139,12 @@
 								<h:outputText value="DELETE" />
 							</f:facet>
 							<h:panelGrid columns="1">
+							
 								<a4j:commandButton value="Delete"
 									image="#{bundle['image.delete']}"
-									reRender="DeleteCustomer,DeleteCustomerPanel"
-									oncomplete="#{rich:component('DeleteCustomerPanel')}.show()">
-									<f:setPropertyActionListener value="#{order}"
-										target="#{customersPage.selectedCustomer}" />
+									oncomplete="#{rich:component('DeleteOrderPanel')}.show()">
+									<f:setPropertyActionListener value="#{o}"
+										target="#{OrderManagementPage.selectedOrder}" />
 								</a4j:commandButton>
 							</h:panelGrid>
 						</h:column>
@@ -150,36 +159,36 @@
 
 
 
-		<!--  <h:panelGroup id="DeleteCustomer">
-			<rich:modalPanel id="DeleteCustomerPanel" width="380" height="100">
+		<h:panelGroup id="DeleteOrder">
+			<rich:modalPanel id="DeleteOrderPanel" width="380" height="100">
 				<f:facet name="header">
-					<h:outputText value="Delete Customer" />
+					<h:outputText value="Delete Order" />
 				</f:facet>
 				<f:facet name="controls">
 					<h:panelGroup>
 						<h:graphicImage value="#{bundle['image.close']}" id="hidelink3"
 							styleClass="hidelink" />
-						<rich:componentControl for="DeleteCustomerPanel"
+						<rich:componentControl for="DeleteOrderPanel"
 							attachTo="hidelink3" operation="hide" event="onclick" />
 					</h:panelGroup>
 				</f:facet>
 				<h:form>
 					<h:panelGrid columns="2">
 						<h:graphicImage value="#{bundle['image.warn']}" />
-						<h:outputText value="Are you sure you want to delete customer?"
+						<h:outputText value="Are you sure you want to delete order?"
 							style="font-size: 14px;" />
 					</h:panelGrid>
 					<br />
 					<h:panelGrid columns="2">
-						<a4j:commandButton value="Yes" action="#{customersPage.delete}"
-							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;"
-							reRender="MainForm,CustomerTable" />
-						<a4j:commandButton value="No" reRender="MainForm,CustomerTable"
-							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;" />
+						<a4j:commandButton value="Yes" action="#{OrderManagementPage.delete}"
+							oncomplete="#{rich:component('DeleteOrderPanel')}.hide();return false;"
+							/>
+						<a4j:commandButton value="No"
+							oncomplete="#{rich:component('DeleteOrderPanel')}.hide();return false;" />
 					</h:panelGrid>
 				</h:form>
 			</rich:modalPanel>
-		</h:panelGroup>-->
+		</h:panelGroup>
 
 	</ui:define>
 
