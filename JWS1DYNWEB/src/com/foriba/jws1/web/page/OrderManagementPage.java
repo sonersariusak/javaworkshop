@@ -5,6 +5,8 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.xml.bind.DatatypeConverter;
+
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
 import com.foriba.jws1.util.DateUtil;
@@ -48,14 +50,16 @@ public class OrderManagementPage extends AbstractPage {
 		return "orderManagement";
 
 	}
+
 	public void refresh() {
-		orderProductNameText="";
-		orderDateText="";
-		orderArrivalDateText="";
-		orderDetailText="";
-		orderInvoiceText="";
-		orderAmountText=0;
+		orderProductNameText = "";
+		orderDateText = "";
+		orderArrivalDateText = "";
+		orderDetailText = "";
+		orderInvoiceText = "";
+		orderAmountText = 0;
 	}
+
 	public void addOrder() {
 		try {
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
@@ -64,7 +68,7 @@ public class OrderManagementPage extends AbstractPage {
 			jws.setOrderedProductName(orderProductNameText);
 			try {
 				jws.setOrderDate(DateUtil.toDate(orderDateText));
-				System.err.println("Soner :"+DateUtil.toDate(orderDateText));
+				System.err.println("Soner :" + DateUtil.toDate(orderDateText));
 			}
 			catch (ParseException e1) {
 				// TODO Auto-generated catch block
@@ -72,7 +76,8 @@ public class OrderManagementPage extends AbstractPage {
 			}
 			jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
 			jws.setOrderDetail(orderDetailText);
-			jws.setOrderInvoice(null);
+	        String str = new String(DatatypeConverter.parseBase64Binary(orderInvoiceText));
+	        jws.setOrderInvoice(str.getBytes());
 			Timestamp t = DateUtil.toTimeStampDate(orderArrivalDateText);
 			jws.setOrderArrivalDate(t);
 			try {

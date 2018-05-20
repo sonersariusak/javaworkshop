@@ -45,7 +45,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public List<Jws1Order> getOrderListByOrderArrivalDate(Timestamp startDate, Timestamp endDate) throws Exception {
 
-		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderArrivalDate", 10, startDate, endDate);
+		return findByNamedQuery(Jws1Order.class, "Order.getOrderListByOrderArrivalDate", 60, startDate, endDate);
 
 	}
 
