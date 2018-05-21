@@ -12,9 +12,6 @@
 		<fieldset><legend> <h:outputText
 			value="Order Management Page" /> </legend> <rich:panel style="border:0px;">
 			<h:form id="MainForm" enctype="multipart/form-data">
-				<a4j:outputPanel id="mypanel1" ajaxRendered="true">
-
-				</a4j:outputPanel>
 				<h:panelGrid columns="5">
 					<h:outputText value="ID : " />
 					<h:inputText value="#{OrderManagementPage.searchTextForID}"
@@ -25,7 +22,9 @@
 					<a4j:commandButton value="Refresh"
 						action="#{OrderManagementPage.refresh}" reRender="mypanel"></a4j:commandButton>
 					<a4j:commandButton value="New Order"
-						oncomplete="#{rich:component('addOrderPanel')}.show()">
+						action="#{OrderManagementPage.refresh}"
+						oncomplete="#{rich:component('addOrderPanel')}.show()"
+						reRender="mypanel1">
 					</a4j:commandButton>
 				</h:panelGrid>
 				<a4j:outputPanel id="mypanel" ajaxRendered="true">
@@ -108,7 +107,7 @@
 							<h:panelGrid columns="1">
 								<a4j:commandButton value="Edit" image="#{bundle['image.edit']}"
 									action="#{OrderManagementPage.openDetail}"
-									reRender="editOrderPanel"
+									reRender="myEditPanel"
 									oncomplete="#{rich:component('editOrderPanel')}.show()">
 									<f:setPropertyActionListener value="#{o}"
 										target="#{OrderManagementPage.selectedOrder}" />
@@ -172,124 +171,118 @@
 			</rich:modalPanel>
 		</h:panelGroup>
 
-		<h:panelGroup id="editOrder">
-			<rich:modalPanel id="editOrderPanel" width="560" height="320">
-				<f:facet name="header">
-					<h:outputText value="Edit Order" />
-				</f:facet>
-				<f:facet name="controls">
-					<h:panelGroup>
-						<h:graphicImage value="#{bundle['image.close']}" id="hidelink"
-							styleClass="hidelink" />
-						<rich:componentControl for="editOrderPanel" attachTo="hidelink"
-							operation="hide" event="onclick" />
-					</h:panelGroup>
-				</f:facet>
-				<h:form enctype="multipart/form-data">
-					<rich:panel switchType="ajax" label="JWS1 Order" height="400px">
-						<fieldset><legend> <h:outputText
-							value="JWS1 Order Table" /> </legend> <h:panelGrid columns="2">
-							<h:outputText value="Ordered Product Name: " />
-							<h:inputText
-								value="#{OrderManagementPage.selectedOrder.orderedProductName}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Date: " />
-							<h:inputText
-								value="#{OrderManagementPage.selectedOrder.orderDate}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Arrival Date: " />
-							<h:inputText
-								value="#{OrderManagementPage.selectedOrder.orderArrivalDate}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Detail: " />
-							<h:inputText
-								value="#{OrderManagementPage.selectedOrder.orderDetail}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Amount: " />
-							<h:inputText
-								value="#{OrderManagementPage.selectedOrder.orderAmount}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Invoice: " />
-							<h:inputTextarea
-								value="#{OrderManagementPage.selectedOrder.orderInvoice}"
-								style="width: 300px; height: 50px;" />
-							<br />
-							<br />
-						</h:panelGrid></fieldset>
+		<a4j:outputPanel id="myEditPanel" ajaxRendered="true">
+			<h:panelGroup id="editOrder">
+				<rich:modalPanel id="editOrderPanel" width="560" height="320">
+					<f:facet name="header">
+						<h:outputText value="Edit Order" />
+					</f:facet>
+					<f:facet name="controls">
+						<h:panelGroup>
+							<h:graphicImage value="#{bundle['image.close']}" id="hidelink"
+								styleClass="hidelink" />
+							<rich:componentControl for="editOrderPanel" attachTo="hidelink"
+								operation="hide" event="onclick" />
+						</h:panelGroup>
+					</f:facet>
+					<h:form enctype="multipart/form-data">
+						<rich:panel switchType="ajax" label="JWS1 Order" height="400px">
+							<fieldset><legend> <h:outputText
+								value="JWS1 Order Table" /> </legend> <h:panelGrid columns="2">
+								<h:outputText value="Ordered Product Name: " />
+								<h:inputText value="#{OrderManagementPage.orderProductNameText}"
+									maxlength="25" style="width: 100px;" />
+								<h:outputText value="Order Date: " />
+								<h:inputText value="#{OrderManagementPage.orderDateText}"
+									maxlength="25" style="width: 100px;" />
+								<h:outputText value="Order Arrival Date: " />
+								<h:inputText value="#{OrderManagementPage.orderArrivalDateText}"
+									maxlength="25" style="width: 100px;" />
+								<h:outputText value="Order Detail: " />
+								<h:inputText value="#{OrderManagementPage.orderDetailText}"
+									maxlength="25" style="width: 100px;" />
+								<h:outputText value="Order Amount: " />
+								<h:inputText value="#{OrderManagementPage.orderAmountText}"
+									maxlength="25" style="width: 100px;" />
+								<h:outputText value="Order Invoice: " />
+								<h:inputTextarea value="#{OrderManagementPage.orderInvoiceText}"
+									style="width: 300px; height: 50px;" />
+								<br />
+								<br />
+							</h:panelGrid></fieldset>
 
-						<h:panelGrid columns="2">
-							<a4j:commandButton value="Update"
-								reRender="MainForm,mypanel"
-								action="#{customersPage.update}"
-								oncomplete="#{rich:component('CustomerDetailPanel')}.hide();return false;" />
-							<a4j:commandButton value="Cancel"
-								reRender="MainForm,mypanel"
-								oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
-						</h:panelGrid>
-					</rich:panel>
+							<h:panelGrid columns="2">
+								<a4j:commandButton value="Update" reRender="MainForm,mypanel"
+									action="#{customersPage.update}"
+									oncomplete="#{rich:component('CustomerDetailPanel')}.hide();return false;" />
+								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
+									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
+							</h:panelGrid>
+						</rich:panel>
 
-				</h:form>
-			</rich:modalPanel>
-		</h:panelGroup>
-		
-				<h:panelGroup id="addOrder">
-			<rich:modalPanel id="addOrderPanel" width="560" height="320">
-				<f:facet name="header">
-					<h:outputText value="Add Order"/>
-				</f:facet>
-				<f:facet name="controls">
-					<h:panelGroup>
-						<h:graphicImage value="#{bundle['image.close']}" id="hidelink1"
-							styleClass="hidelink1" />
-						<rich:componentControl for="addOrderPanel" attachTo="hidelink1"
-							operation="hide" event="onclick" />
-					</h:panelGroup>
-				</f:facet>
-				<h:form enctype="multipart/form-data">
-					<rich:panel switchType="ajax" label="JWS1 Order" height="400px">
-						<fieldset><legend> <h:outputText
-							value="JWS1 Order Table" /> </legend> <h:panelGrid columns="2">
-							<h:outputText value="Ordered Product Name: " />
-							<h:inputText
-								value="#{OrderManagementPage.orderProductNameText}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Date: " />
-							<h:inputText
-								value="#{OrderManagementPage.orderDateText}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Arrival Date: " />
-							<h:inputText
-								value="#{OrderManagementPage.orderArrivalDateText}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Detail: " />
-							<h:inputText
-								value="#{OrderManagementPage.orderDetailText}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Amount: " />
-							<h:inputText
-								value="#{OrderManagementPage.orderAmountText}"
-								maxlength="25" style="width: 100px;" />
-							<h:outputText value="Order Invoice: " />
-							<h:inputTextarea
-								value="#{OrderManagementPage.orderInvoiceText}"
-								style="width: 300px; height: 50px;" />
-							<br />
-							<br />
-						</h:panelGrid></fieldset>
+					</h:form>
+				</rich:modalPanel>
+			</h:panelGroup>
+		</a4j:outputPanel>
+		<a4j:outputPanel id="mypanel1" ajaxRendered="true">
+			<h:panelGroup id="addOrder">
+				<rich:modalPanel id="addOrderPanel" width="560" height="320">
+					<f:facet name="header">
+						<h:outputText value="Add Order" />
+					</f:facet>
+					<f:facet name="controls">
+						<h:panelGroup>
+							<h:graphicImage value="#{bundle['image.close']}" id="hidelink1"
+								styleClass="hidelink1" />
+							<rich:componentControl for="addOrderPanel" attachTo="hidelink1"
+								operation="hide" event="onclick" />
+						</h:panelGroup>
+					</f:facet>
+					<h:form enctype="multipart/form-data">
+						<rich:panel switchType="ajax" label="JWS1 Order" height="400px">
+							<fieldset><legend> <h:outputText
+								value="JWS1 Order Table" /> </legend> <h:panelGrid columns="2">
+								<h:outputText value="Ordered Product Name: " />
+								<h:inputText value="#{OrderManagementPage.orderProductNameText}"
+									maxlength="25" style="width: 143px;" />
+								<h:outputText value="Order Date: " />
+								<rich:calendar cellWidth="24px" cellHeight="22px"
+									value="#{OrderManagementPage.orderDateText}" datePattern="dd/MM/yyyy"
+									style="width:200px;">
+								</rich:calendar>
+								<h:outputText value="Order Arrival Date: " />
+								<rich:calendar cellWidth="24px" cellHeight="22px"
+									value="#{OrderManagementPage.orderArrivalDateText}" datePattern="yyyy-MM-dd"
+									style="width:200px;">
+								</rich:calendar>
+								<h:outputText value="Order Detail: " />
+								<h:inputText value="#{OrderManagementPage.orderDetailText}"
+									maxlength="25" style="width: 143px;" />
+								<h:outputText value="Order Amount: " />
+								<h:inputText value="#{OrderManagementPage.orderAmountText}"
+									maxlength="25" style="width: 143px;" />
+								<h:outputText value="Order Invoice: " />
+								<h:inputTextarea value="#{OrderManagementPage.orderInvoiceText}"
+									style="width: 300px; height: 50px;" />
+								<br />
+								<br />
+							</h:panelGrid></fieldset>
 
-						<h:panelGrid columns="2">
-							<a4j:commandButton value="Add"
-								action="#{OrderManagementPage.addOrder}"
-								oncomplete="#{rich:component('addOrderPanel')}.hide();return false;" />
-							<a4j:commandButton value="Cancel"
-								reRender="MainForm,mypanel"
-								oncomplete="#{rich:component('addOrderPanel')}.hide();return false;" />
-						</h:panelGrid>
-					</rich:panel>
+							<h:panelGrid columns="2">
+								<a4j:commandButton value="Add"
+									action="#{OrderManagementPage.addOrder}"
+									oncomplete="#{rich:component('addOrderPanel')}.hide();return false;">
+								</a4j:commandButton>
+								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
+									oncomplete="#{rich:component('addOrderPanel')}.hide();return false;" />
+							</h:panelGrid>
+						</rich:panel>
 
-				</h:form>
-			</rich:modalPanel>
-		</h:panelGroup>
+					</h:form>
+				</rich:modalPanel>
+			</h:panelGroup>
+		</a4j:outputPanel>
+
 
 	</ui:define>
 
