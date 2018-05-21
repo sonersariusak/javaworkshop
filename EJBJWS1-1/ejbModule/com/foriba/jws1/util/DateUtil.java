@@ -20,7 +20,7 @@ public class DateUtil {
 	public static final SimpleDateFormat FORMAT_SHORT = new SimpleDateFormat("yyyy-MM-dd");
 
 	public static Date toDate(String date) throws ParseException {
-		Date getDate = FORMAT_MID.parse(date);
+		Date getDate = FORMAT_DATE.parse(date);
 		return getDate;
 	}
 
@@ -30,7 +30,7 @@ public class DateUtil {
 	}
 
 	public static Timestamp toTimeStampDate(String date) throws ParseException {
-		Date getDate = FORMAT_TIMESTAMP.parse(date);
+		Date getDate = FORMAT_SHORT.parse(date);
 		Timestamp timestamp = new Timestamp(getDate.getTime());
 		return timestamp;
 	}

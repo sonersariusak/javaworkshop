@@ -43,7 +43,6 @@ public class OrderManagementPage extends AbstractPage {
 			if(null != orderList) {
 				orderList.clear();
 			}
-			System.err.println("Soner:  " + "APPLE");
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			orderList = service.getProductNameByOrderSort();
 			System.err.println("Soner:  " + orderList.size());
@@ -53,6 +52,18 @@ public class OrderManagementPage extends AbstractPage {
 		}
 		return "orderManagement";
 
+	}
+	
+	public void openDetail() {
+		try {
+			orderList = new ArrayList<Jws1Order>();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			orderList = service.getOrderByID(selectedOrder.getIdx());
+			System.out.println(selectedOrder.getOrderedProductName());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	public void searchByID() {
 		try {
