@@ -78,7 +78,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 * @param
 	 */
 	@Override
-	public String updateOrder(long idx, String pName,Timestamp arrivalDate,Date orderDate, double amount, String clob, String blob) throws Exception {
+	public String updateOrder(long idx, String pName, Timestamp arrivalDate, Date orderDate, double amount, String clob, String blob) throws Exception {
 		String message = "";
 		String str = null;
 		BigDecimal b = new BigDecimal(amount);
@@ -91,9 +91,11 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 		}
 		int count =
 				executeUpdate(
-						"UPDATE Jws1Order c SET c.orderedProductName = ?2,c.arrivalDate=?3,c.orderDate=?4, c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1",
-						idx,arrivalDate,orderDate,
+						"UPDATE Jws1Order c SET c.orderedProductName = ?2,c.orderArrivalDate=?3,c.orderDate=?4, c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1",
+						idx,
 						pName,
+						arrivalDate,
+						orderDate,
 						b.setScale(2, BigDecimal.ROUND_UP),
 						clob,
 						str.getBytes());

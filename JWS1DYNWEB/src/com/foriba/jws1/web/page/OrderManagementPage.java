@@ -76,10 +76,13 @@ public class OrderManagementPage extends AbstractPage {
 	}
 	public void update(){
 		try {
+			System.err.println("Soner: update ");
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			Timestamp t = new Timestamp(orderArrivalDateText.getTime());
-			String str = new String(DatatypeConverter.parseBase64Binary(orderInvoiceText));
-			service.updateOrder(selectedOrder.getIdx(),orderProductNameText,t, orderDateText, orderAmountText, orderDetailText, str);
+			System.out.println("Soner : "+t);
+			service.updateOrder(selectedOrder.getIdx(),orderProductNameText,t, orderDateText, orderAmountText, orderDetailText,orderInvoiceText);
+			System.err.println("Soner: update 3");
+			openDetail();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

@@ -114,7 +114,7 @@ public class JWS1OrderPortTypeImplBean {
 			return response;
 		}
 		try {
-			response.result = orderService.updateOrder(parameter.getID(), parameter.getOrderedProductName(), parameter.getOrderAmount(), parameter.getOrderDetail(), parameter.getOrderInvoice().toString());
+			response.result = orderService.updateOrder(parameter.getID(), parameter.getOrderedProductName(),null,null, parameter.getOrderAmount(), parameter.getOrderDetail(), parameter.getOrderInvoice().toString());
 		}
 		catch (Exception e) {
 			response.result = e.getMessage();

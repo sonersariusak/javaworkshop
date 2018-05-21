@@ -216,7 +216,7 @@
 							</h:panelGrid></fieldset>
 
 							<h:panelGrid columns="2">
-								<a4j:commandButton value="Update" reRender="MainForm,mypanel"
+								<a4j:commandButton value="Update" reRender="MainForm,mypanel,"
 									action="#{OrderManagementPage.update}"
 									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
 								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
