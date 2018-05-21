@@ -74,6 +74,18 @@ public class OrderManagementPage extends AbstractPage {
 			e.printStackTrace();
 		}
 	}
+	public void update(){
+		try {
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			Timestamp t = new Timestamp(orderArrivalDateText.getTime());
+			String str = new String(DatatypeConverter.parseBase64Binary(orderInvoiceText));
+			service.updateOrder(selectedOrder.getIdx(),orderProductNameText,t, orderDateText, orderAmountText, orderDetailText, str);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void searchByID() {
 		try {

@@ -191,19 +191,23 @@
 								value="JWS1 Order Table" /> </legend> <h:panelGrid columns="2">
 								<h:outputText value="Ordered Product Name: " />
 								<h:inputText value="#{OrderManagementPage.orderProductNameText}"
-									maxlength="25" style="width: 100px;" />
+									maxlength="25" style=" width : 143px;" />
 								<h:outputText value="Order Date: " />
-								<h:inputText value="#{OrderManagementPage.orderDateText}"
-									maxlength="25" style="width: 100px;" />
+								<rich:calendar cellWidth="24px" cellHeight="22px"
+									value="#{OrderManagementPage.orderDateText}" datePattern="dd/MM/yyyy"
+									style="width:200px;">
+								</rich:calendar>
 								<h:outputText value="Order Arrival Date: " />
-								<h:inputText value="#{OrderManagementPage.orderArrivalDateText}"
-									maxlength="25" style="width: 100px;" />
+								<rich:calendar cellWidth="24px" cellHeight="22px"
+									value="#{OrderManagementPage.orderArrivalDateText}" datePattern="yyyy-MM-dd"
+									style="width:200px;">
+								</rich:calendar>
 								<h:outputText value="Order Detail: " />
 								<h:inputText value="#{OrderManagementPage.orderDetailText}"
-									maxlength="25" style="width: 100px;" />
+									maxlength="25" style=" width : 143px;" />
 								<h:outputText value="Order Amount: " />
 								<h:inputText value="#{OrderManagementPage.orderAmountText}"
-									maxlength="25" style="width: 100px;" />
+									maxlength="25" style=" width : 143px;" />
 								<h:outputText value="Order Invoice: " />
 								<h:inputTextarea value="#{OrderManagementPage.orderInvoiceText}"
 									style="width: 300px; height: 50px;" />
@@ -213,8 +217,8 @@
 
 							<h:panelGrid columns="2">
 								<a4j:commandButton value="Update" reRender="MainForm,mypanel"
-									action="#{customersPage.update}"
-									oncomplete="#{rich:component('CustomerDetailPanel')}.hide();return false;" />
+									action="#{OrderManagementPage.update}"
+									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
 								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
 									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
 							</h:panelGrid>

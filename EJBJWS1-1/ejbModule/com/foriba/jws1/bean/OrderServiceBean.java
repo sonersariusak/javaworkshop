@@ -78,7 +78,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 * @param
 	 */
 	@Override
-	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception {
+	public String updateOrder(long idx, String pName,Timestamp arrivalDate,Date orderDate, double amount, String clob, String blob) throws Exception {
 		String message = "";
 		String str = null;
 		BigDecimal b = new BigDecimal(amount);
@@ -90,9 +90,13 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 			return message;
 		}
 		int count =
-				executeUpdate("UPDATE Jws1Order c SET c.orderedProductName = ?2," + "c.orderAmount = ?3, c.orderDetail = ?4, c.orderInvoice = ?5 WHERE c.idx=?1", idx, pName, b.setScale(
-						2,
-						BigDecimal.ROUND_UP), clob, str.getBytes());
+				executeUpdate(
+						"UPDATE Jws1Order c SET c.orderedProductName = ?2,c.arrivalDate=?3,c.orderDate=?4, c.orderAmount = ?5, c.orderDetail = ?6, c.orderInvoice = ?7 WHERE c.idx=?1",
+						idx,arrivalDate,orderDate,
+						pName,
+						b.setScale(2, BigDecimal.ROUND_UP),
+						clob,
+						str.getBytes());
 		message = "Update Succesful!, Number of records updated:" + count;
 
 		return message;
@@ -164,7 +168,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 
 	@Override
 	public String deleteOrder(long idx) throws Exception {
-		int count = executeUpdate("Delete FROM Jws1Order c where c.idx = ?1",idx);
+		int count = executeUpdate("Delete FROM Jws1Order c where c.idx = ?1", idx);
 		String message = "Delete Succesful!, Number of records deleted:" + count;
 		return message;
 	}
@@ -173,7 +177,7 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public List<Jws1Order> getProductNameByOrderSort() throws Exception {
 		return findByNamedQuery(Jws1Order.class, "Order.getProductNameByOrderSort", 20);
-	
+
 	}
 
 

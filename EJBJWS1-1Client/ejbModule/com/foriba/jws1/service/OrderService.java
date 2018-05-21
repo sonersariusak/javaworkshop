@@ -16,7 +16,7 @@ public interface OrderService  {
 	
 	public String deleteOrder(long idx) throws Exception;
 
-	public String updateOrder(long idx, String pName, double amount, String clob, String blob) throws Exception;
+	public String updateOrder(long idx, String pName,Timestamp arrivalDate,Date orderDate, double amount, String clob, String blob) throws Exception;
 
 	public String updateAmountByOrderedProductName(String productName, double amount) throws Exception;
 
