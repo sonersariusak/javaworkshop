@@ -32,7 +32,7 @@
 				<xs:element name="getOrderByIDRequest">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="ID" type="xs:string"/>
+							<xs:element name="ID" type="xs:long"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
@@ -96,6 +96,8 @@
 						<xs:sequence>
 							<xs:element name="ID" type="xs:long"/>
 							<xs:element name="orderedProductName" type="xs:string"/>
+							<xs:element name="orderDate" type="xs:date"/>
+							<xs:element name="orderArrivalDate" type="xs:date"/>
 							<xs:element name="orderDetail" type="xs:string"/>
 							<xs:element name="orderInvoice" type="xs:base64Binary"/>
 							<xs:element name="orderAmount" type="xs:float"/>

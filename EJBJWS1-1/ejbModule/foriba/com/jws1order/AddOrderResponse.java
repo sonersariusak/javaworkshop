@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
     "result"
 })
 @XmlRootElement(name = "addOrderResponse")
-public class AddOrderResponse  {
+public class AddOrderResponse {
 
     @XmlElement(name = "Result", required = true)
     protected String result;
