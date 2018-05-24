@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j" template="/layout/template.xhtml">
+
+
+	<ui:define name="content">
+		<a4j:keepAlive beanName="productNamePage" ajaxOnly="true" />
+		<fieldset><legend> <h:outputText
+			value="Search ProductName" /> </legend> <rich:panel id="MainPanel"
+			style="border:0px;">
+			<h:form id="MainForm" enctype="multipart/form-data">
+				<h:panelGrid columns="4">
+					<h:outputText value="Ordered Product Name: " />
+					<h:selectOneMenu value="#{userData.data}">
+						<f:selectItem itemValue="1" itemLabel="Product Name" />
+						<f:selectItem itemValue="2" itemLabel="Amount By Order Arrival Date" />
+						<f:selectItem itemValue="2" itemLabel="Amount By Order Arrival Date" />
+						<f:selectItem itemValue="2" itemLabel="Amount By Order Arrival Date" />
+						<f:selectItem itemValue="2" itemLabel="Amount By Order Arrival Date" />
+						<f:selectItem itemValue="2" itemLabel="Amount By Order Arrival Date" />
+					</h:selectOneMenu>
+					<h:inputText value="#{productNamePage.searchTextForProductName}"
+						maxlength="11" style="width: 100px;" />
+					<a4j:commandButton value="Search"
+						action="#{productNamePage.searchByProductName}" reRender="mypanel">
+					</a4j:commandButton>
+				</h:panelGrid>
+				<br />
+				<a4j:outputPanel id="mypanel" ajaxRendered="true">
+					<rich:dataTable value="#{productNamePage.orderList}" var="o"
+						rows="30" reRender="datascroller"
+						onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+						cellpadding="0" cellspacing="0">
+						<f:facet name="header">
+							<h:outputText value="Ordered ProductName Table" />
+						</f:facet>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="ID" />
+							</f:facet>
+							<h:outputText value="#{o.idx}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Product Name" />
+							</f:facet>
+							<h:outputText value="#{o.orderedProductName}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Order Date" />
+							</f:facet>
+							<h:outputText value="#{o.orderDate}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Order Arrival Date" />
+							</f:facet>
+							<h:outputText value="#{o.orderArrivalDate}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Order Detail" />
+							</f:facet>
+							<h:outputText value="#{o.orderDetail}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Order Amount" />
+							</f:facet>
+							<h:outputText value="#{o.orderAmount}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Sys Version" />
+							</f:facet>
+							<h:outputText value="#{o.sysVersion}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Sys Last Update" />
+							</f:facet>
+							<h:outputText value="#{o.sysLastUpdate}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Order Invoice" />
+							</f:facet>
+							<h:outputText value="#{o.orderInvoice}" />
+						</h:column>
+
+						<f:facet name="footer">
+							<rich:datascroller id="datascroller" />
+						</f:facet>
+					</rich:dataTable>
+				</a4j:outputPanel>
+
+			</h:form>
+		</rich:panel></fieldset>
+
+
+
+		<!--  <h:panelGroup id="DeleteCustomer">
+			<rich:modalPanel id="DeleteCustomerPanel" width="380" height="100">
+				<f:facet name="header">
+					<h:outputText value="Delete Customer" />
+				</f:facet>
+				<f:facet name="controls">
+					<h:panelGroup>
+						<h:graphicImage value="#{bundle['image.close']}" id="hidelink3"
+							styleClass="hidelink" />
+						<rich:componentControl for="DeleteCustomerPanel"
+							attachTo="hidelink3" operation="hide" event="onclick" />
+					</h:panelGroup>
+				</f:facet>
+				<h:form>
+					<h:panelGrid columns="2">
+						<h:graphicImage value="#{bundle['image.warn']}" />
+						<h:outputText value="Are you sure you want to delete customer?"
+							style="font-size: 14px;" />
+					</h:panelGrid>
+					<br />
+					<h:panelGrid columns="2">
+						<a4j:commandButton value="Yes" action="#{customersPage.delete}"
+							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;"
+							reRender="MainForm,CustomerTable" />
+						<a4j:commandButton value="No" reRender="MainForm,CustomerTable"
+							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;" />
+					</h:panelGrid>
+				</h:form>
+			</rich:modalPanel>
+		</h:panelGroup>-->
+
+	</ui:define>
+
+</ui:composition>
