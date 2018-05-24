@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://Siparis_Tutar" xmlns:intf="http://Siparis_Tutar" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://Siparis_Tutar">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://Siparis_Tutar">
+   <element name="toplam_Tutar">
+    <complexType>
+     <sequence>
+      <element name="tutar" type="xsd:float"/>
+      <element name="kdv" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="toplam_TutarResponse">
+    <complexType>
+     <sequence>
+      <element name="toplam_TutarReturn" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="toplam_TutarRequest">
+
+      <wsdl:part element="impl:toplam_Tutar" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="toplam_TutarResponse">
+
+      <wsdl:part element="impl:toplam_TutarResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="toplamTutar">
+
+      <wsdl:operation name="toplam_Tutar">
+
+         <wsdl:input message="impl:toplam_TutarRequest" name="toplam_TutarRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:toplam_TutarResponse" name="toplam_TutarResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="toplamTutarSoapBinding" type="impl:toplamTutar">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="toplam_Tutar">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="toplam_TutarRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="toplam_TutarResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="toplamTutarService">
+
+      <wsdl:port binding="impl:toplamTutarSoapBinding" name="toplamTutar">
+
+         <wsdlsoap:address location="http://tempuri.org/Siparis_Web_Project/services/toplamTutar"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
