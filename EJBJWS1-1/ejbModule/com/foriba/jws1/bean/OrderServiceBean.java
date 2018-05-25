@@ -79,15 +79,15 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public String updateOrder(long idx, String pName, Timestamp arrivalDate, Date orderDate, double amount, String clob, String blob) throws Exception {
-		String message = "";
+		StringBuilder sb = new StringBuilder("");
 		String str = null;
 		BigDecimal b = new BigDecimal(amount);
 		try {
 			str = new String(DatatypeConverter.parseBase64Binary(blob));
 		}
 		catch (Exception e) {
-			message = "The blob field must be Base64 encoded.";
-			return message;
+			sb.append("The blob field must be Base64 encoded.");
+			return sb.toString();
 		}
 		int count =
 				executeUpdate(
@@ -99,9 +99,9 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 						b.setScale(2, BigDecimal.ROUND_UP),
 						clob,
 						str.getBytes());
-		message = "Update Succesful!, Number of records updated:" + count;
+		sb.append("Update Succesful!, Number of records updated:" + count);
 
-		return message;
+		return sb.toString();
 	}
 
 	/**
@@ -111,16 +111,16 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	 */
 	@Override
 	public String updateAmountByOrderedProductName(String productName, double amount) throws Exception {
-		String message = "";
+		StringBuilder sb = new StringBuilder("");
 		if(null == productName || "".equals(productName)) {
-			message = "The Product Name field must be filled.";
+			sb.append("The Product Name field must be filled.");
 		}
 		else {
 			BigDecimal b = new BigDecimal(amount);
-			int count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.orderedProductName = ?1", productName, b.setScale(2, BigDecimal.ROUND_UP));
-			message = "Update Succesful!, Number of records updated:" + count;
+			long count = executeUpdate("UPDATE Jws1Order c SET c.orderAmount= ?2 where c.orderedProductName = ?1", productName, b.setScale(2, BigDecimal.ROUND_UP));
+			sb.append("Update Succesful!, Number of records updated:" + count);
 		}
-		return message;
+		return sb.toString();
 	}
 
 	/**
@@ -171,14 +171,14 @@ public class OrderServiceBean extends ESGenericBean<BaseEntity> implements Order
 	@Override
 	public String deleteOrder(long idx) throws Exception {
 		int count = executeUpdate("Delete FROM Jws1Order c where c.idx = ?1", idx);
-		String message = "Delete Succesful!, Number of records deleted:" + count;
-		return message;
+		return "Delete Succesful!, Number of records deleted:" + count;
+		
 	}
 
 
 	@Override
 	public List<Jws1Order> getProductNameByOrderSort() throws Exception {
-		return findByNamedQuery(Jws1Order.class, "Order.getProductNameByOrderSort", 20);
+		return findByNamedQuery(Jws1Order.class, "Order.getByOrderSort", 20);
 
 	}
 
