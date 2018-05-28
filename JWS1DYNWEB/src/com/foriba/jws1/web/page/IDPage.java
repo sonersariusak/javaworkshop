@@ -33,6 +33,7 @@ public class IDPage extends AbstractPage implements Serializable {
 			orderList = new ArrayList<Jws1Order>();
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			orderList = service.getOrderByID(getSearchTextForID());
+			System.err.println("Soner +");
 
 		}
 		catch (Exception e) {

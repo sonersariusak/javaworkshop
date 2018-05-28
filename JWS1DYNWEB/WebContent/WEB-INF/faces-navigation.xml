@@ -10,6 +10,11 @@
    <redirect/>
   </navigation-case>
   <navigation-case>
+   <from-outcome>searchPage</from-outcome>
+   <to-view-id>/view/orderSearchPage.xhtml</to-view-id>
+   <redirect/>
+  </navigation-case>
+  <navigation-case>
    <from-outcome>orderDate</from-outcome>
    <to-view-id>/view/orderDate.xhtml</to-view-id>
    <redirect/>
