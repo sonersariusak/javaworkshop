@@ -1,5 +1,6 @@
 package com.foriba.jws1.web.page;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
+import com.foriba.jws1.util.DateUtil;
 import com.foriba.jws1.web.service.ServiceLocator;
 
 
@@ -21,6 +23,10 @@ public class OrderManagementSearchPage extends AbstractPage {
 	private List<Jws1Order> orderList;
 	private long searchTextForID = 0;
 	private String searchTextForProductName = "*";
+	private String searchTextForStartDate = "2017-01-01";
+	private String searchTextForEndDate = "2018-12-12";
+	private String searchTextForDate = "12/12/2017";
+	private double searchTextForAmount = 0;
 	private String selectedItem;
 	private boolean showIdxPanel = false;
 	private boolean showProductNamePanel = false;
@@ -100,6 +106,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 		}
 
 	}
+
 	public void searchByID() {
 		try {
 			orderList = new ArrayList<Jws1Order>();
@@ -111,15 +118,79 @@ public class OrderManagementSearchPage extends AbstractPage {
 			e.printStackTrace();
 		}
 	}
+
 	public void searchByProductName() {
 		try {
-			orderList=new ArrayList<Jws1Order>();
+			orderList = new ArrayList<Jws1Order>();
 			OrderService productNameService = ServiceLocator.getCoreService(OrderService.class);
-			orderList = productNameService.getOrderListByOrderedProductName(getSearchTextForProductName());	
+			orderList = productNameService.getOrderListByOrderedProductName(getSearchTextForProductName());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void searchByArrivalDate() {
+		try {
+			orderList = new ArrayList<Jws1Order>();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			Timestamp t1 = DateUtil.toTimeStampDate(searchTextForStartDate);
+			Timestamp t2 = DateUtil.toTimeStampDate(searchTextForEndDate);
+			orderList = service.getOrderListByOrderArrivalDate(t1, t2);
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void searchByDate() {
+		try {
+			orderList = new ArrayList<Jws1Order>();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			orderList = service.getOrderListByOrderDate(DateUtil.toDate(searchTextForDate));
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void searchByProductNameByAmount() {
+		try {
+			orderList = new ArrayList<Jws1Order>();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			orderList = service.getOrderListByOrderedProductNameByAmount(searchTextForProductName,getSearchTextForAmount());
+			System.err.println("Soner: " + orderList.size());
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void searchAmountByArrivalDate() {
+		try {
+			orderList = new ArrayList<Jws1Order>();
+			OrderService service = ServiceLocator.getCoreService(OrderService.class);
+			Timestamp t1 = DateUtil.toTimeStampDate(searchTextForStartDate);
+			Timestamp t2 = DateUtil.toTimeStampDate(searchTextForEndDate);
+			orderList = service.getOrderListByAmountByOrderArrivalDate(searchTextForAmount, t1, t2);
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void refresh() throws Exception {
+		searchTextForAmount = 0;
+		searchTextForDate = null;
+		searchTextForEndDate =null;
+		searchTextForID = 0;
+		searchTextForProductName = "*";
+		searchTextForStartDate = null;
+		orderList.clear();
+		onLoad();
 	}
 
 	public void setSelectedItem(String selectedItem) {
@@ -201,5 +272,37 @@ public class OrderManagementSearchPage extends AbstractPage {
 
 	public String getSearchTextForProductName() {
 		return searchTextForProductName;
+	}
+
+	public void setSearchTextForStartDate(String searchTextForStartDate) {
+		this.searchTextForStartDate = searchTextForStartDate;
+	}
+
+	public String getSearchTextForStartDate() {
+		return searchTextForStartDate;
+	}
+
+	public void setSearchTextForEndDate(String searchTextForEndDate) {
+		this.searchTextForEndDate = searchTextForEndDate;
+	}
+
+	public String getSearchTextForEndDate() {
+		return searchTextForEndDate;
+	}
+
+	public void setSearchTextForDate(String searchTextForDate) {
+		this.searchTextForDate = searchTextForDate;
+	}
+
+	public String getSearchTextForDate() {
+		return searchTextForDate;
+	}
+
+	public void setSearchTextForAmount(double searchTextForAmount) {
+		this.searchTextForAmount = searchTextForAmount;
+	}
+
+	public double getSearchTextForAmount() {
+		return searchTextForAmount;
 	}
 }
