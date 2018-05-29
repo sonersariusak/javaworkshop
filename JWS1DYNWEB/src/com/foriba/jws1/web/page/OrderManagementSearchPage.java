@@ -48,7 +48,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 
 	}
 
-	public void selectionChanged(ValueChangeEvent e) {
+	public void selectionChanged(ValueChangeEvent e) throws Exception {
 		selectedItem = e.getNewValue().toString();
 		if(selectedItem.equals("1")) {
 			setShowIdxPanel(true);
@@ -57,6 +57,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(false);
 			setShowProductNameAmountPanel(false);
 			setShowArrivalDateAmountPanel(false);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 		else if(selectedItem.equals("2")) {
@@ -66,6 +67,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(false);
 			setShowProductNameAmountPanel(false);
 			setShowArrivalDateAmountPanel(false);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 		else if(selectedItem.equals("3")) {
@@ -75,6 +77,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(false);
 			setShowProductNameAmountPanel(false);
 			setShowArrivalDateAmountPanel(false);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 		else if(selectedItem.equals("4")) {
@@ -84,6 +87,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(true);
 			setShowProductNameAmountPanel(false);
 			setShowArrivalDateAmountPanel(false);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 		else if(selectedItem.equals("5")) {
@@ -93,6 +97,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(false);
 			setShowProductNameAmountPanel(true);
 			setShowArrivalDateAmountPanel(false);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 		else if(selectedItem.equals("6")) {
@@ -102,6 +107,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 			setShowOrderDatePanel(false);
 			setShowProductNameAmountPanel(false);
 			setShowArrivalDateAmountPanel(true);
+			refresh();
 			System.err.println("Soner:" + selectedItem);
 		}
 
@@ -146,9 +152,11 @@ public class OrderManagementSearchPage extends AbstractPage {
 
 	public void searchByDate() {
 		try {
+			System.err.println("error:");
 			orderList = new ArrayList<Jws1Order>();
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			orderList = service.getOrderListByOrderDate(DateUtil.toDate(searchTextForDate));
+			System.err.println("error:"+orderList.size());
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -189,7 +197,9 @@ public class OrderManagementSearchPage extends AbstractPage {
 		searchTextForID = 0;
 		searchTextForProductName = "*";
 		searchTextForStartDate = null;
-		orderList.clear();
+		if(null!=orderList) {
+			orderList.clear();
+		}
 		onLoad();
 	}
 
