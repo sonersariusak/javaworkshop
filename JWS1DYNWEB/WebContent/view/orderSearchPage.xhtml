@@ -36,6 +36,7 @@
 							maxlength="11" style="width: 100px;" />
 						<a4j:commandButton value="Search"
 							action="#{OrderManagementSearchPage.searchByID}"
+							style="background-color:#1d70b7 ; background-image:none"
 							reRender="mypanel">
 						</a4j:commandButton>
 					</h:panelGrid>
@@ -46,6 +47,7 @@
 							value="#{OrderManagementSearchPage.searchTextForProductName}"
 							maxlength="11" style="width: 100px;" />
 						<a4j:commandButton value="Search"
+							style="background-color:#1d70b7 ; background-image:none"
 							action="#{OrderManagementSearchPage.searchByProductName}"
 							reRender="mypanel">
 						</a4j:commandButton>
@@ -55,16 +57,17 @@
 						<h:outputText value="Start Date : " />
 						<rich:calendar cellWidth="24px" cellHeight="22px"
 							value="#{OrderManagementSearchPage.searchTextForStartDate}"
-							datePattern="yyyy-MM-dd HH:mm"  style="width:200px;">
-							<f:converter converterId="CalTimeStampStrConverter"/>
+							datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
+							<f:converter converterId="CalTimeStampStrConverter" />
 						</rich:calendar>
 						<h:outputText value="End Date: " />
 						<rich:calendar cellWidth="24px" cellHeight="22px"
 							value="#{OrderManagementSearchPage.searchTextForEndDate}"
-							datePattern="yyyy-MM-dd HH:mm"  style="width:200px;">
-							<f:converter converterId="CalTimeStampStrConverter"/>
+							datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
+							<f:converter converterId="CalTimeStampStrConverter" />
 						</rich:calendar>
 						<a4j:commandButton value="Search"
+							style="background-color:#1d70b7 ; background-image:none"
 							action="#{OrderManagementSearchPage.searchByArrivalDate}"
 							reRender="mypanel">
 						</a4j:commandButton>
@@ -75,9 +78,10 @@
 						<rich:calendar cellWidth="24px" cellHeight="22px"
 							value="#{OrderManagementSearchPage.searchTextForDate}"
 							datePattern="dd/MM/yyyy HH:mm" style="width:200px;">
-							<f:converter converterId="CalDateStrConveter"/>
+							<f:converter converterId="CalDateStrConveter" />
 						</rich:calendar>
 						<a4j:commandButton value="Search"
+							style="background-color:#1d70b7 ; background-image:none"
 							action="#{OrderManagementSearchPage.searchByDate}"
 							reRender="mypanel">
 						</a4j:commandButton>
@@ -93,6 +97,7 @@
 							value="#{OrderManagementSearchPage.searchTextForAmount}"
 							maxlength="11" style="width: 100px;" />
 						<a4j:commandButton value="Search"
+							style="background-color:#1d70b7 ; background-image:none"
 							action="#{OrderManagementSearchPage.searchByProductNameByAmount}"
 							reRender="mypanel">
 						</a4j:commandButton>
@@ -103,19 +108,20 @@
 						<h:inputText
 							value="#{OrderManagementSearchPage.searchTextForAmount}"
 							maxlength="11" style="width: 100px;" />
-							<h:outputText value="Start Date : " />
+						<h:outputText value="Start Date : " />
 						<rich:calendar cellWidth="24px" cellHeight="22px"
 							value="#{OrderManagementSearchPage.searchTextForStartDate}"
-							datePattern="yyyy-MM-dd HH:mm"  style="width:200px;">
-							<f:converter converterId="CalTimeStampStrConverter"/>
+							datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
+							<f:converter converterId="CalTimeStampStrConverter" />
 						</rich:calendar>
 						<h:outputText value="End Date: " />
 						<rich:calendar cellWidth="24px" cellHeight="22px"
 							value="#{OrderManagementSearchPage.searchTextForEndDate}"
-							datePattern="yyyy-MM-dd HH:mm"  style="width:200px;">
-							<f:converter converterId="CalTimeStampStrConverter"/>
+							datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
+							<f:converter converterId="CalTimeStampStrConverter" />
 						</rich:calendar>
 						<a4j:commandButton value="Search"
+							style="background-color:#1d70b7 ; background-image:none"
 							action="#{OrderManagementSearchPage.searchAmountByArrivalDate}"
 							reRender="mypanel">
 						</a4j:commandButton>
@@ -203,40 +209,6 @@
 
 			</h:form>
 		</rich:panel></fieldset>
-
-
-
-		<!--  <h:panelGroup id="DeleteCustomer">
-			<rich:modalPanel id="DeleteCustomerPanel" width="380" height="100">
-				<f:facet name="header">
-					<h:outputText value="Delete Customer" />
-				</f:facet>
-				<f:facet name="controls">
-					<h:panelGroup>
-						<h:graphicImage value="#{bundle['image.close']}" id="hidelink3"
-							styleClass="hidelink" />
-						<rich:componentControl for="DeleteCustomerPanel"
-							attachTo="hidelink3" operation="hide" event="onclick" />
-					</h:panelGroup>
-				</f:facet>
-				<h:form>
-					<h:panelGrid columns="2">
-						<h:graphicImage value="#{bundle['image.warn']}" />
-						<h:outputText value="Are you sure you want to delete customer?"
-							style="font-size: 14px;" />
-					</h:panelGrid>
-					<br />
-					<h:panelGrid columns="2">
-						<a4j:commandButton value="Yes" action="#{customersPage.delete}"
-							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;"
-							reRender="MainForm,CustomerTable" />
-						<a4j:commandButton value="No" reRender="MainForm,CustomerTable"
-							oncomplete="#{rich:component('DeleteCustomerPanel')}.hide();return false;" />
-					</h:panelGrid>
-				</h:form>
-			</rich:modalPanel>
-		</h:panelGroup>-->
-
 	</ui:define>
 
 </ui:composition>

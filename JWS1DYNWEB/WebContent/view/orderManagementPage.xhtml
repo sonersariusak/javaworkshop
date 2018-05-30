@@ -17,11 +17,16 @@
 					<h:inputText value="#{OrderManagementPage.searchTextForID}"
 						maxlength="11" style="width: 100px;" />
 					<a4j:commandButton value="Search"
-						action="#{OrderManagementPage.searchByID}" reRender="mypanel">
+						action="#{OrderManagementPage.searchByID}"
+						style="background-color:#1d70b7 ; background-image:none"
+						reRender="mypanel">
 					</a4j:commandButton>
 					<a4j:commandButton value="Refresh"
-						action="#{OrderManagementPage.refresh}" reRender="mypanel"></a4j:commandButton>
+						action="#{OrderManagementPage.refresh}"
+						style="background-color:#1d70b7 ; background-image:none"
+						reRender="mypanel"></a4j:commandButton>
 					<a4j:commandButton value="New Order"
+						style="background-color:#1d70b7 ; background-image:none"
 						action="#{OrderManagementPage.refresh}"
 						oncomplete="#{rich:component('addOrderPanel')}.show()"
 						reRender="mypanel1">
@@ -34,7 +39,8 @@
 						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
 						cellpadding="0" cellspacing="0">
 
-						<f:facet name="header">
+						<f:facet name="header"
+							style="background-color:rgb(54, 174, 224) ; background-image:none">
 							<h:outputText value="Ordered Table" />
 						</f:facet>
 
@@ -194,13 +200,13 @@
 									maxlength="25" style=" width : 143px;" />
 								<h:outputText value="Order Date: " />
 								<rich:calendar cellWidth="24px" cellHeight="22px"
-									value="#{OrderManagementPage.orderDateText}" datePattern="dd/MM/yyyy HH:mm"
-									style="width:200px;">
+									value="#{OrderManagementPage.orderDateText}"
+									datePattern="dd/MM/yyyy HH:mm" style="width:200px;">
 								</rich:calendar>
 								<h:outputText value="Order Arrival Date: " />
 								<rich:calendar cellWidth="24px" cellHeight="22px"
-									value="#{OrderManagementPage.orderArrivalDateText}" datePattern="yyyy-MM-dd HH:mm"
-									style="width:200px;">
+									value="#{OrderManagementPage.orderArrivalDateText}"
+									datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
 								</rich:calendar>
 								<h:outputText value="Order Detail: " />
 								<h:inputText value="#{OrderManagementPage.orderDetailText}"
@@ -216,10 +222,14 @@
 							</h:panelGrid></fieldset>
 
 							<h:panelGrid columns="2">
-								<a4j:commandButton value="Update" reRender="MainForm,mypanel,"
+								<a4j:commandButton value="Update"
+									style="background-color:#1d70b7 ; background-image:none"
+									reRender="MainForm,mypanel,"
 									action="#{OrderManagementPage.update}"
 									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
-								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
+								<a4j:commandButton value="Cancel"
+									style="background-color:#1d70b7 ; background-image:none"
+									reRender="MainForm,mypanel"
 									oncomplete="#{rich:component('editOrderPanel')}.hide();return false;" />
 							</h:panelGrid>
 						</rich:panel>
@@ -251,13 +261,13 @@
 									maxlength="25" style="width: 143px;" />
 								<h:outputText value="Order Date: " />
 								<rich:calendar cellWidth="24px" cellHeight="22px"
-									value="#{OrderManagementPage.orderDateText}" datePattern="dd/MM/yyyy HH:mm"
-									style="width:200px;">
+									value="#{OrderManagementPage.orderDateText}"
+									datePattern="dd/MM/yyyy HH:mm" style="width:200px;">
 								</rich:calendar>
 								<h:outputText value="Order Arrival Date: " />
 								<rich:calendar cellWidth="24px" cellHeight="22px"
-									value="#{OrderManagementPage.orderArrivalDateText}" datePattern="yyyy-MM-dd HH:mm"
-									style="width:200px;">
+									value="#{OrderManagementPage.orderArrivalDateText}"
+									datePattern="yyyy-MM-dd HH:mm" style="width:200px;">
 								</rich:calendar>
 								<h:outputText value="Order Detail: " />
 								<h:inputText value="#{OrderManagementPage.orderDetailText}"
@@ -275,9 +285,14 @@
 							<h:panelGrid columns="2">
 								<a4j:commandButton value="Add"
 									action="#{OrderManagementPage.addOrder}"
-									oncomplete="#{rich:component('addOrderPanel')}.hide();return false;">
+									style="background-color:#1d70b7 ; background-image:none"
+									reRender="MainForm,mypanel"
+									oncomplete="
+									#{rich:component('addOrderPanel')}.hide();returnfalse;">
 								</a4j:commandButton>
-								<a4j:commandButton value="Cancel" reRender="MainForm,mypanel"
+								<a4j:commandButton value="Cancel"
+									style="background-color:#1d70b7 ; background-image:none"
+									reRender="MainForm,mypanel"
 									oncomplete="#{rich:component('addOrderPanel')}.hide();return false;" />
 							</h:panelGrid>
 						</rich:panel>
