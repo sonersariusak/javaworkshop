@@ -138,33 +138,33 @@
 							<h:outputText value="Order Table" />
 						</f:facet>
 
-						<h:column>
+						<rich:column sortBy="#{o.idx}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="ID" />
 							</f:facet>
 							<h:outputText value="#{o.idx}" />
-						</h:column>
+						</rich:column>
 
-						<h:column>
+						<rich:column sortBy="#{o.orderedProductName}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="Product Name" />
 							</f:facet>
 							<h:outputText value="#{o.orderedProductName}" />
-						</h:column>
+						</rich:column>
 
-						<h:column>
+						<rich:column sortBy="#{o.orderedProductName}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="Order Date" />
 							</f:facet>
 							<h:outputText value="#{o.orderDate}" />
-						</h:column>
+						</rich:column>
 
-						<h:column>
+						<rich:column sortBy="#{o.orderArrivalDate}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="Order Arrival Date" />
 							</f:facet>
 							<h:outputText value="#{o.orderArrivalDate}" />
-						</h:column>
+						</rich:column>
 
 						<h:column>
 							<f:facet name="header">
@@ -173,12 +173,12 @@
 							<h:outputText value="#{o.orderDetail}" />
 						</h:column>
 
-						<h:column>
+						<rich:column sortBy="#{o.orderAmount}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="Order Amount" />
 							</f:facet>
 							<h:outputText value="#{o.orderAmount}" />
-						</h:column>
+						</rich:column>
 
 						<h:column>
 							<f:facet name="header">
@@ -187,12 +187,12 @@
 							<h:outputText value="#{o.sysVersion}" />
 						</h:column>
 
-						<h:column>
+						<rich:column sortBy="#{o.sysLastUpdate}" sortOrder="ASCENDING">
 							<f:facet name="header">
 								<h:outputText value="Sys Last Update" />
 							</f:facet>
 							<h:outputText value="#{o.sysLastUpdate}" />
-						</h:column>
+						</rich:column>
 
 						<h:column>
 							<f:facet name="header">

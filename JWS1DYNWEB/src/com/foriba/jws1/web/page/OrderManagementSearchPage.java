@@ -27,7 +27,7 @@ public class OrderManagementSearchPage extends AbstractPage {
 	private String searchTextForEndDate = "2018-12-12";
 	private String searchTextForDate = "12/12/2017";
 	private double searchTextForAmount = 0;
-	private String selectedItem;
+	private String selectedItem=null;
 	private boolean showIdxPanel = false;
 	private boolean showProductNamePanel = false;
 	private boolean showArrivalDatePanel = false;

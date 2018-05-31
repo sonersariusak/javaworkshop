@@ -39,17 +39,12 @@ public class OrderManagementPage extends AbstractPage {
 	}
 
 	public String onLoad() throws Exception {
-		try {
-			if(null != orderList) {
-				orderList.clear();
-			}
-			OrderService service = ServiceLocator.getCoreService(OrderService.class);
-			orderList = service.getProductNameByOrderSort();
-			System.err.println("Soner:  " + orderList.size());
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		orderList = new ArrayList<Jws1Order>();
+		OrderService service = ServiceLocator.getCoreService(OrderService.class);
+		orderList = service.getProductNameByOrderSort();
+		System.err.println("Soner:  " + orderList.size());
+
 		return "orderManagement";
 
 	}
@@ -74,20 +69,21 @@ public class OrderManagementPage extends AbstractPage {
 			e.printStackTrace();
 		}
 	}
-	public void update(){
+
+	public void update() {
 		try {
 			System.err.println("Soner: update ");
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			Timestamp t = new Timestamp(orderArrivalDateText.getTime());
-			System.out.println("Soner : "+t);
-			service.updateOrder(selectedOrder.getIdx(),orderProductNameText,t, orderDateText, orderAmountText, orderDetailText,orderInvoiceText);
+			System.out.println("Soner : " + t);
+			service.updateOrder(selectedOrder.getIdx(), orderProductNameText, t, orderDateText, orderAmountText, orderDetailText, orderInvoiceText);
 			System.err.println("Soner: update 3");
 			openDetail();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void searchByID() {
@@ -119,7 +115,7 @@ public class OrderManagementPage extends AbstractPage {
 	public void refresh() throws Exception {
 		orderProductNameText = "";
 		orderDateText = null;
-		orderArrivalDateText =null;
+		orderArrivalDateText = null;
 		orderDetailText = "";
 		orderInvoiceText = "";
 		orderAmountText = 0;
@@ -128,7 +124,7 @@ public class OrderManagementPage extends AbstractPage {
 
 	public void addOrder() {
 		try {
-			
+
 			OrderService service = ServiceLocator.getCoreService(OrderService.class);
 			BigDecimal amnt = new BigDecimal(orderAmountText);
 			Jws1Order jws = new Jws1Order();
