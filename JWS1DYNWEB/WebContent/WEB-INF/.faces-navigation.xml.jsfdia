@@ -8,15 +8,18 @@
    <PROCESS-ITEM-OUTPUT ID="searchPage::#view#orderSearchPage.xhtml"
     NAME="output1" PATH="/view/orderSearchPage.xhtml"
     TARGET="rules:#view#orderSearchPage.xhtml" TITLE="searchPage" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="id::#view#ID.xhtml" NAME="output2"
+   <PROCESS-ITEM-OUTPUT ID="orderDate::#view#orderDate.xhtml"
+    NAME="output2" PATH="/view/orderDate.xhtml"
+    TARGET="rules:#view#orderDate.xhtml" TITLE="orderDate" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="id::#view#ID.xhtml" NAME="output3"
     PATH="/view/ID.xhtml" TARGET="rules:#view#ID.xhtml" TITLE="id" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="amountByArrivalDate::#view#amountByArrivalDate.xhtml"
-    NAME="output3" PATH="/view/amountByArrivalDate.xhtml"
+    NAME="output4" PATH="/view/amountByArrivalDate.xhtml"
     TARGET="rules:#view#amountByArrivalDate.xhtml"
     TITLE="amountByArrivalDate" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="searchSuccess::#view#search.jsf"
-    NAME="output4" PATH="/view/search.jsf"
+    NAME="output5" PATH="/view/search.jsf"
     TARGET="rules:#view#search.jsf" TITLE="searchSuccess" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>

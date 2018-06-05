@@ -29,7 +29,7 @@
 						style="background-color:#1d70b7 ; background-image:none"
 						action="#{OrderManagementPage.refresh}"
 						oncomplete="#{rich:component('addOrderPanel')}.show()"
-						reRender="mypanel1">
+						reRender="addOrder">
 					</a4j:commandButton>
 				</h:panelGrid>
 				<a4j:outputPanel id="mypanel" ajaxRendered="true">
@@ -41,7 +41,7 @@
 
 						<f:facet name="header"
 							style="background-color:rgb(54, 174, 224) ; background-image:none">
-							<h:outputText value="Ordered Table" />
+							<h:outputText value="Order Table" />
 						</f:facet>
 
 						<h:column>
@@ -238,7 +238,7 @@
 				</rich:modalPanel>
 			</h:panelGroup>
 		</a4j:outputPanel>
-		<a4j:outputPanel id="mypanel1" ajaxRendered="true">
+		
 			<h:panelGroup id="addOrder">
 				<rich:modalPanel id="addOrderPanel" width="560" height="320">
 					<f:facet name="header">
@@ -276,8 +276,13 @@
 								<h:inputText value="#{OrderManagementPage.orderAmountText}"
 									maxlength="25" style="width: 143px;" />
 								<h:outputText value="Order Invoice: " />
-								<h:inputTextarea value="#{OrderManagementPage.orderInvoiceText}"
-									style="width: 300px; height: 50px;" />
+								<rich:fileUpload id="xmlUploader"
+									fileUploadListener="#{OrderManagementPage.uploadListener}"
+									acceptedTypes="txt,xml" maxFilesQuantity="1"
+									immediateUpload="false" uploadControlLabel="Upload"
+									allowFlash="false">
+								</rich:fileUpload>
+
 								<br />
 								<br />
 							</h:panelGrid></fieldset>
@@ -286,13 +291,13 @@
 								<a4j:commandButton value="Add"
 									action="#{OrderManagementPage.addOrder}"
 									style="background-color:#1d70b7 ; background-image:none"
-									reRender="MainForm,mypanel"
+									reRender="mypanel"
 									oncomplete="
 									#{rich:component('addOrderPanel')}.hide();returnfalse;">
 								</a4j:commandButton>
 								<a4j:commandButton value="Cancel"
 									style="background-color:#1d70b7 ; background-image:none"
-									reRender="MainForm,mypanel"
+									reRender="mypanel"
 									oncomplete="#{rich:component('addOrderPanel')}.hide();return false;" />
 							</h:panelGrid>
 						</rich:panel>
@@ -300,7 +305,7 @@
 					</h:form>
 				</rich:modalPanel>
 			</h:panelGroup>
-		</a4j:outputPanel>
+		
 
 
 	</ui:define>

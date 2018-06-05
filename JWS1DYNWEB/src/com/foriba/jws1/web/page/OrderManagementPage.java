@@ -1,5 +1,6 @@
 package com.foriba.jws1.web.page;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -7,6 +8,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
+
+import org.apache.commons.io.FileUtils;
+import org.richfaces.event.UploadEvent;
+import org.richfaces.model.UploadItem;
 
 import com.foriba.jws1.entity.Jws1Order;
 import com.foriba.jws1.service.OrderService;
@@ -29,10 +34,12 @@ public class OrderManagementPage extends AbstractPage {
 	private String orderDetailText;
 	private String orderInvoiceText;
 	private float orderAmountText;
+	private byte[] orderInvoiceData;
 	private static final long serialVersionUID = 1L;
 	private List<Jws1Order> orderList;
 	private Jws1Order selectedOrder;
 	private long searchTextForID = 0;
+	private com.foriba.jws1.web.model.File uploadedFile;
 
 	public OrderManagementPage() throws Exception {
 		onLoad();
@@ -66,6 +73,15 @@ public class OrderManagementPage extends AbstractPage {
 
 		}
 		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void uploadListener(UploadEvent uploadEvent) throws Exception {
+		try {
+			UploadItem item = uploadEvent.getUploadItem();
+			byte[] data = FileUtils.readFileToByteArray(item.getFile());
+			setOrderInvoiceData(data);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -133,7 +149,7 @@ public class OrderManagementPage extends AbstractPage {
 			System.err.println("Soner :" + orderDateText);
 			jws.setOrderAmount(amnt.setScale(2, BigDecimal.ROUND_UP));
 			jws.setOrderDetail(orderDetailText);
-			String str = new String(DatatypeConverter.parseBase64Binary(orderInvoiceText));
+			String str = new String(getOrderInvoiceData());
 			jws.setOrderInvoice(str.getBytes());
 			Timestamp t = new Timestamp(orderArrivalDateText.getTime());
 			jws.setOrderArrivalDate(t);
@@ -231,6 +247,22 @@ public class OrderManagementPage extends AbstractPage {
 
 	public long getSearchTextForID() {
 		return searchTextForID;
+	}
+
+	public void setUploadedFile(com.foriba.jws1.web.model.File uploadedFile) {
+		this.uploadedFile = uploadedFile;
+	}
+
+	public com.foriba.jws1.web.model.File getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setOrderInvoiceData(byte[] orderInvoiceData) {
+		this.orderInvoiceData = orderInvoiceData;
+	}
+
+	public byte[] getOrderInvoiceData() {
+		return orderInvoiceData;
 	}
 
 }
